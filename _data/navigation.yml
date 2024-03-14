@@ -18,7 +18,7 @@ docs:
       - title: "Tag"
         url: /tags/ 
 
-count:
+counts:
   - title: "카테고리"
     use: true
   - title: "태그"
