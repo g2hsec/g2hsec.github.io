@@ -2,7 +2,7 @@
 layout: single
 title: redirect for PHP header() vulnerability (Open redirect)
 categories: web
-tag: [php, function, redirect11, open redirect]
+tag: [php, function, redirect, open redirect]
 toc: true
 author_profile: false
 sidebar:
