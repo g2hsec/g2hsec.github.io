@@ -15,6 +15,5 @@ sidebar:
 # 해당 취약점으로 인한 피해는?  
 - 인증 및 인가 되지 않는 퓨ㅔ이지에 대한 Access 및 웹 사이트에 대한 손상이 발생할 수 있다.
 <aside class="callout" style="background-color: #f5f5f5; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
-  1. This is a callout.
-  2. This is another line.
+  해당 취약점은 디렉터리인덱싱(URL 접근제한 미흡)및 Open Redirect와 유사하다고 볼 수 있다.
 </aside>
