@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "It is a space where you study and share about security."
+title                    : "print('g2h')"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "g2h"
