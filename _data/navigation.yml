@@ -15,8 +15,8 @@ docs:
     children:
       - title: "Category"
         url: /categories/
-      - title: "Tag"
-        url: /tags/ 
+      #- title: "Tag"
+       # url: /tags/ 
 
 counts:
   - title: "카테고리"
