@@ -20,4 +20,4 @@ http://victim.com/lifendpoint?view=
 View 파라미터에 LFI 취약점이 존재하고, apache2 서비스가 동작중일 경우 일반적으로 /var/log/apache2/access.log 로그파일에 접근할 수 있다.
 access.log 파일의 경우 웹 서버에서 접근 로그파일로, 사용자의 User-Agent 헤더 정보가 기록된다.
 이 떄 User-Agent 값을 악의적인 사용자가 임의로 변경하게되면 그 정보 혹은 결과값이 access.log 파일에 기록된다(log injection).
-## LFI 취약점을 통한 Log 파일 열람
+## LFI 취약점을 통한 Log 파일 열람 
