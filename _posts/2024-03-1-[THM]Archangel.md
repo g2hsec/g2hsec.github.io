@@ -22,9 +22,11 @@ sidebar:
 5. access.log 파일에 Log injection을 통한 PHP 악성(시스템 명령어 실행) 코드 삽입 및 리버스 쉘 실행으로 내부 침투 성공
 ## 정보수집
 ### Nmap 스캔 - 사용중인 포트 및 배너, 기본 정보 수집
+
 ```
 nmap -p- --max-retries 1 -Pn -n --open --min-rate 5000 -T4 -sV -sC -A -oA ./Archangel {target_ip}
 ```
+
 ```
 Starting Nmap 7.93 ( https://nmap.org ) at 2024-03-18 01:27 EDT
 Nmap scan report for {target_ip}
@@ -45,6 +47,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 77.49 seconds
 ```
+
 - 22(SSH), 80(http) 포트로 서비스 동작중을 확인함.
 - SSH의 경우 Username 열거에 관한 취약점 제외 유의미한 취약점은 없는듯 함.
 - 80번 포트로 HTTP 웹 서비스가 서비스 동작중이므로, 해당 서비스를 중심으로 공격 방향을 잡음
@@ -302,7 +305,7 @@ archangel@ubuntu:~/secret$ ls -l
  ```
  cp /home/user/archangel/myfiles/* /opt/backupfiles
  ```
- 
+
  - 파일 내 문자열 중 CP 명령어를 사용하는 부분이 확인 되었으며, 
  - 이 때 CP명령어가 절대경로가 아닌 $PATH 에 등록되어 있는 경로대로 사용하도록 되어있다.
 ## 관리자 권한 획득
