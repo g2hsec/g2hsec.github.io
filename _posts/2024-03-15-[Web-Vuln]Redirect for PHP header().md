@@ -1,7 +1,7 @@
 ---
 layout: single
-title: Open redirect (redirect for PHP header() vulnerability)
-categories: web
+title: [Web-Vuln]Open redirect (redirect for PHP header() vulnerability)
+categories: Web-vuln
 tag: [php, function, redirect, open redirect]
 toc: true
 author_profile: false
@@ -31,4 +31,5 @@ header("Location: /test.php")
 2. Location: 헤더는 요청을 보낸 후 redirect할 URL을 알려준다.
 3. 이 떄 클라이언트측에서 인증 및 인가되지 않은 페이지에 대한 URL(웹 사이트의 다른 페이지)로 설정하여 요청한다.
 4. 요청을 보내면 클라이언트가 새 페이지로 Redirection 되지만, PHP는 페이지 콘텐츠를 계속 실행하게 된다.
+
 ***
