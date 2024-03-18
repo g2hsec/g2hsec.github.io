@@ -122,8 +122,8 @@ Starting gobuster in directory enumeration mode
 /icons/               (Status: 403) [Size: 278]
 /server-status/       (Status: 403) [Size: 278]
 /test.php/            (Status: 200) [Size: 286]
-
 ```
+
 ## 취약점 분석
 ### test.php 경로 발견
 ![그림1-3](/assets/image/thm_archangel/image3.png)
@@ -175,3 +175,5 @@ echo 'CQo8IURPQ1RZUEUgSFRNTD4KPGh0bWw+Cgo8aGVhZD4KICAgIDx0aXRsZT5JTkNMVURFPC90aX
 - apache 로그파일에 접근이 가능하다. 즉 Log Poisoning(log injection) 공격이 가능하다.
 ### Log Poisoning 취약점 공격
 ![그림1-4](/assets/image/thm_archangel/image4.png)
+- access.log 파일에 성공적으로 접근할 수 있었으며
+- 해당 파일에는 클라이언트의 User-Agent 정보가 기록된다.
