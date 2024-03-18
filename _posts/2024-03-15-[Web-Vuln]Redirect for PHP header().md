@@ -1,6 +1,6 @@
 ---
 layout: single
-title: [Web-Vuln]Open redirect (redirect for PHP header() vulnerability)
+title: (Web-Vuln)Open redirect (redirect for PHP header() vulnerability)
 categories: Web-vuln
 tag: [php, function, redirect, open redirect]
 toc: true

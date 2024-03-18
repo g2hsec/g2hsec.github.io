@@ -1,6 +1,6 @@
 ---
 layout: single
-title: [Web-Vuln] Log Poisoning
+title: (Web-Vuln) Log Poisoning
 categories: Web-vuln
 tag: [log injection, RCE, LFI, log poisoning]
 toc: true
