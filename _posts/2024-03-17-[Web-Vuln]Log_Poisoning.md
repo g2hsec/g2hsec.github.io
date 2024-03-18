@@ -29,7 +29,7 @@ http://victim.com/lifendpoint?view=../../../../var/log/apache2/access.log
 ```
 위와 같이 LFI 취약점이 존재할 경우 경로이동을 통해 access.log 파일에 접근할 수 있다.
 ![그림1-1](/assets/image/log_poisoning/image.png)
-해당 access.log 파일에는 사용자의 User-Agent 값이 담기개 된다.
+해당 access.log 파일에는 사용자의 User-Agent 값이 담기게 된다.
 이 떄 악의 적인 사용자가 User-Agent 에 악성 코드를 삽입할 수 있다.
 
 만약 해당 타겟시스템의 서버측 언어가 PHP 로 동작할 경우
