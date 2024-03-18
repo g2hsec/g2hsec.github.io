@@ -2,7 +2,7 @@
 layout: single
 title: (THM) Archangel - WriteUP
 categories: THM
-tag: [log injection, RCE, LFI, log poisoning,THM,TryHackMe, Pentest, Pentesting, cron]
+tag: [log injection, RCE, LFI, log poisoning,THM,TryHackMe, Pentest, Pentesting, cron, path]
 toc: true
 author_profile: false
 sidebar:
