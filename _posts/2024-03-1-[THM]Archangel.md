@@ -315,5 +315,6 @@ archangel@ubuntu:~/secret$ ls -l
 - SHELL 을 실행시키는 임의의 파일을 생성 후 파일 명을 CP로 생성한 후 $PATH 경로를 조작하면
 - SUID가 설정되어 있는 backup 파일을 실행시킬 경우 파일 소유자인 root 권한으로 실행되며, root 쉘이 획득된다.
 ![그림 1-10](/assets/image/thm_archangel/image10.png)
+
 - cp 명령어 사용시 참조하는 절대 경로를 조작하여,
 ./backup 파일 실행시 cp 명령어가 실행되며, 공격자가 임의 생성한 cp 파일을 실행하여 관리자 권한인 root 권한을 획득할 수 있다.
