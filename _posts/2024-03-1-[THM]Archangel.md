@@ -309,7 +309,9 @@ archangel@ubuntu:~/secret$ ls -l
 
  - 파일 내 문자열 중 CP 명령어를 사용하는 부분이 확인 되었으며, 
  - 이 때 CP명령어가 절대경로가 아닌 $PATH 에 등록되어 있는 경로대로 사용하도록 되어있다.
+
 ## 관리자 권한 획득
+
 - SHELL 을 실행시키는 임의의 파일을 생성 후 파일 명을 CP로 생성한 후 $PATH 경로를 조작하면
 - SUID가 설정되어 있는 backup 파일을 실행시킬 경우 파일 소유자인 root 권한으로 실행되며, root 쉘이 획득된다.
 ![그림 1-10](/assets/image/thm_archangel/image10.png)
