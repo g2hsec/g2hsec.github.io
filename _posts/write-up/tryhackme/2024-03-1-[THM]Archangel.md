@@ -305,7 +305,7 @@ archangel@ubuntu:~/secret$ ls -l
  - 플래그 파일과 backup 파일이 존재
  - backup 파일에 SUID가 설정되어 있으며, root 소유자로 되어있다. 해당 파일에 어떠한 문자열들이 존재하는지 확인 해보았다.
 
- ### 실행 파일 내 시스템 명령어 절대경로 미사용 확인
+### 실행 파일 내 시스템 명령어 절대경로 미사용 확인
 
  ```
  cp /home/user/archangel/myfiles/* /opt/backupfiles
