@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (Web-Vuln)Open redirect (redirect for PHP header() vulnerability)
+title: (bWAPP)Command Injection
 categories: Web-vuln
 tag: [os injection. bwapp, bee box, command injection, OWASP TOP 10, OWASP]
 toc: true
@@ -43,6 +43,5 @@ function commandi($data)
 
 ![그림 1-2](/assets/image/bwapp/injection/image2.png)
 
-해당 능에서는 시스템 함수를 사용한다는 것을 짐작할 수 있다.
-이 
-때 적절한 입력 값 검증이 이루어지지 않는다면, 시스템의 메타문자들을 이용하여 앞 명령어에 이어서 추가 명령어를 실행할 경우 RCE 취약점으로 연계가 가능하다.
+- 해당 능에서는 시스템 함수를 사용한다는 것을 짐작할 수 있다.
+- 이 때 적절한 입력 값 검증이 이루어지지 않는다면, 시스템의 메타문자들을 이용하여 앞 명령어에 이어서 추가 명령어를 실행할 경우 RCE 취약점으로 연계가 가능하다.
