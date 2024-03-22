@@ -169,6 +169,8 @@ exclude:
   - write-up
   - write-up/tryhackme
   - web-vuln
+  - bwapp
+  - bwapp/injection
 keep_files:
   - .git
   - .svn
