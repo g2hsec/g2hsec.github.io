@@ -16,30 +16,21 @@ sidebar:
 
 if(isset($_REQUEST["message"]))
 {
-
     // If the security level is not MEDIUM or HIGH
     if($_COOKIE["security_level"] != "1" && $_COOKIE["security_level"] != "2")
     {
-
 ?>
     <p><i><?php @eval ("echo " . $_REQUEST["message"] . ";");?></i></p>
-
 <?php
-
     }
-
     // If the security level is MEDIUM or HIGH
     else
     {
 ?>
     <p><i><?php echo htmlspecialchars($_REQUEST["message"], ENT_QUOTES, "UTF-8");;?></i></p>
-
 <?php
-
     }
-
-}
-
+}s
 ?>
 ```
 ## Level - Low
