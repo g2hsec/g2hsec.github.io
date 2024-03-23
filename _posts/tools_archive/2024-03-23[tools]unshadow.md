@@ -1,7 +1,7 @@
 ---
 layout: single
 title: (tools) unshadow
-categories: THM
+categories: Tools
 tag: [unshadow, attacks, tool, tools, pentest, pentest tool,password, shadow]
 toc: true
 author_profile: false

@@ -1,7 +1,7 @@
 ---
 layout: single
 title: (tools) keepass2john
-categories: THM
+categories: Tools
 tag: [wordlist, attacks, tool, tools, pentest, pentest tool,password,keepass2john]
 toc: true
 author_profile: false

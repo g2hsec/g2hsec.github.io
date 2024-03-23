@@ -1,7 +1,7 @@
 ---
 layout: single
 title: (tools) Cewl
-categories: THM
+categories: Tools
 tag: [wordlist, attacks, tool, tools, pentest, pentest tool,password]
 toc: true
 author_profile: false
