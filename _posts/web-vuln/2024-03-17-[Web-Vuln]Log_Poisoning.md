@@ -5,8 +5,6 @@ categories: Web-vuln
 tag: [log injection, RCE, LFI, log poisoning]
 toc: true
 author_profile: false
-sidebar:
-    nav: "counts"
 ---
 # 해당 취약점은 무엇인가?
 >log Poisoning은 웹 어플리케이션에서 발생하는 취약점으로, LFI 취약점이 존재하며, Log 파일을 열람이 가능할 때 발생하며, log injection과 LFI 취약점이 선행되어야 한다. 이를 통해 RCE 까지로 이어질 수 있는 취약점이다.

@@ -5,8 +5,6 @@ categories: Web-vuln
 tag: [sql injection, sql, injection, bwapp, bee box, GET, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false
-sidebar:
-    nav: "counts"
 ---
 
 # 검증 로직

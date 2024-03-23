@@ -5,8 +5,6 @@ categories: Web-vuln
 tag: [php, function, redirect, open redirect]
 toc: true
 author_profile: false
-sidebar:
-    nav: "counts"
 ---
 # 해당 취약점은 무엇인가?
 
