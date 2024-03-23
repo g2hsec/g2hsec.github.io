@@ -34,7 +34,7 @@ if(isset($_REQUEST["message"]))
 ## Level - Low
 ![그림 1-1](/assets/image/bwapp/php-code-injection/image.png)
 
-```PHP
+```php
 <p><i><?php @eval ("echo " . $_REQUEST["message"] . ";");?></i></p>
 ```
 
