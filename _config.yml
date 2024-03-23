@@ -171,7 +171,7 @@ exclude:
   - web-vuln
   - bwapp
   - bwapp/injection
-  - tools_archive
+  - tools-archive
   - mobile
 keep_files:
   - .git
