@@ -171,6 +171,7 @@ exclude:
   - web-vuln
   - bwapp
   - bwapp/injection
+  - tools
 keep_files:
   - .git
   - .svn
