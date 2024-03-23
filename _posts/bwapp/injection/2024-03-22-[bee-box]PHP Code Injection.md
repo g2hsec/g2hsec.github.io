@@ -70,7 +70,7 @@ if(isset($_REQUEST["message"]))
 ## Level - Medium & High
 
 ```php
-<p><i><?php echo htmlspecialchars($_REQUEST["message"], ENT_QUOTES, "UTF-8");;?></i></p>
+<?php echo htmlspecialchars($_REQUEST["message"], ENT_QUOTES, "UTF-8");;?>
 ```
 
 - LOW Level 을 제외한 단계에서는 htmlspcialchars() 함수를 사용하여 메타문자 입력을 금지하고 있다.
