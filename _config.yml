@@ -172,6 +172,7 @@ exclude:
   - bwapp
   - bwapp/injection
   - tools_archive
+  - mobile
 keep_files:
   - .git
   - .svn
