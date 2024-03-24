@@ -11,17 +11,17 @@ author_profile: false
 > Low Level 에서는 보안 대책이 적용되어 있지 않다.
 
 ## Level - Low
-![그림 1-1](/assets/image/bwapp/sqlp-select/image.png)
+![그림 1-1](/assets/image/bwapp/injection/sqlp-select-archive/sqlp-select/image.png)
 
 - Select 기능을 통해 특정 값을 추출함
 - 입력값을 전달할 수 있는 방안이 페이지상에 없어 Proxy Tool을 사용
 
-![그림 1-2](/assets/image/bwapp/sqlp-select/image2.png)
+![그림 1-2](/assets/image/bwapp/injection/sqlp-select-archive/sqlp-select/image2.png)
 
 - 입력값은 POST 형식으로 전송
 - movie 파라미터에 int 형으로 전송
 
-![그림 1-3](/assets/image/bwapp/sqlp-select/image3.png)
+![그림 1-3](/assets/image/bwapp/injection/sqlp-select-archive/sqlp-select/image3.png)
 
 - '(싱글쿼터) 를 통해 DBMS Error 유/무 확인
 - DBMS Error 에러발생
@@ -32,14 +32,14 @@ author_profile: false
 
 - order by 절 을 사용하여 컬럼 개수 파악
 - 7개의 컬럼 존재 추정
-![그림 1-4](/assets/image/bwapp/sqlp-select/image4.png)
+![그림 1-4](/assets/image/bwapp/injection/sqlp-select-archive/sqlp-select/image4.png)
 - 우선 출력포지션을 확인했다.
 
 ```sql
 1 and 1=2 union select 1,2,3,4,5,6,7--
 ```
 
-![그림 1-5](/assets/image/bwapp/sqlp-select/imag5.png)
+![그림 1-5](/assets/image/bwapp/injection/sqlp-select-archive/sqlp-select/imag5.png)
 - 이후 동일하게 테이블명, 컬럼명, 데이터 추출을 시도함.
 
 ```sql
@@ -57,8 +57,8 @@ author_profile: false
 ```sql
  and 1=2 union select 1,concat(id,0x3a,login),concat(password,0x3a,secret),4,admin,6,7 from bWAPP.users limit 
  
- ![그림 1-6](/assets/image/bwapp/sqlp-select/image6.png)
  ```
+![그림 1-6](/assets/image/bwapp/injection/sqlp-select-archive/sqlp-select/image6.png)
 
 - 성공적으로 id, login, password, secret 데이터를 출출했다.
 

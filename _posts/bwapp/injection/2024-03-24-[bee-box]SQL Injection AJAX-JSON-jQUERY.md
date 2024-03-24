@@ -12,11 +12,11 @@ author_profile: false
 
 ## Level - Low
 
-![그림 1-1](/assets/image/bwapp/sqli-ajax/image.png)
+![그림 1-1](/assets/image/bwapp/injection/sqli-ajax-archive/sqli-ajax/image.png)
 - 검색창에 임의의 문자를 주고 전송하는 방식이 아닌 문자열 입력시 즉시 반영되는 AJAX 형태의 검색창이 존재
 > Ajax는 비동기식 javascript, XML을 나타내며, 서버와의 통신에서 Refresh 없이 요청에 대한 리소스가 출력 되거나, 즉각적인 반을을 일으킨다.
 
-![그림 1-2](/assets/image/bwapp/sqli-ajax/image2.png)
+![그림 1-2](/assets/image/bwapp/injection/sqli-ajax-archive/sqli-ajax/image2.png)
 
 - '(싱글 쿼터) 를 통한 Error는 발생하지 않음.
 - SQL Injection의 취약 유/무는 '와 함께 조건문 삽입을 통해 확인
@@ -26,7 +26,7 @@ author_profile: false
 ```
 
 - 컬럼 수를 파악했다.
-![그림 1-3](/assets/image/bwapp/sqli-ajax/image3.png)
+![그림 1-3](/assets/image/bwapp/injection/sqli-ajax-archive/sqli-ajax/image3.png)
 
 - 이후 동일하게 출력 포지션, 데이터베이스, 테이블, 컬럼순으로 파악해 나갔다.
 
@@ -46,7 +46,7 @@ author_profile: false
 1' union select 1,concat(id,0x3a,login),concat(password,0x3a,secret),4,admin,6,7 from bWAPP.users--
 ```
 
-![그림 1-4](/assets/image/bwapp/sqli-ajax/image4.png)
+![그림 1-4](/assets/image/bwapp/injection/sqli-ajax-archive/sqli-ajax/image4.png)
 
 - 성공적으로 데이터를 추출했다.
 

