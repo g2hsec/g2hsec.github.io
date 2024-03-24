@@ -1,6 +1,6 @@
 ---
 layout: single
-title: SQL Injection (Login Form/User)
+title: (bWAPP)SQL Injection (Login Form/User)
 categories: Web-vuln
 tag: [sql injection, sql, injection, bwapp, bee box, GET, OWASP TOP 10, OWASP]
 toc: true
