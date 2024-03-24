@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (bWAPP)SQL Injection (SQLite)
+title: (bWAPP)SQL Injection - Stored (Blog)
 categories: Web-vuln
 tag: [sql injection, sql, injection, bwapp, bee box, GET, OWASP TOP 10, OWASP]
 toc: true
