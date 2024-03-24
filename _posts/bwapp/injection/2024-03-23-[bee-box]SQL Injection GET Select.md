@@ -19,7 +19,7 @@ author_profile: false
 bWAPP/sqli_2.php?movie=4&action=go
 ```
 
-- GET 형식으로 날라갈 때 파라미터를 보게되면 movie 파라미터에 idx 형식으로 전송된다.
+- GET 형식으로 날라갈 때 파라미터를 보게되면 movie 파라미터에 int 형식으로 전송된다.
 
 ![그림 1-2](/assets/image/bwapp/sqli-select/image2.png)
 
