@@ -1,7 +1,7 @@
 ---
 layout: single
 title: (bWAPP)Command Injection
-categories: Web-vuln
+categories: bwapp
 tag: [os injection, bwapp, bee box, command injection, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false

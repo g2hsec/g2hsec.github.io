@@ -1,7 +1,7 @@
 ---
 layout: single
 title: (bWAPP)PHP Code Injection
-categories: Web-vuln
+categories: bwapp
 tag: [php injection, php, injection, bwapp, bee box, php code injection, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false

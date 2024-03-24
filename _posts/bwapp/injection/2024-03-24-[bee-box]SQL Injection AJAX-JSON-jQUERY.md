@@ -1,7 +1,7 @@
 ---
 layout: single
 title: (bWAPP)SQL Injection (AJAX/JSON/jQuery)
-categories: Web-vuln
+categories: bwapp
 tag: [sql injection, sql, injection, bwapp, bee box, GET, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false

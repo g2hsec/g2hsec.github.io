@@ -1,7 +1,7 @@
 ---
 layout: single
 title: (bWAPP)Drupal SQL Injection (Drupageddon)
-categories: Web-vuln
+categories: bwapp
 tag: [sql injection, sql, injection, bwapp, bee box, GET, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false
