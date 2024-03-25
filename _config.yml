@@ -173,6 +173,7 @@ exclude:
   - bwapp/injection
   - tools-archive
   - mobile
+  - bwapp/broken-Auth
 keep_files:
   - .git
   - .svn
