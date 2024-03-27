@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (bWAPP)XSS - Reflected (GET)
+title: (bWAPP)XSS - Reflected (AJAX/JSON)
 categories: bwapp
 tag: [xss,reflected,stored,reflected xss, bee box,stored xss, OWASP TOP 10, OWASP, bwapp, dom xss]
 toc: true
@@ -131,3 +131,23 @@ author_profile: false
 
 - 그대로 URI에 해당 경로와 파라미터에 스크립트 태그를 사용하여, 입력값을 보내게 되면
 - XSS 취약점이 발생하는 것을 확인할 수 있다.
+
+## Level - Medium & High
+
+```javascript
+if($_COOKIE["security_level"] == "2")
+    {
+
+        // Generates the JSON output
+        header("Content-Type: text/json; charset=utf-8");
+
+```
+- medium Level의 필터링을 확인하면 Content-Type 을 json 형식으로 지정하는 걸 볼 수 있다.
+- 이를 통해 Javascript 태그는 허용되지 않는다.
+- 하지만 img, iframe 과 같은 HTML 태그를 사용하면 이를 우회할 수 있다.
+
+![그림 1-3](/assets/image/bwapp/xss/Reflected%20(AJAX-JSON)-archive/image2.png)
+
+
+![그림 1-4](/assets/image/bwapp/xss/Reflected%20(POST)-archive/image-3.png)
+- High Level에서는 htmlsepcialchars 함수를 사용하여, 각각의 특수문자에 대한 HTML 엔터티 인코딩을 통한 필터링을 적용하여, XSS 에 대한 대응이 이루어지고 있다.
