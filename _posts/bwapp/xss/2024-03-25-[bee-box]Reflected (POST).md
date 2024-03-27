@@ -36,3 +36,15 @@ firstname=<script>alert(1)</script>&lastname=test&form=submit
 
 ![그림 1-4](/assets/image/bwapp/xss/Reflected%20(POST)-archive/image-3.png)
 - High Level에서는 htmlsepcialchars 함수를 사용하여, 각각의 특수문자에 대한 HTML 엔터티 인코딩을 통한 필터링을 적용하여, XSS 에 대한 대응이 이루어지고 있다.
+
+## Level - Medium & High
+
+![그림 1-3](/assets/image/bwapp/xss/Reflected%20(POST)-archive/image-2.png)
+- Medium Level에서는 잘못된 보안 대책을 구현하여 문제가 된다.
+- addslashes 함수를 사용한 것으로 확인되며,
+- 해당 함수는 특수 문자 앞에 “/” 백슬래쉬를 추가하여 해당 특수 문자를 이스케이프 처리를 위한 함수이다.
+- 하지만 이 때 포함되는 특수 문자는 따옴표(’), 쌍따옴표(”), 백슬래쉬(/). null문자 가 포함되어
+- XSS 공격에 사용되는 <> 와 같은 특수문자는 필터링되지 않는다.
+
+![그림 1-4](/assets/image/bwapp/xss/Reflected%20(POST)-archive/image-3.png)
+- High Level에서는 htmlsepcialchars 함수를 사용하여, 각각의 특수문자에 대한 HTML 엔터티 인코딩을 통한 필터링을 적용하여, XSS 에 대한 대응이 이루어지고 있다.
