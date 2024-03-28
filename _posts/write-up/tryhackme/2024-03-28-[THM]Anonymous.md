@@ -11,7 +11,7 @@ author_profile: false
 
 ***
 
-# Archangel 시스템 모의 침투
+# Anonymous 시스템 모의 침투
 ## 수행 내용
 1. 정보 수집
 2. ftp 서비스에 Anonymous 계정으로 접근가능
