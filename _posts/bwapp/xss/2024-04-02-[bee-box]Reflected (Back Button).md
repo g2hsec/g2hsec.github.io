@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (bWAPP)XSS - Reflected (JSON)
+title: (bWAPP)XSS - Reflected (Back Button)
 categories: bwapp
 tag: [xss,reflected,stored,reflected xss, bee box,stored xss, OWASP TOP 10, OWASP, bwapp, dom xss]
 toc: true
