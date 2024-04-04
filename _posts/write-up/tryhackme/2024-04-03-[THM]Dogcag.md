@@ -2,7 +2,7 @@
 layout: single
 title: (THM) Dogcat - WriteUP
 categories: THM
-tag: [THM,TryHackMe, Pentest, Pentesting]
+tag: [THM,TryHackMe, Pentest, Pentesting, LFI, apache, access.log, log poisoning,php, container]
 toc: true
 author_profile: false
 ---
