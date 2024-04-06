@@ -2,7 +2,7 @@
 layout: single
 title: (bWAPP)phpMyAdmin BBCode Tag XSS
 categories: bwapp
-tag: [xss,reflected,stored,reflected xss, bee box,stored xss, OWASP TOP 10, OWASP, bwapp, dom xss]
+tag: [xss,reflected,stored,reflected xss, bee box,stored xss,CVE-2010-4480, OWASP TOP 10, OWASP, bwapp, dom xss]
 toc: true
 author_profile: false
 ---
