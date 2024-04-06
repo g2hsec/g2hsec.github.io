@@ -48,3 +48,4 @@ firstname=<script>alert(1)</script>&lastname=test&form=submit
 
 ![그림 1-4](/assets/image/bwapp/xss/Reflected%20(POST)-archive/image-3.png)
 - High Level에서는 htmlsepcialchars 함수를 사용하여, 각각의 특수문자에 대한 HTML 엔터티 인코딩을 통한 필터링을 적용하여, XSS 에 대한 대응이 이루어지고 있다.
+
