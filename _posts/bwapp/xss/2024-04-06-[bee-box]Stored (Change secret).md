@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (bWAPP)Stored (Blog)
+title: (bWAPP)Stored (Change secret)
 categories: bwapp
 tag: [xss,reflected,stored,reflected xss, bee box,stored xss, OWASP TOP 10, OWASP, bwapp, dom xss]
 toc: true
