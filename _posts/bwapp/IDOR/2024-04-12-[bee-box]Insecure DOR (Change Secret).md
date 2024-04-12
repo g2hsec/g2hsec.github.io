@@ -31,6 +31,7 @@ secret=q&login=test&action=change
 ```
 
 - 위와 같이 파라미터 값을 변조 후 전송해보았다.
+
 ![그림 1-3](/assets/image/bwapp/idor/change-secret-archive/image-2.png)
 - 우선 secret 값이 변경되었다는 문자열이 출력된다.
 
