@@ -59,29 +59,29 @@ Nmap done: 1 IP address (1 host up) scanned in 83.48 seconds
 
 ### 특정 API 이용 확인
 
-![그림 1-1](/assets/image/write-up/thm_UltraTech/image.png)
+![그림 1-1](/assets/image/write-up/thm/thm_UltraTech/image.png)
 - 8081 서비스로 접속하면 UltraTech API v0.1.3 을 사용한다고 나온다.
 
-![그림 1-2](/assets/image/write-up/thm_UltraTech/image-1.png)
+![그림 1-2](/assets/image/write-up/thm/thm_UltraTech/image-1.png)
 - 우선 8081 포트로 동작중인 사이트에 디렉터리부르트포싱 결과 auth 라는 경로가 존재하는 것을 확인함
 
-![그림 1-3](/assets/image/write-up/thm_UltraTech/image-2.png)
+![그림 1-3](/assets/image/write-up/thm/thm_UltraTech/image-2.png)
 - 해당 경로로 접근시 로그인을 진행해야하는 듯한 문자가 출력됨
 
-![그림 1-4](/assets/image/write-up/thm_UltraTech/image-3.png)
+![그림 1-4](/assets/image/write-up/thm/thm_UltraTech/image-3.png)
 - 8081 포트 및 31331 포트에 대한 디렉터리 부르트 포싱 결과 추가적인 유의미한 결과는 획득하지 못하였다.
 
 ### robots.txt 및 sitemap 식별
 
-![그림 1-5](/assets/image/write-up/thm_UltraTech/image-4.png)
+![그림 1-5](/assets/image/write-up/thm/thm_UltraTech/image-4.png)
 - 31331 포트에 robots.txt 경로가 확인되었으며, sitemap이 존재함.
 
-![그림 1-6](/assets/image/write-up/thm_UltraTech/image-5.png)
+![그림 1-6](/assets/image/write-up/thm/thm_UltraTech/image-5.png)
 - siteamp 화깅ㄴ 결과 3개의 경로가 확인됨
 - index.html과 what.html은 31331 포트의 웹 페이지상에 메인 페이지와 about 페이지이며
 - 추가적인 partners.html 경로를 획득
 
-![그림 1-7](/assets/image/write-up/thm_UltraTech/image-6.png)
+![그림 1-7](/assets/image/write-up/thm/thm_UltraTech/image-6.png)
 - 숨겨진 페이가 확인됨
 - id 및 pw는 확인 불가
 
@@ -189,26 +189,26 @@ Nmap done: 1 IP address (1 host up) scanned in 83.48 seconds
 - 또한 8081 포트로 동작하는 웹 사이트에 ping 경로가 존재하며 ip 파라미터를 통해 특정 호스트가 동작중인지 확인하는 api가 구현되어 있는 듯 하다.
 - 이 때 ping 경로에 ip 파라미터에서 command injection취약점이 존재할 가능성이 있으므로, 해당 구간을 테스트 해보았다.
 
-![그림 1-8](/assets/image/write-up/thm_UltraTech/image-7.png)
+![그림 1-8](/assets/image/write-up/thm/thm_UltraTech/image-7.png)
 - 실제 페이지가 존재하였으며, 호스트네임에 대한 결과를 출력한다.
 
-![그림 1-9](/assets/image/write-up/thm_UltraTech/image-8.png)
+![그림 1-9](/assets/image/write-up/thm/thm_UltraTech/image-8.png)
 - ; 를 통한 Command Injection 을 진행 하였으나 출력되는 문자열로 짐작을 해보면
 - ; 문자열이 시스템 내에서 명령어의 구분자로 사용되지 않고 하나의 문자로 합쳐지는 듯 하다.
 
-![그림 1-10](/assets/image/write-up/thm_UltraTech/image-9.png)
+![그림 1-10](/assets/image/write-up/thm/thm_UltraTech/image-9.png)
 - `(백틱) 을 통한 추가 우회를 시도하였더니 정상적으로 id 명령어에 대한 출력값이 나왔다.
 - 이를 통해 Command Injection 취약점이 존재한다는 것을 확인할 수 있다.
 
 ### 취약한 해시함수인 md5 를 통해 해시화된 계정정보 패스워드 확인
 
-![그림 1-11](/assets/image/write-up/thm_UltraTech/image-10.png)
+![그림 1-11](/assets/image/write-up/thm/thm_UltraTech/image-10.png)
 - ls 결과 utech.db.sqlite 라는 데이터베이스 파일이 존재하는 것을 확인할 수 있다.
 
-![그림 1-12](/assets/image/write-up/thm_UltraTech/image-11.png)
+![그림 1-12](/assets/image/write-up/thm/thm_UltraTech/image-11.png)
 - 해당 데이터베이스 파일에는 해시화된 특정 계정정보들이 저장되어 있는 듯 하다.
 
-![그림 1-13](/assets/image/write-up/thm_UltraTech/image-12.png)
+![그림 1-13](/assets/image/write-up/thm/thm_UltraTech/image-12.png)
 - r00t 계정과 admin 계정으로 보이며
 - 두 계정의 해시화된 패스워드는 md5로 저장되어 있는 듯 하다
 - md5는 취약한 해시 알고리즘으로 복호화가 가능하다.
@@ -217,18 +217,18 @@ Nmap done: 1 IP address (1 host up) scanned in 83.48 seconds
 ## 내부 침투
 ### r00t 사용자에 대한 패스워드 크랙 성공 및 SSH 접근 성공
 
-![그림 1-14](/assets/image/write-up/thm_UltraTech/image-13.png)
+![그림 1-14](/assets/image/write-up/thm/thm_UltraTech/image-13.png)
 - hashcat 결과 r00t 유저의 패스워드는 n100906 로 크랙에 성공 했다.
 
-![그림 1-15](/assets/image/write-up/thm_UltraTech/image-14.png)
+![그림 1-15](/assets/image/write-up/thm/thm_UltraTech/image-14.png)
 - admin 유저 또한 mrsheafy 라는 패스워드로 크랙에 성공 했다.
 
-![그림 1-16](/assets/image/write-up/thm_UltraTech/image-15.png)
+![그림 1-16](/assets/image/write-up/thm/thm_UltraTech/image-15.png)
 - ssh 서비스가 동작 중이었으며 r00t 유저로 ssh 접근이 가능했다.
 - admin 유저로는 ssh 접근이 불가능 했다.
 - admin 유저는 데이터베이스 유저 목록 중 하나(관리자?)로 추정되며 해당 서버에는 admin 이라는 유저가 존재하지 않았다.
 
-![그림 1-17](/assets/image/write-up/thm_UltraTech/image-16.png)
+![그림 1-17](/assets/image/write-up/thm/thm_UltraTech/image-16.png)
 - 여러 경로를 순회 하면서 정보들을 수집했다.
 - lp1 이라는 유저의 사용자 홈 디렉터리에 접근이 가능했으며
 - 숨겨진 파일중 .sudo_as_admin_successful 파일이 존재했다.
@@ -238,6 +238,6 @@ Nmap done: 1 IP address (1 host up) scanned in 83.48 seconds
 ## 권한 상승
 ### r00t 유저가 속한 docker 그룹을 이용한 docker 명령어를 악용하여 root 권한 획득
 
-![그림 1-18](/assets/image/write-up/thm_UltraTech/image-18.png)
+![그림 1-18](/assets/image/write-up/thm/thm_UltraTech/image-18.png)
 - 해당 r00t 유저가 속해있는 그룹에 docker 그룹이 존재하고 해당 서버는 docker 위에서 동작중이라는 것을 알 수 있다.
 - 이 떄 docker 명령어를 통해 root 사용자의 권한을 획득할 수 있다.

