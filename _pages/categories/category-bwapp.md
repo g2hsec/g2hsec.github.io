@@ -1,7 +1,7 @@
 ---
 title: "bWAPP"
 layout: archive
-permalink: categories/bwapp
+permalink: /categories/bwapp
 author_profile: true
 sidebar_main: true
 ---

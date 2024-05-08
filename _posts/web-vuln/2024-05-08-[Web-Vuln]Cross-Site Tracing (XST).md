@@ -2,7 +2,7 @@
 layout: single
 title: (Web-Vuln) Cross-site Tracing (XST)
 categories: Web-vuln
-tag: XST, XSS, web, web vulnerability, Cross-site Tracing]
+tag: [XST, XSS, web, web vulnerability, Cross-site Tracing]
 toc: true
 author_profile: false
 ---
