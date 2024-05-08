@@ -19,11 +19,11 @@ layout: archive
       {% include archive-single.html type=entries_layout %}
     {% endfor %}
   </div>
-  <div class="col-lg-4 col-md-2 text-right"> <!-- 오른쪽 컨텐츠 -->
-    {% for category in site.categories %}
-      {{ category | first }}
-    {% endfor %}
-  </div>
+</div>
+<div class="col-lg-4 col-md-2 text-right"> <!-- 오른쪽 컨텐츠 -->
+  {% for category in site.categories %}
+    {{ category | first }}
+  {% endfor %}
 </div>
 
 
