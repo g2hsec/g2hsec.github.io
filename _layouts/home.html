@@ -8,8 +8,7 @@ layout: archive
 
 <div class="col-lg-4 col-md-4 text-right"> <!-- 오른쪽 컨텐츠 -->
   {% for category in site.categories %}
-    {{ category | first }}
-    {{ category | last }}
+    {{ category | first }} {{ category | last | size }}
   {% endfor %}
 </div>
 
