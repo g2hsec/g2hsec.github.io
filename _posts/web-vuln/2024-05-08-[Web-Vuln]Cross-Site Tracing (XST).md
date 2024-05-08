@@ -55,7 +55,7 @@ author_profile: false
 POC코드에서는 alert()함수를 통해 개념증명을 보이지만, 이 부분을 document.location와 같이 공격자 서버로의 세션 전송 구문을 넣게되면 응답받은 값의 쿠키값을 공격자의 서버로 전송하게 될 것이다.
 
 <div style="background-color:#ffffcc; padding:10px; border: 2px solid #ff6600; border-radius: 10px; text-align: center; color: black;">
-TRACE메서드는 알반적으롣 ㅐ부분의 웹 서버에서 기본적으로 비활성화 되어있으며, 현재 사용되는 대부분의 웹 브라우조는 XHR(XMLHttpRequedst)에서 TRACE를 실행하지 못하도록 설정되어 있다. 이로 인해 AJAX를 이용한 XST공격은 사실상 대부분의 웹 브라우저에서는 불가능하만 일부 취약환경에서는 사용이 가능하다.
+TRACE메서드는 알반적으로 대부분의 웹 서버에서 기본적으로 비활성화 되어있으며, 현재 사용되는 대부분의 웹 브라우조는 XHR(XMLHttpRequedst)에서 TRACE를 실행하지 못하도록 설정되어 있다. 이로 인해 AJAX를 이용한 XST공격은 사실상 대부분의 웹 브라우저에서는 불가능하만 일부 취약환경에서는 사용이 가능하다.
 </div>
 <br>
 
