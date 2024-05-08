@@ -3,7 +3,7 @@ layout: archive
 ---
 
 {{ content }}
-ㅁㄴㅇㅁㄴㅇ
+
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
 
 {% if paginator %}
@@ -16,6 +16,11 @@ layout: archive
 <div class="entries-{{ entries_layout }}">
   {% for post in posts %}
     {% include archive-single.html type=entries_layout %}
+  {% endfor %}
+</div>
+<div class="col-lg-4 col-md-2">
+  {% for category in site.categories %}
+    {{ category }}
   {% endfor %}
 </div>
 
