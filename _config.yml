@@ -283,3 +283,4 @@ defaults:
       related: true
       toc_sticky: true
       toc_label: 목차
+      sidebar_main: true
