@@ -24,3 +24,10 @@ layout: default
     {{ content }}
   </div>
 </div>
+<div class="col-lg-4 col-md-4 text-right"> <!-- 오른쪽 컨텐츠 -->
+  <ul>
+    {% for category in site.categories %}
+      <li>{{ category | first }} ({{ category | last | size }})</li>
+    {% endfor %}
+  </ul>
+</div>

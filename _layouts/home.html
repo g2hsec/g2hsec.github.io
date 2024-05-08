@@ -4,13 +4,6 @@ layout: archive
 
 {{ content }}
 <div class="row">
-  <div class="col-lg-4 col-md-4 text-right"> <!-- 오른쪽 컨텐츠 -->
-    <ul>
-      {% for category in site.categories %}
-        <li>{{ category | first }} ({{ category | last | size }})</li>
-      {% endfor %}
-    </ul>
-  </div>
   <div class="col-lg-8 col-md-8"> <!-- 왼쪽 컨텐츠 -->
     <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
 
