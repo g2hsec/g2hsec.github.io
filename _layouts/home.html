@@ -4,15 +4,14 @@ layout: archive
 
 {{ content }}
 <div>
-  <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
-
   <div class="col-lg-4 col-md-4 text-right">
     <ul>
       {% for category in site.categories %}
-        <li>{{ category | first }} {{ category | last | size }}</li>
+        <li>{{ category | first }} ({{ category | last | size }})</li>
       {% endfor %}
     </ul>
   </div>
+  <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
 
   {% if paginator %}
     {% assign posts = paginator.posts %}
