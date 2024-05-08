@@ -13,12 +13,12 @@ layout: archive
 {% endif %}
 
 {% assign entries_layout = page.entries_layout | default: 'list' %}
-<div class="col-lg-8 col-md-10"> <!-- 왼쪽 컨텐츠 -->
+<div class="col-lg-8 col-md-8"> <!-- 왼쪽 컨텐츠 -->
    {% for post in posts %}
     {% include archive-single.html type=entries_layout %}
    {% endfor %}
 </div>
-<div class="col-lg-4 col-md-2 text-right"> <!-- 오른쪽 컨텐츠 -->
+<div class="col-lg-4 col-md-4 text-right"> <!-- 오른쪽 컨텐츠 -->
   {% for category in site.categories %}
     {{ category | first }}
   {% endfor %}
