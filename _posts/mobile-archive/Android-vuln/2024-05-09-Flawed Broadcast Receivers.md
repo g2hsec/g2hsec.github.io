@@ -36,3 +36,7 @@ public class MyReceiver extends BroadcastReceiver {
 ```
 
 </div>
+
+
+# Referance
+- https://www.tutorialspoint.com/android/android_broadcast_receivers.htm

@@ -2,7 +2,7 @@
 layout: single
 title: (bWAPP)Denial-of-Service (Large Chunk Size)
 categories: bwapp
-tag: [xst,cross-site tracing, xss, bwapp, bee box, session, OWASP TOP 10, OWASP]
+tag: [DoS, xss, bwapp, bee box, session, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false
 ---
