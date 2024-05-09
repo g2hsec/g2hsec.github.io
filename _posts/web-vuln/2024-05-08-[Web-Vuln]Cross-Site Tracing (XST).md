@@ -35,7 +35,7 @@ author_profile: false
 
 ## 공격 POC Code
 
-```javascirpt
+```Javascript
 <script type="text/javascript">
 <!--
     function sendTrace () {
