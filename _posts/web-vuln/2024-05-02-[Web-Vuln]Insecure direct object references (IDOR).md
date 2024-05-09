@@ -2,7 +2,7 @@
 layout: single
 title: (Web-Vuln) Insecure direct object references (IDOR)
 categories: Web-vuln
-tag: IDOR, log, web, web vulnerability, Insecure direct object references]
+tag: [IDOR, log, web, web vulnerability, Insecure direct object references]
 toc: true
 author_profile: false
 ---
