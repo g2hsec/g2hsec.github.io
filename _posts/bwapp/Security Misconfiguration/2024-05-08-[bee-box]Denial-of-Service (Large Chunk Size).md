@@ -16,3 +16,13 @@ author_profile: false
 ***
 HTTP Chunked는 request body의 크기를 가변적으로 정할 수 있는 기능이다.
 ***
+
+<div class="notice--primary" markdown="1">
+안에 `코드`도 넣을 수 있다. 아래처럼!
+    ```c++
+std::cout << "Hello. World! >> std::endl;
+    ``` 
+
+- C++ 열심히
+- 공부하자
+</div>
