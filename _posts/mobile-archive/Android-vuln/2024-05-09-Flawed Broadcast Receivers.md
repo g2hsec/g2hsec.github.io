@@ -23,4 +23,16 @@ author_profile: false
 브로드 캐스트 리시버가 정상적으로 작동하려면 우선 브로드캐스트 리시버를 생성 및 등록이 이루어져야한다.
 <br>
 브로드캐스트 리시버는 BroadcastReceiver 클래스의 서브클래스로 구현되며, 각 메시지를 intent 객체 파라미터로 수신하는 onReceiver() 메서드를 재정의 한다.
+
+[Example Code]
+
+```java
+public class MyReceiver extends BroadcastReceiver {
+   @Override
+   public void onReceive(Context context, Intent intent) {
+      Toast.makeText(context, "Intent Detected.", Toast.LENGTH_LONG).show();
+   }
+}
+```
+
 </div>
