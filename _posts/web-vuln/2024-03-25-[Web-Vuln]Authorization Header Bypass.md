@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (Web-Vuln) Authorization Header Bypass
+title: Authorization Header Bypass
 categories: Web-vuln
 tag: [Header bypass, Authorization, web, web vulnerability, Authorization Header Bypass]
 toc: true

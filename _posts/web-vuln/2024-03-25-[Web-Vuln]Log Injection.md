@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (Web-Vuln) Log Injection
+title: Log Injection
 categories: Web-vuln
 tag: [Log Injection, log, web, web vulnerability, injection]
 toc: true
