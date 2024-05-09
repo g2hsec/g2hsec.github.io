@@ -19,7 +19,7 @@ HTTP Chunked는 request body의 크기를 가변적으로 정할 수 있는 기�
 
 해당 bWAPP에서는 타겟 서버의 DoS 공격을 수행하는 악성 스크립트를 제공하고 있다.
 
-```Python
+```python
 # Exploit Title: nginx v1.3.9-1.4.0 DOS POC (CVE-2013-2028)
 # Date: 16.05.2013
 # Exploit Author: Mert SARICA - mert [ . ] sarica [ @ ] gmail [ . ] com - http://www.mertsarica.com
@@ -103,3 +103,4 @@ while packet <= 66:
 
 print "[+] Done!"
 ```
+
