@@ -37,7 +37,6 @@ author_profile: false
 
 ```Javascript
 <script type="text/javascript">
-<!--
     function sendTrace () {
 	var xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
 	xmlHttp.open("TRACE", "http://foo.bar",false);
@@ -45,7 +44,6 @@ author_profile: false
 	xmlDoc=xmlHttp.responseText;
 	alert(xmlDoc);
     }
-//-->
 </script>
 <INPUT TYPE=BUTTON OnClick="sendTrace();" VALUE="Send Trace Request">
 ```
