@@ -174,6 +174,9 @@ exclude:
   - tools-archive
   - mobile
   - bwapp/broken-Auth
+  - vuln
+  - mobile-archive
+  
 keep_files:
   - .git
   - .svn
