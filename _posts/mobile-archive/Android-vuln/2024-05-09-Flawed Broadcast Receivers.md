@@ -144,5 +144,10 @@ run app.broadcast.send --component com.android.insecurebankv2 com.android.insecu
 ```
 위 코드들과 같이 보낼 경우 출력되는 메시지에는 기존에 사용하던 패스워드가 평문으로 포함되어 노출되게 된다. 즉, 계정의 패스워드는 변경되지 않지만 기존의 비밀번호는 노출되게 된다.
 
+<div class="notice">
+  <h4>현재 Insecurebank2의 경우에는 onReceive() 메서드에서 SharedPreferences를 사용하는 부분에서 MODE_WORLD_READABLE를 사용하고 있다. 이는 안드로이드에서 더이상 지원하지 않고있으며, API Level 17 부터 사용이 금지되었다. 이로인해 위 명령어는 실행되지 않는다. 이를 실행 시키기 위해서는 MODE_WORLD_READABLE 부분을 MODE_PRIVATE로 변경하고 다시금 빌드를 해야한다.</h4>
+</div>
+Message
+
 # Referance
 - https://www.tutorialspoint.com/android/android_broadcast_receivers.htm
