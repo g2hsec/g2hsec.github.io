@@ -61,9 +61,10 @@ public class MyReceiver extends BroadcastReceiver {
 ```
 
 위 코드는 진단 어플리케이션의 AndroiManifest.xml 파일에 선언된 <receiver> 항목이다.
-<br>
-해당 코드를 보게되면, 
-
+<br><br>
+해당 코드를 보게되면, 브로드캐스트 리시버는 MyBroadCastReceiver이며, exported 가 true로 지정되어 있다. 이는 해당 브로드캐스트 리시버가 다른 어플리케이션에서 사용될 수 있음을 의미한다. 즉, 외부 어플리케이션으로부터 intent를 받을 수 있다. 또한 브로드캐스트 리시버가 처리할 액션은 theBroadcast이다. 즉, 해당 어플리케이션 혹은 다른 어플리케이션에서 해당 액션을 보낼 때 브로드캐스트 리시버가 해당 액션을 수신하여 처리할 수 있게 된다.
+<br><br>
+이후 Android Device가 부팅될 때마다 브로드캐스트 리시버인 MyBrocastReciver가 이를 가로채고 onRecive() 내부에 구현된 로직이 실행되게 된다.
 
 
 
