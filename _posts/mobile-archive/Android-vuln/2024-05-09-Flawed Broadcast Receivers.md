@@ -24,7 +24,7 @@ author_profile: false
 <br>
 브로드캐스트 리시버는 BroadcastReceiver 클래스의 서브클래스로 구현되며, 각 메시지를 intent 객체 파라미터로 수신하는 onReceiver() 메서드를 재정의 한다.
 
-![alt text](image.png)
+![그림 1-1](/assets/image/vuln/mobile-vuln/android-vuln/Flawed%20Broadcast%20Receivers/image.png)
 
 [Example Code]
 
@@ -40,7 +40,7 @@ public class MyReceiver extends BroadcastReceiver {
 </div>
 
 어플리케이션에서 선언한 액션을 호출하면 리시버는 해당 액션을 인지하여 작업을 수행하게 하고, 이러한 작업은 브래드캐스트 리시버를 상속 받은 메서드에서 처리하게 된다.
-<br>
+<br><br>
 브로드캐스트 리시버 호출 시 발생하는 브로드캐스트가 정상이면 각각의 시스템 이벤트와 다른 어플리케이션에서 발생하는 경우가 있으며, 비정상일 경우 악의적인 어플리케이션에서 발생하거나, 악의적인 사용자에 의해 임의대로 생성할 수 있게 된다.
 
 ## Flewed Broadcas Receivers
@@ -49,8 +49,20 @@ public class MyReceiver extends BroadcastReceiver {
 
 ### 취약점 분석
 
+```xml
+<receiver
+   android:name=".MyBroadCastReceiver"
+   android:exported="true" >
+   <intent-filter>
+         <action android:name="theBroadcast" >
+         </action>
+   </intent-filter>
+</receiver>
+```
 
-
+위 코드는 진단 어플리케이션의 AndroiManifest.xml 파일에 선언된 <receiver> 항목이다.
+<br>
+해당 코드를 보게되면, 
 
 
 

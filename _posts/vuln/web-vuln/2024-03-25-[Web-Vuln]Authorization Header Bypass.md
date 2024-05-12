@@ -11,7 +11,7 @@ author_profile: false
 >> 서버에서 401 Unauthorized 상태를 WWW-Authenticate 헤더로 알려준 후 발생한다.
 
 
-![그림 1-1](/assets/image/web-vuln/Authorization%20Header%20Bypass/image.png)
+![그림 1-1](/assets/image//vuln/web-vuln/Authorization%20Header%20Bypass/image.png)
 
 ## Syntax
 
