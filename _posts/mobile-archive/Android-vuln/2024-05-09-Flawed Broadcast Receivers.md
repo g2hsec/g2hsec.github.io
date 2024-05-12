@@ -24,6 +24,8 @@ author_profile: false
 <br>
 브로드캐스트 리시버는 BroadcastReceiver 클래스의 서브클래스로 구현되며, 각 메시지를 intent 객체 파라미터로 수신하는 onReceiver() 메서드를 재정의 한다.
 
+![alt text](image.png)
+
 [Example Code]
 
 ```java
@@ -36,6 +38,24 @@ public class MyReceiver extends BroadcastReceiver {
 ```
 
 </div>
+
+어플리케이션에서 선언한 액션을 호출하면 리시버는 해당 액션을 인지하여 작업을 수행하게 하고, 이러한 작업은 브래드캐스트 리시버를 상속 받은 메서드에서 처리하게 된다.
+<br>
+브로드캐스트 리시버 호출 시 발생하는 브로드캐스트가 정상이면 각각의 시스템 이벤트와 다른 어플리케이션에서 발생하는 경우가 있으며, 비정상일 경우 악의적인 어플리케이션에서 발생하거나, 악의적인 사용자에 의해 임의대로 생성할 수 있게 된다.
+
+## Flewed Broadcas Receivers
+💡 **<u><span style="background-color: yellow; ">해당 취약점 실습은 "InsecureBank2"라는 모바일 뱅킹서비스 어플리케이션으로 진행합니다.</span></u>** 
+{: .notice--primary}
+
+### 취약점 분석
+
+
+
+
+
+
+
+
 
 
 # Referance
