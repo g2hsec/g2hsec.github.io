@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (bWAPP)Insecure WebDAV Configuration
+title: (bWAPP)Local Privilege Escalation (sendpage)
 categories: bwapp
 tag: [Local Privilege Escalation, bwapp, bee box, OWASP TOP 10, OWASP]
 toc: true

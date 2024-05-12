@@ -1,8 +1,8 @@
 ---
 layout: single
-title: (bWAPP)Insecure WebDAV Configuration
+title: (bWAPP)Man-in-the-Middle Attack (HTTP)
 categories: bwapp
-tag: [Local Privilege Escalation, bwapp, bee box, OWASP TOP 10, OWASP]
+tag: [mitm, bwapp, bee box, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false
 ---
