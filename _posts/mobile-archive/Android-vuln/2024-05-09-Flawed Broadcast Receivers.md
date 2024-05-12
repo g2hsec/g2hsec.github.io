@@ -149,5 +149,9 @@ run app.broadcast.send --component com.android.insecurebankv2 com.android.insecu
 </div>
 Message
 
+# 대응 방안
+1. AndroidManifest.xml 파일의 "adnroid:exported" 항목을 True가 아닌 False로 설정하여야 한다.
+2. 리시버에 대한 별도의 권한을 부여하여야 한다.
+
 # Referance
 - https://www.tutorialspoint.com/android/android_broadcast_receivers.htm
