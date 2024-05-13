@@ -12,7 +12,7 @@ author_profile: false
 
 <hr>
 
-- **Vulnerability Code**
+**Vulnerability Code**
 
 ```php
 <?php
