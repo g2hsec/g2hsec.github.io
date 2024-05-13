@@ -72,3 +72,5 @@ run app.activity.start --component com.android.insecurebankv2 com.android.insecu
 위와 같이 별도의 인증절차 없이 각각의 액티비티에 접근할 수 있게 된다.
 
 # 대응방안
+1. 특별한 경우가 아닌 이상 activity 태그의 android:exported 부분을 "false"로 설정
+2. 소스코드 개발 단계에서의 적절한 인증 처리
