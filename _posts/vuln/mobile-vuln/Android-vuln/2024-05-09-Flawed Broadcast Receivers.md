@@ -107,7 +107,8 @@ public class MyBroadCastReceiver extends BroadcastReceiver {
 
 MyBroadCastReceiver 코드를 보게되면, BroadcastReceiver 객체를 상속받고, phn과 newpass를 인자로받으며, 브로드캐스트가 발생하면 onReceive() 메서드가 실행되게 된다. 해당 메서드를 보게되면, 암호화된 사용자 이름과 패스워드를 가져와서 복호화하여 SMS에 포함될 메시지로 사용하며, 사용자 전화번호로 보내도록 되어있다. 이 때 전화번호가 입력되지 않는 다면 "Phone number is null"을 출력하게 된다.
 <br><br>
-Drozer을 이용하여 실습을 진행해 보았다.
+
+### Drozer을 이용한 실습
 
 ```
 run app.package.attacksurface com.android.insecurebankv2
