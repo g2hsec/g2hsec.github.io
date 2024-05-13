@@ -48,7 +48,7 @@ Authorization: <type> <credentials>
 
 > PUT과 같은 헤더는 Authorization 헤더를 허용하지 않기 때문이다. (PUT 메서드는 인증이 필요하지 않기 때문
 
-![그림 1-2](/assets/image/web-vuln/Authorization%20Header%20Bypass/image2.png)
+![그림 1-2](/assets/image/vuln/web-vuln/Authorization%20Header%20Bypass/image2.png)
 
 # 대응책
 
