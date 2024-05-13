@@ -22,3 +22,8 @@ bWAPP 에서 제공하는 O-Saft 툴은 오류로 인해 다운받아지지 않�
 
 💡 **<u><span style="background-color: yellow; ">O-Saft 툴은 SSL 인증서, 암호화 목록, 취약점 정보를 스캐닝 하는 도구이다.</span></u>** 
 {: .notice--primary}
+
+```
+./o-saft.pl +check -v 192.168.146.133:9443 > check.txt 
+```
+
