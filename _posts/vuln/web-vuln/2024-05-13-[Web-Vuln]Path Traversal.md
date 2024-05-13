@@ -59,7 +59,6 @@ https://insecure-test.com/findimage?filename=../../../etc/passwd
 
 🌝 **<u>Path Traversal 취약점은 어떤 부분에서 나타나고 테스팅 해볼 수 있을까</u>** 
 {: .notice--primary} 
-<br>
 <hr>
 사용자의 요청이 서버내의 path로 연결되는 구간, API 요청에 의해 파일값을 불러오는 구간이 공격표면이 될 수 있다. 
 <br>
