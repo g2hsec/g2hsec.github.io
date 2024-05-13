@@ -1,0 +1,24 @@
+---
+layout: single
+title: (bWAPP)BEAST-CRIME-BREACH Attacks
+categories: bwapp
+tag: [BEAST,BREACH, bwapp, bee box, CRIME, OWASP TOP 10, OWASP]
+toc: true
+author_profile: false
+---
+
+# 취약점 설명
+> BEAST-CRIME-BREACH Attacks은 SSL/TLS 프로토콜과 관련된 구현상의 취약점을 공격하여 정보 유출 및 악용하는 취약점 들이다. 현재로서는 기본적으로 취약하지 않은 버전들을 사용하므로 취약점 발견율은 낮은 편에 속한다.
+
+![그림 1-1](image.png)
+- 해당 웹 서버는 BEAST, CRIME, BREACH 공격에 취약하다고 한다.
+- 이를 보안하기 위해 TLS 1.1 이상을 구성하고 SSL및 HTTP 압축을 비활성화 하라고 한다.
+- (현재 주요 브라우저들은 TLS1.2 이상을 기본으로 사용하므로 대체로 안전한 편이다.)
+
+bWAPP 에서 제공하는 O-Saft 툴은 오류로 인해 다운받아지지 않으므로 github에 존재하는 툴을 따로 다운받아야 한다.
+<br><br>
+
+- 또한 O-Saft를 사용하여 9443 포트에 대해 ssl 통신을 확인해봐야 할 거 같다.
+
+💡 **<u><span style="background-color: yellow; ">O-Saft 툴은 SSL 인증서, 암호화 목록, 취약점 정보를 스캐닝 하는 도구이다.</span></u>** 
+{: .notice--primary}
