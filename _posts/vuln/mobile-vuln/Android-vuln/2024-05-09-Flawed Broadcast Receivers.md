@@ -2,7 +2,7 @@
 layout: single
 title: Flawed Broadcast Receivers
 categories: Android
-tag: [android, mobile, drozer,insecurebankv2, app, application]
+tag: [android, mobile, drozer,insecurebankv2, app, application, Flawed Broadcast Receivers]
 toc: true
 author_profile: false
 ---
