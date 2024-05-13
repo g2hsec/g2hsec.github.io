@@ -80,7 +80,7 @@ https://insecure-test.com/findimage?filename=../../../etc/passwd
 /var/www/images/..//test.jpg
 ```
 
-**<u>만약 위의 테스트 결과가 404(Not Found) 가 뜬다면 이는 ./ 문자열이 제거가 되지 않는다는것을 의미한다.  200 ok가 반환 되더라도, ./가 필터링 되어 ./가되거나 아니면 이러한 제거로직을 반복구성 해놓았을 가능성도 존재한다.</u>**
+**<u style="color=red; ">만약 위의 테스트 결과가 404(Not Found) 가 뜬다면 이는 ./ 문자열이 제거가 되지 않는다는것을 의미한다.  200 ok가 반환 되더라도, ./가 필터링 되어 ./가되거나 아니면 이러한 제거로직을 반복구성 해놓았을 가능성도 존재한다.</u>**
 
 ## Bypass - Path Traversal
 ### Basic Bypass
