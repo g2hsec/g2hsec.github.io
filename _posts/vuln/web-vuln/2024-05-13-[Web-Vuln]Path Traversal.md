@@ -138,6 +138,7 @@ GET /image?filename=../../../etc/passwd%00.jpg HTTP/2 200(ok)
 <div class="notice">
   <h4>이러한 진입점들을 잘 찾아내는것이 중요하다. 파일의 본문내용을 경로로 사용되는 부분도 존재하며, 요청값과 응답값을 잘 확인하자.</h4>
 </div>
+
 <hr>
 
 # 대응 방안
