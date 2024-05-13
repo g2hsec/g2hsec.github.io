@@ -53,7 +53,7 @@ INFO: success login
 
 > 이때 공격은 CRLF(\r\n) 문자를 이용하여 이루어진다.
 
-- 로그 인젝션에 취약한 서버측 코드는 아래 사이트에서 확인이 가능하다.
+- 로그 인젝션에 취약한 서버측 코드는 아래 사이트에서 확인이 가능하다.<br>
 https://www.notion.so/Log-Injection-b7b4ee265f62490d889e72bb7dd58464?pvs=4#f0e218f80168433c85ba414f862042dc
 
 # 대응책
