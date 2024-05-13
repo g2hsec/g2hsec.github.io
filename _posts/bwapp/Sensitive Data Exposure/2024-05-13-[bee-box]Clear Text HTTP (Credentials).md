@@ -2,7 +2,7 @@
 layout: single
 title: (bWAPP)Clear Text HTTP (Credentials)
 categories: bwapp
-tag: [BEAST,spfoo, bwapp, bee box, CRIME, OWASP TOP 10, OWASP]
+tag: [spoofing,mitm, bwapp, bee box, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false
 ---
