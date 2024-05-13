@@ -121,7 +121,7 @@ run app.package.attacksurface com.android.insecurebankv2
 run app.broadcast.info -a com.android.insecurebankv2 -i
 ```
 
-![그림 1-3](/assets/image/vuln/mobile-vuln/adnroid-vuln/Flawed%20Broadcast%20Receivers/image2.png)
+![그림 1-3](/assets/image/vuln/mobile-vuln/adnroid-vuln/Flawed%20Broadcast%20Receivers/image33.png)
 - 위 내용은 브로드캐스트 리시버 정보를 확인할 수 있다.
 - 살펴보면 com.android.insecurebankv2패키지의 MyBroadCastReceiver 라는 브로드캐스트 리시버가 포함되어 있다는 것을 알 수 있다. 앞에서 확인한 정보와 일치한다.
 - 권한 설정은 되어있지 않다.
