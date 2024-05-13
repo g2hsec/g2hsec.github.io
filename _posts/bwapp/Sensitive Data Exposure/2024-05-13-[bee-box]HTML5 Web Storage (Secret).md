@@ -2,7 +2,7 @@
 layout: single
 title: (bWAPP)HTML5 Web Storage (Secret)
 categories: bwapp
-tag: [spoofing,mitm, bwapp, bee box, OWASP TOP 10, OWASP]
+tag: [XSS,HTML5 Web Storage, bwapp, bee box, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false
 ---
