@@ -70,3 +70,5 @@ run app.activity.start --component com.android.insecurebankv2 com.android.insecu
 <br>
 <hr>
 위와 같이 별도의 인증절차 없이 각각의 액티비티에 접근할 수 있게 된다.
+
+# 대응방안
