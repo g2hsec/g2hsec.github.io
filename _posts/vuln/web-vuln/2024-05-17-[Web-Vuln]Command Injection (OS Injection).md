@@ -23,3 +23,37 @@ exec('cat'+textfilename) 혹은 system('cat'+textfilename)
 
 위와 같이 평범하게 filename 을 입력받아 출력 해주는 로직은 파일을 웹 서버단에 저장 후 일반적으로 출력해줄 수 있지만 위와 같이 시스템 명령어를 사용해 출력해주는 경우도 있다. 이와 같이 테스팅 과정에서 육안으로는 OS Injection 식별이 힘들다.
 
+## OS 명령어의 인자 값으로 넘겨줄 때 자주 사용되는 파라미터
+
+{% capture notice-2 %}  <!--notice-2 라는 변수에 다음 텍스트 문단을 문자열로 저장한다.-->  
+#### 자주 사용되는 파라미터
+
+* ?cmd={payload}
+* ?exec={payload}
+* ?command={payload}
+* ?execute{payload}
+* ?ping={payload}
+* ?query={payload}
+* ?jump={payload}
+* ?code={payload}
+* ?reg={payload}
+* ?do={payload}
+* ?func={payload}
+* ?arg={payload}
+* ?option={payload}
+* ?load={payload}
+* ?process={payload}
+* ?step={payload}
+* ?read={payload}
+* ?function={payload}
+* ?req={payload}
+* ?feature={payload}
+* ?exe={payload}
+* ?module={payload}
+* ?payload={payload}
+* ?run={payload}
+* ?print={payload}  <!--캡처 끝! 여기까지의 텍스트를 변수에 저장-->
+
+<div class="notice">
+  {{ notice-2 | markdownify }} <!--div 태그 사이에 notice-2 객체를 출력하되 markdownify 한다. 즉 마크다운 화-->
+</div>
