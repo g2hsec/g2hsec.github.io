@@ -166,6 +166,7 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - vuln/web-vuln
   - write-up
   - write-up/tryhackme
   - web-vuln
@@ -176,7 +177,6 @@ exclude:
   - bwapp/broken-Auth
   - vuln
   - mobile-archive
-  - vuln/web-vuln
   
 keep_files:
   - .git
