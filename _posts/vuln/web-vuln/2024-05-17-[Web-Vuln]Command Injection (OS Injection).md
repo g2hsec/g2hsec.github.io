@@ -1,8 +1,8 @@
 ---
 layout: single
-title: Command Injection (OS Injection) + Blind Based
+title: Command Injection (OS Injection) 
 categories: Web-vuln
-tag: [Server Side Template Injection, SSTI, web, web vulnerability, injection]
+tag: [OS Injection, Command Injection, web, web vulnerability, injection]
 toc: true
 author_profile: false
 ---
