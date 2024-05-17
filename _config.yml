@@ -176,6 +176,7 @@ exclude:
   - bwapp/broken-Auth
   - vuln
   - mobile-archive
+  - vuln/web-vuln
   
 keep_files:
   - .git
