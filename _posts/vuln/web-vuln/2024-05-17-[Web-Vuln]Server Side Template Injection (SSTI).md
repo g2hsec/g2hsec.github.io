@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Server Side Template Injection (SSTI) 
+title: Server Side Template Injection (SSTI)
 categories: Web-vuln
 tag: [Server Side Template Injection, SSTI, web, web vulnerability, injection]
 toc: true
