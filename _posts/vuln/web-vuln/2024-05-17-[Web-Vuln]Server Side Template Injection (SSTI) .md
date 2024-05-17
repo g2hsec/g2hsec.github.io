@@ -256,3 +256,12 @@ OR
 ```
 
 **![그림 1-7](/assets/image/vuln/web-vuln/Server%20Side%20Template%20Injection%20(SSTI)/image-6.png)<u style=color:"red">이 외에도 SSTI를 통한 연계 공격과 수많은 Payload 들이 존재하며, 각 상황에 맞게 적절하게 찾아봐야할듯하다.</u>**
+
+# Referance
+- https://www.hahwul.com/cullinan/ssti/
+- https://portswigger.net/web-security/server-side-template-injection
+- https://core-research-team.github.io/2021-05-01/Server-Side-Template-Injection(SSTI)
+- https://me2nuk.com/SSTI-Vulnerability/
+- https://dohunny.tistory.com/20
+- https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection/jinja2-ssti
+- https://en.wikipedia.org/wiki/Web_template_system
