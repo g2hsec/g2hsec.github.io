@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Command Injection (OS Injection) 
+title: Command Injection (OS Injection)
 categories: Web-vuln
 tag: [OS Injection, Command Injection, web, web vulnerability, injection]
 toc: true
