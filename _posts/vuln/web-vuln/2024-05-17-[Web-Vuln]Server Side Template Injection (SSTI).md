@@ -155,7 +155,7 @@ mro 또한 객체가 상속받은 클래스 목록을 확인할 수 있으며,
 
 > 이 외에도 Jinja2 웹 템플릿 엔진에서 사용되는 Payload는 무척 많으며, 각 상황에 맞게 적절하게 만들어 사용하여야 한다.
 
-```
+```python
 # To access a class object
 [].__class__
 ''.__class__
