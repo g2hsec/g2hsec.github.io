@@ -190,7 +190,7 @@ dict.__mro__[-1]
 # Bypass SSTI Filtering
 
 ```
-뭘 해도 안될경우 'a'+'b'와 같이 하나씩 다 따로 붙여서 시도 해볼 수 있다.
+뭘 해도 안될경우 'a'+'b'와 같이 하나씩 다 따로 붙여서 시도 해볼 수 있다. EX) {{request["cl"+"ass"]["mro"]}}
 ```
 
 ## config Filtering
