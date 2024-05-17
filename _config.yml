@@ -166,6 +166,8 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - vuln/web-vuln
+  - vuln/web-vuln/
   - write-up
   - write-up/tryhackme
   - web-vuln
