@@ -5,6 +5,7 @@ categories: Web-vuln
 tag: [OS Injection, Command Injection, web, web vulnerability, injection]
 toc: true
 author_profile: false
+published: true
 ---
 # Command Injection이란?
 

@@ -5,6 +5,7 @@ categories: Web-vuln
 tag: [Server Side Template Injection, SSTI, web, web vulnerability, injection]
 toc: true
 author_profile: false
+published: true
 ---
 # SSTI란 무엇인가?
 
