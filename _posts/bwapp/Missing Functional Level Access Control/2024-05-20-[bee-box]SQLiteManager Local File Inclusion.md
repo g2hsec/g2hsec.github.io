@@ -23,6 +23,8 @@ author_profile: false
 Cookie: security_level=0; PHPSESSID=-; SQLiteManager_currentTheme=../../../../../../../../../../../etc/passwd%00
 ```
 
+> %00을 통해 null값 전송을 해야 passwd 파일을 불러오는 과정에서 쓰레기값들이 붙지 않아 정상적으로 불러온다.
+
 버프 스위트를 통해 쿠키값을 추가/변조를 통해 서버에 전송하여 일반적인 테마를 불러오는 것이 아닌 디렉터리 이동을 통해 passwd 파일을 읽어오도록 한다.
 
 ![그림 1-3](/assets/image/bwapp/Missing%20Functional%20Level%20Access%20Control/SQLiteManager%20Local%20File%20Inclusion/image-2.png)
