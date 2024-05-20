@@ -40,16 +40,16 @@ RFI 시나리오에서 내부 네트워크의 호스트를 포트스캔 할 수 
 
 - 해당 시나리오에서 주어지는 소스코드이다. 포트 스캔을 확인하기 위해 웹루트 디렉터리에서 ../EVIL/SSRF-1.TXT를 읽어야한다.
 
-![그림 1-2](/assets/image/bwapp/Missing%20Functional%20Level%20Access%20Control/Server%20Side%20Request%20Forgery%20(SSRF)image-1.png)
+![그림 1-2](/assets/image/bwapp/Missing%20Functional%20Level%20Access%20Control/Server%20Side%20Request%20Forgery%20(SSRF)/image-1.png)
 - 위와 같이 스크립트가 실행된다.
 
-![그림 1-3](/assets/image/bwapp/Missing%20Functional%20Level%20Access%20Control/Server%20Side%20Request%20Forgery%20(SSRF)image-2.png)
+![그림 1-3](/assets/image/bwapp/Missing%20Functional%20Level%20Access%20Control/Server%20Side%20Request%20Forgery%20(SSRF)/image-2.png)
 - 포트 스캔 결과도 확인할 수 있다.
 
 # 2. Access resources on the internal network using XXE.
 
 XXE 취약점을 사용하여 ssrf-2.txt에 접근해야한다.
-![그림 1-4](/assets/image/bwapp/Missing%20Functional%20Level%20Access%20Control/Server%20Side%20Request%20Forgery%20(SSRF)image-3.png)
+![그림 1-4](/assets/image/bwapp/Missing%20Functional%20Level%20Access%20Control/Server%20Side%20Request%20Forgery%20(SSRF)/image-3.png)
 - xml 시나리오에서 진행 했다.
 
 우선 주어진 소스코드를 확인해보면
@@ -78,7 +78,7 @@ XXE 취약점을 사용하여 ssrf-2.txt에 접근해야한다.
 즉, php 필터를 이용하여 로컬 시스템 내에 존재하는 패스워드 파일 중 heroes.xml 파일을 base64 인코딩 값으로 출력 시킨다.
 이를 복호화 하게 되면, 해당 값을 얻을 수 있다.
 
-![그림 1-5](/assets/image/bwapp/Missing%20Functional%20Level%20Access%20Control/Server%20Side%20Request%20Forgery%20(SSRF)image-4.png)
+![그림 1-5](/assets/image/bwapp/Missing%20Functional%20Level%20Access%20Control/Server%20Side%20Request%20Forgery%20(SSRF)/image-4.png)
 
 # 3. Crash my Samsung SmartTV (CVE-2013-4890) using XXE :)
 
