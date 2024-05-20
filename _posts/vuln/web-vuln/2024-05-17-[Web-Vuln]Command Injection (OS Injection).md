@@ -82,7 +82,7 @@ exec('cat'+textfilename) 혹은 system('cat'+textfilename)
 | cmd1; cmd2        | 여러 명령어를 동시에 사용                                          | 리눅스/유닉스    |
 
 
-# 1. Blind OS Command Injection
+# Blind OS Command Injection
 
 **<u style="color:red">보통 OS Injeciton의 경우 요청에 대한 응답값이 HTTP 응답 내에서 반환되지 않는 경우도 다수 존재한다. 이럴 경우 테스트 과정에서 놓치고 지나가는 경우가 있다.</u>**
 
