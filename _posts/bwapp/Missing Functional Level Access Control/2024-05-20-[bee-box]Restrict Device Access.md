@@ -2,7 +2,7 @@
 layout: single
 title: (bWAPP)Restrict Device Access
 categories: bwapp
-tag: [LFI, bwapp, bee box, OWASP TOP 10, OWASP]
+tag: [Restrict Device Access, bwapp, bee box, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false
 ---

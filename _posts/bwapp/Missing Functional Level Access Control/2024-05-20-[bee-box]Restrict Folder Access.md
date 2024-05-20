@@ -2,7 +2,7 @@
 layout: single
 title: (bWAPP)Restrict Folder Access
 categories: bwapp
-tag: [LFI, bwapp, bee box, OWASP TOP 10, OWASP]
+tag: [Restrict Folder Access, bwapp, bee box, OWASP TOP 10, OWASP]
 toc: true
 author_profile: false
 ---
