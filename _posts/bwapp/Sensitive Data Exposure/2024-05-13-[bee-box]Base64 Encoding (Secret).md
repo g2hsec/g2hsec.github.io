@@ -39,3 +39,4 @@ Cookie: PHPSESSID=858ff99b67d6f8bf2129419bf66ba15a; security_level=2; secret=837
 ![그림 1-4](/assets/image/bwapp/sensitive%20data%20exposure/Base64%20Encoding%20(Secret)/image-3.png)
 - sha1 또한 크랙이 가능한 걸 확인할 수 있다.
 - 즉 sha256과 같은 안전한 해시알고리즘을 사용해야 한다.
+
