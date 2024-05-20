@@ -19,7 +19,7 @@ author_profile: false
 - 보통 웹 페이지의 구조와 레이아웃등을 정의한다.
 - 즉 개발자가 하나하나 웹 페이지를 다 만들기에는 버겁기 때문에, 이미 정의되어있는 HTML, CSS.., 등 그외 필요한 모든 요소로서 개발자는 필요한 부분만 동적으로 데이터를 삽입하여 본인만의 웹 페이지를 렌더링 할 수 있다
 
-![그림 1-1](/assets/image/vuln/web-vuln/Server%20Side%20Template%20Injection%20(SSTI)/image.png)
+<img src="/assets/image/vuln/web-vuln/Server%20Side%20Template%20Injection%20(SSTI)/image.png" alt="그림 1-1" style="width:50%;">
 
 # 공격 표면 
 
