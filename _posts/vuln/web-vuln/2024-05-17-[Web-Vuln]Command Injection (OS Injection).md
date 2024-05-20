@@ -54,6 +54,7 @@ exec('cat'+textfilename) 혹은 system('cat'+textfilename)
 * ?payload={payload}
 * ?run={payload}
 * ?print={payload}  <!--캡처 끝! 여기까지의 텍스트를 변수에 저장-->
+{% endcapture %}
 
 <div class="notice">
   {{ notice-2 | markdownify }} <!--div 태그 사이에 notice-2 객체를 출력하되 markdownify 한다. 즉 마크다운 화-->
