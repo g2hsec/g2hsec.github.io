@@ -37,7 +37,7 @@ javascript에서는 개체의 속성을 참조할 때 javascript 엔진은 우�
 
 > a 라는 객체의 프로토 타입에 b메서드를 추가하게 되면, a 생성자로 생성된 모든 객체에서 참조할 수 있게 된다.
 
-![그림 1-1](image.png)
+![그림 1-1](/assets/image/vuln/web-vuln/Prototype-Pollution/image.png)
 비어있는 객체를 만든 후 해당 객체의에 대해 정의된 속성이나 메서드가 없더라도 object.prototype의 내장된 속성 및 메서드가 존재 하는 것을 볼 수 있다.
 
 
@@ -109,8 +109,8 @@ username.__proto__.__proto__.__proto__    // null
 # Prototype-Pollution
 
 Prototype-Pollution의 경우 javascript 함수가 key를 먼저 삭제하지 않고 사용자가 제어할 수 있는 속성을 포함하는 객체를 기존 객체에 재귀적으로 병합할 때 발생한다.<br>
-공격자는 __proto__와 같은 속성을 통해 중첩된 프로퍼티와 함께 proto와 같은 키를 가진 프로퍼티를 삽입할 수 있다.
-> 프로퍼티란 객체와 연관된 값을 의미함, 키와 값으로 구성된다.
+공격자는 __proto__와 같은 속성을 통해 중첩된 Property와 함께 proto와 같은 키를 가진 Property를 삽입할 수 있다.
+> Property란 객체와 연관된 값을 의미함, 키와 값으로 구성된다.
 이러한 오염은 모든 prototype를 오염시킬 수 있지만 내장된 전역 Object.prototype에서 가장 일반적으로 발생된다.
 
 ```javascript
@@ -130,7 +130,7 @@ Test.__proto__.__protO__;
 이 때 위와 같이 __proto__를 통해 Object.prototype에 접근할 수 있다.
 
 # Prototype pollution 공격 표면
-Prototype pollution을 일으키기 위해서는 사용자의 입력이 prototype object에 프로퍼티를 추가할 수 있어야 한다.
+Prototype pollution을 일으키기 위해서는 사용자의 입력이 prototype object에 Property를 추가할 수 있어야 한다.
 1. 쿼리 또는 문자열을 통한 URL
 2. JSON형식의 입력값
 3. Web Message
