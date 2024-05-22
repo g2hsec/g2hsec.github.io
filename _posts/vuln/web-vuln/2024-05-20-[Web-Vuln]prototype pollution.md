@@ -222,10 +222,13 @@ vulnerable-website.com/?__proto__.foo=bar
 Object.prototype.foo
 // "bar" indicates that you have successfully polluted the prototype
 // undefined indicates that the attack was not successful
-``` 
+```
+
+![그림 1-2](/assets/image/vuln/web-vuln/Prototype-Pollution/image.png)
 
 위와 같이 쿼리 문자열 혹은 JSON 입력을 통해 임의의 속성 삽입을 통해  브라우저 콘솔에서 임의의 propery로 Pollution 유/무를 확인할 수 있다.
 
 # Referance
 1. https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
 2. https://hackyboiz.github.io/2021/10/30/l0ch/2021-10-30/
+3. https://www.hahwul.com/cullinan/prototype-pollution/#attack-vector
