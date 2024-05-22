@@ -38,6 +38,7 @@ javascript에서는 개체의 속성을 참조할 때 javascript 엔진은 우�
 > a 라는 객체의 프로토 타입에 b메서드를 추가하게 되면, a 생성자로 생성된 모든 객체에서 참조할 수 있게 된다.
 
 ![그림 1-1](/assets/image/vuln/web-vuln/Prototype-Pollution/image.png)
+<br>
 비어있는 객체를 만든 후 해당 객체의에 대해 정의된 속성이나 메서드가 없더라도 object.prototype의 내장된 속성 및 메서드가 존재 하는 것을 볼 수 있다.
 
 
@@ -97,6 +98,10 @@ username.__proto__.__proto__              // Object.prototype
 username.__proto__.__proto__.__proto__    // null
 ```
 
+<div class="notice">
+  <h4>이와 같이 prototype을 통해 상속된 객체를 탐색하다 최상위 객체인 Object.prototype에 영향을 주게되면, 모든 객체에 속성이 포함되게 된다.</h4>
+</div>
+
 # Prototype-Pollution 
 
 Prototype-Pollution의 경우 javascript 함수가 key를 먼저 삭제하지 않고 사용자가 제어할 수 있는 속성을 포함하는 객체를 기존 객체에 재귀적으로 병합할 때 발생한다.<br>
@@ -115,12 +120,73 @@ var var1 = new Test("Jason")
 
 ```
 var1.__proto__.__proto__;
-Test.__proto__.__protO__;
+Test.__proto__.__proto__;
 ```
 
 이 때 위와 같이 __proto__를 통해 Object.prototype에 접근할 수 있다.
 
 # Prototype pollution 공격 표면
+
+## Prototype Pollution이 발생하는 패턴
+1. 사용자의 입력 값이 Property에 설정하는 경우 __proto__와 같은 propery변경
+
+```javascript
+function isObject(obj) {
+  return obj !== null && typeof obj === 'object';
+}
+ 
+function setValue(obj, key, value) {
+  const keylist = key.split('.');
+  const e = keylist.shift();
+  if (keylist.length > 0) {
+    if (!isObject(obj[e])) obj[e] = {};
+    setValue(obj[e], keylist.join('.'), value);
+  } else {
+    obj[key] = value;
+    return obj;
+  }
+}
+ 
+const obj1 = {};
+setValue(obj1, "__proto__.crackk", 1);
+const obj2 = {};
+console.log(obj2.crackk); // 1
+```
+
+## 객체 병합을 통한 pollution
+
+```javascript
+function merge(a, b) {
+  for (let key in b) {
+    if (isObject(a[key]) && isObject(b[key])) {
+      merge(a[key], b[key]);
+    } else {
+      a[key] = b[key];
+    }
+  }
+  return a;
+}
+ 
+const obj1 = {a: 1, b:2};
+const obj2 = JSON.parse('{"__proto__":{"crackk":1}}');
+merge(obj1, obj2);
+const obj3 = {};
+console.log(obj3.crackk); // 1
+```
+
+## 객체 복사를 통한 pollution
+
+```javascript
+function clone(obj) {
+  return merge({}, obj);
+}
+ 
+const obj1 = JSON.parse('{"__proto__":{"crackk":1}}');
+const obj2 = clone(obj1);
+const obj3 = {};
+console.log(obj3.crackk); // 1
+```
+
 Prototype pollution을 일으키기 위해서는 사용자의 입력이 prototype object에 Property를 추가할 수 있어야 한다.
 1. 쿼리 또는 문자열을 통한 URL
 2. JSON형식의 입력값
