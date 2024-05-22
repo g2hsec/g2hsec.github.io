@@ -128,7 +128,7 @@ Test.__proto__.__proto__;
 # Prototype pollution 공격 표면
 
 ## Prototype Pollution이 발생하는 패턴
-1. 사용자의 입력 값이 Property에 설정하는 경우 __proto__와 같은 propery변경
+- 사용자의 입력 값이 Property에 설정하는 경우 __proto__와 같은 propery변경
 
 ```javascript
 function isObject(obj) {
@@ -153,7 +153,7 @@ const obj2 = {};
 console.log(obj2.crackk); // 1
 ```
 
-2. 객체 병합을 통한 pollution
+- 객체 병합을 통한 pollution
 
 ```javascript
 function merge(a, b) {
@@ -174,7 +174,7 @@ const obj3 = {};
 console.log(obj3.crackk); // 1
 ```
 
-3. 객체 복사를 통한 pollution
+- 객체 복사를 통한 pollution
 
 ```javascript
 function clone(obj) {
