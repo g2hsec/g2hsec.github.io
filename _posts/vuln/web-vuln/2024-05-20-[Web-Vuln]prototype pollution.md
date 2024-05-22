@@ -15,7 +15,7 @@ author_profile: false
     overflow: auto;
   }
   code {
-    background-color: transparent; /* 코드를 포함하는 요소의 배경색을 투명하게 설정 */
+    background-color: #f0f0f0; /* 코드를 포함하는 요소의 배경색을 투명하게 설정 */
   }
 </style>
 
