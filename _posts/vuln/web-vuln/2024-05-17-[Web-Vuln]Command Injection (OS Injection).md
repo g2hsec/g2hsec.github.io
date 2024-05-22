@@ -25,9 +25,9 @@ exec('cat'+textfilename) 혹은 system('cat'+textfilename)
 위와 같이 평범하게 filename 을 입력받아 출력 해주는 로직은 파일을 웹 서버단에 저장 후 일반적으로 출력해줄 수 있지만 위와 같이 시스템 명령어를 사용해 출력해주는 경우도 있다. 이와 같이 테스팅 과정에서 육안으로는 OS Injection 식별이 힘들다.
 
 ## OS 명령어의 인자 값으로 넘겨줄 때 자주 사용되는 파라미터
+#### 자주 사용되는 파라미터
 
 {% capture notice-2 %}  <!--notice-2 라는 변수에 다음 텍스트 문단을 문자열로 저장한다.-->  
-#### 자주 사용되는 파라미터
 
 * ?cmd={payload}
 * ?exec={payload}
