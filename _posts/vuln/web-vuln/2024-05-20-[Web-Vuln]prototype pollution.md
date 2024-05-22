@@ -56,40 +56,31 @@ searchstring.upper()
 객체의 프로토타입은 또 다른 새로운 객체이며, 자체 프로토타입또한 가지고 있어야 한다. 즉, 프토토타입 체인이라 불리는 상위 객체로부터 속성 및 메소드를 상속 받으며, 또 다른 새로운 객체를 만들게 되면 새롭게 생성된 객체 또한 상위 객체로부터 속성 및 메소드를 상속받게된다. 이를 통해 특정 객체가 특정 속성에 접근하려 할 때 해당 객체를 탐색 후 찾지 못한다면 객체의 프로토타입 속성을 탐색하며, null을 가진 객체에 도달할 때 까지 지속된다.
 
 ```javascript
-// Animal 생성자 함수 정의
 function Animal(name) {
   this.name = name;
 }
 
-// Animal 프로토타입에 메서드 추가
 Animal.prototype.speak = function() {
   console.log(this.name + " makes a noise.");
 };
 
-// Dog 생성자 함수 정의
 function Dog(name, breed) {
   Animal.call(this, name); // 상위 생성자 호출
   this.breed = breed;
 }
 
-// Dog 프로토타입을 Animal 프로토타입으로 설정
 Dog.prototype = Object.create(Animal.prototype);
 
-// Dog 프로토타입 생성자를 Dog로 설정
 Dog.prototype.constructor = Dog;
 
-// Dog 프로토타입에 메서드 추가
 Dog.prototype.bark = function() {
   console.log(this.name + " barks.");
 };
 
-// 객체 생성
 var dog1 = new Dog("Rex", "German Shepherd");
 
-// 메서드 호출
-dog1.speak(); // 출력: Rex makes a noise.
-dog1.bark();  // 출력: Rex barks.
-
+dog1.speak();
+dog1.bark();  
 ```
 
 해당 코드는 prototype Chain을 설명하기 위한 코드로, dog1객체는 speak() 메서드와 bark()메서드가 존재하지 않더라도, 오류가 발생하지 않고 정상적인 출력값을 출력한다.
@@ -106,7 +97,7 @@ username.__proto__.__proto__              // Object.prototype
 username.__proto__.__proto__.__proto__    // null
 ```
 
-# Prototype-Pollution
+# Prototype-Pollution 
 
 Prototype-Pollution의 경우 javascript 함수가 key를 먼저 삭제하지 않고 사용자가 제어할 수 있는 속성을 포함하는 객체를 기존 객체에 재귀적으로 병합할 때 발생한다.<br>
 공격자는 __proto__와 같은 속성을 통해 중첩된 Property와 함께 proto와 같은 키를 가진 Property를 삽입할 수 있다.
@@ -135,14 +126,25 @@ Prototype pollution을 일으키기 위해서는 사용자의 입력이 prototyp
 2. JSON형식의 입력값
 3. Web Message
 
+## 쿼리 또는 문자열을 통한 URL
+URL Query에서 URL 파서가 해당 Query를 파싱하여 임의의 문자열로 해석할 수 있다. 이 때 키:값 쌍으로 분해할 경우 pollution이 발생하며, XSS 와 같은 공격이 이루어질 수 있다.
 
+```
+https://vulnerable-website.com/?__proto__[evilProperty]=payload
+'''
+https://vulnerable-website.com/?__proto__[innerHTML]=<img/src/onerror%3dalert(1)>
+```
 
+## JSON형식의 입력값
+사용자 입력값을 통해 제어가능한 객체는 JSON.parse() 메서드를 사용하는 경우가 많다. 이 때 JSON.parse()는 __proto__와 같은 키를 포함하여 JSON객체의 모든 키를 임의의 문자열로 취급하게 된다. 이를 통해 JSON값 입력을 통해 Prototype pollution이 가능하다.
 
+```
+const objectFromJson = JSON.parse('{"__proto__": {"evilProperty": "payload"}}');
+'''
+https://vulnerable-website.com/?__proto__{"innerHTML": "<img/src/onerror%3dalert(1)>"}
+```
 
-
-
-
-
+이와 같이 JSON.parse()를 통해 생성된 객체가 기존 객체에 병합되면 이전 URL을 통한 Pollution과 같이 Prototype pollution이 발생할 수 있다.
 
 # Referance
 1. https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
