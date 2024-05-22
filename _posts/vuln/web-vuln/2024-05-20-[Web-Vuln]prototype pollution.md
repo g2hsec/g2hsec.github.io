@@ -8,11 +8,14 @@ author_profile: false
 ---
 
 <style>
-  pre code {
-    background-color: #f0f0f0; /* 회색 배경 */
-    display: block;
+  pre {
+    background-color: #f0f0f0; /* 연한 회색 배경 */
     padding: 10px;
     border-radius: 5px;
+    overflow: auto;
+  }
+  code {
+    background-color: transparent; /* 코드를 포함하는 요소의 배경색을 투명하게 설정 */
   }
 </style>
 
@@ -120,7 +123,21 @@ Prototype-Pollution의 경우 javascript 함수가 key를 먼저 삭제하지 �
 > 프로퍼티란 객체와 연관된 값을 의미함, 키와 값으로 구성된다.
 이러한 오염은 모든 prototype를 오염시킬 수 있지만 내장된 전역 Object.prototype에서 가장 일반적으로 발생된다.
 
+```javascript
+function Test(name) {
+    this.name = name;
+}
+var var1 = new Test("Jason")
+```
 
+위와 같은 코드가 있다고 가정 해보자.
+
+```
+var1.__proto__.__proto__;
+Test.__proto__.__protO__;
+```
+
+이 때 위와 같이 __proto__를 통해 Object.prototype에 접근할 수 있다.
 
 
 
