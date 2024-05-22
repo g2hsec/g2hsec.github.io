@@ -212,5 +212,20 @@ https://vulnerable-website.com/?__proto__{"innerHTML": "<img/src/onerror%3dalert
 
 이와 같이 JSON.parse()를 통해 생성된 객체가 기존 객체에 병합되면 이전 URL을 통한 Pollution과 같이 Prototype pollution이 발생할 수 있다.
 
+# 취약 유/무 확인
+
+```
+vulnerable-website.com/?__proto__[foo]=bar
+OR
+vulnerable-website.com/?__proto__.foo=bar
+'''
+Object.prototype.foo
+// "bar" indicates that you have successfully polluted the prototype
+// undefined indicates that the attack was not successful
+``` 
+
+위와 같이 쿼리 문자열 혹은 JSON 입력을 통해 임의의 속성 삽입을 통해  브라우저 콘솔에서 임의의 propery로 Pollution 유/무를 확인할 수 있다.
+
 # Referance
 1. https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
+2. https://hackyboiz.github.io/2021/10/30/l0ch/2021-10-30/
