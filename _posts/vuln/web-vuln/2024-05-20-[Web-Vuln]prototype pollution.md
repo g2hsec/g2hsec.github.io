@@ -224,11 +224,11 @@ Object.prototype.foo
 // undefined indicates that the attack was not successful
 ```
 
-# constructor를 통한 Prototype pollution
-
 ![그림 1-2](/assets/image/vuln/web-vuln/Prototype-Pollution/image2.png)
 
 위와 같이 쿼리 문자열 혹은 JSON 입력을 통해 임의의 속성 삽입을 통해  브라우저 콘솔에서 임의의 propery로 Pollution 유/무를 확인할 수 있다.
+
+# constructor를 통한 Prototype pollution
 
 # Referance
 1. https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
