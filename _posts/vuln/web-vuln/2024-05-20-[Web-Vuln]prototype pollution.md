@@ -7,17 +7,7 @@ toc: true
 author_profile: false
 ---
 
-<style>
-  pre {
-    background-color: #d3d3d3; /* 연한 회색 배경 */
-    padding: 10px;
-    border-radius: 5px;
-    overflow: auto;
-  }
-  code {
-    background-color: #d3d3d3; 
-  }
-</style>
+
 
 # prototype 이란?
 
