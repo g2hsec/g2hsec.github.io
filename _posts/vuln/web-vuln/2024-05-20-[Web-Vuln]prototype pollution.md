@@ -5,8 +5,17 @@ categories: Web-vuln
 tag: [prototype pollution, prototype, web, web vulnerability, injection]
 toc: true
 author_profile: false
-
 ---
+
+<style>
+  pre code {
+    background-color: #f0f0f0; /* 회색 배경 */
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+  }
+</style>
+
 # prototype 이란?
 
 > Javascript는 프로토타입 기반 언어라 불리며, prototype이란 Javascript에서 객체를 상속하기 위해 사용되는 방식을 의미한다. 자바스크립트의 함수는 기본적으로 객체이며, 모든 함수는 자동으로 prototype 이라는 속성을 가지고 있다. 이 때 새로운 객체를 만들 때 객체의 prototype역할을 하게된다. 즉, 프로토타입 객체는 상위 프로토타입 객체로부터 메소드와 속성을 상속 받을 수 있고, 그 상위 프로토 타입 객체도 마찬가지이며, 이를 프로토 타입 체인이라 부른다.
@@ -106,6 +115,10 @@ username.__proto__.__proto__.__proto__    // null
 
 # Prototype-Pollution
 
+Prototype-Pollution의 경우 javascript 함수가 key를 먼저 삭제하지 않고 사용자가 제어할 수 있는 속성을 포함하는 객체를 기존 객체에 재귀적으로 병합할 때 발생한다.<br>
+공격자는 __proto__와 같은 속성을 통해 중첩된 프로퍼티와 함께 proto와 같은 키를 가진 프로퍼티를 삽입할 수 있다.
+> 프로퍼티란 객체와 연관된 값을 의미함, 키와 값으로 구성된다.
+이러한 오염은 모든 prototype를 오염시킬 수 있지만 내장된 전역 Object.prototype에서 가장 일반적으로 발생된다.
 
 
 
