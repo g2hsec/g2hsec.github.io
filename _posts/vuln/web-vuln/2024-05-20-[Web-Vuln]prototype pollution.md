@@ -153,7 +153,7 @@ const obj2 = {};
 console.log(obj2.crackk); // 1
 ```
 
-## 객체 병합을 통한 pollution
+2. 객체 병합을 통한 pollution
 
 ```javascript
 function merge(a, b) {
@@ -174,7 +174,7 @@ const obj3 = {};
 console.log(obj3.crackk); // 1
 ```
 
-## 객체 복사를 통한 pollution
+3. 객체 복사를 통한 pollution
 
 ```javascript
 function clone(obj) {
