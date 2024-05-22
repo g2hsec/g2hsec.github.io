@@ -139,7 +139,11 @@ Test.__proto__.__protO__;
 
 이 때 위와 같이 __proto__를 통해 Object.prototype에 접근할 수 있다.
 
-
+# Prototype pollution 공격 표면
+Prototype pollution을 일으키기 위해서는 사용자의 입력이 prototype object에 프로퍼티를 추가할 수 있어야 한다.
+1. 쿼리 또는 문자열을 통한 URL
+2. JSON형식의 입력값
+3. Web Message
 
 
 
