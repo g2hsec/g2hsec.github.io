@@ -38,6 +38,17 @@ javascript에서는 개체의 속성을 참조할 때 javascript 엔진은 우�
 ![그림 1-1](image.png)
 비어있는 객체를 만든 후 해당 객체의에 대해 정의된 속성이나 메서드가 없더라도 object.prototype의 내장된 속성 및 메서드가 존재 하는 것을 볼 수 있다.
 
+
+```javascript
+String.prototype.upper = function(){}
+let searchstring = "TEST"
+searchstring.upper()
+```
+
+위와 같은 코드가 조재하면 String 객체의 prototype에 upper메서드를 추가하므로, String 객체의 속성 및 메서드를 참조 할수 있다.
+
+
+
 ## Prototype Chain
 
 객체의 프로토타입은 또 다른 새로운 객체이며, 자체 프로토타입또한 가지고 있어야 한다. 즉, 프토토타입 체인이라 불리는 상위 객체로부터 속성 및 메소드를 상속 받으며, 또 다른 새로운 객체를 만들게 되면 새롭게 생성된 객체 또한 상위 객체로부터 속성 및 메소드를 상속받게된다. 이를 통해 특정 객체가 특정 속성에 접근하려 할 때 해당 객체를 탐색 후 찾지 못한다면 객체의 프로토타입 속성을 탐색하며, null을 가진 객체에 도달할 때 까지 지속된다.
@@ -83,8 +94,17 @@ dog1.bark();  // 출력: Rex barks.
 <br>
 **<u>proto속성을 통해 상위 prototype과 서로 연결되어 있는 형태를 prototype Chain이라 부른다.</u>** 
 
+모든 객체에 해당 프로토타입에 액세스 할 수 있는 속성이 존재한다.
+<br>
+__proto__ 라는 속성을 통해 접근할 수 있다.
 
+```javascript
+username.__proto__                        // String.prototype
+username.__proto__.__proto__              // Object.prototype
+username.__proto__.__proto__.__proto__    // null
+```
 
+# Prototype-Pollution
 
 
 
