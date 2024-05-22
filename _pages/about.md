@@ -1,0 +1,45 @@
+---
+title: About
+description: 저를 소개합니다.
+permalink: about
+visible: true
+---
+
+<div class="hyde content about">
+  <h2>Hyde <small class="hyde name">built with Jekyll</small></h2>
+  <p>별 하나에 아침이 이런 마리아 지나가는 계십니다. 새겨지는 계절이 노루, 이제 별 봄이 봅니다. 덮어 없이 가을로 잠, 위에 언덕 이네들은 까닭입니다. 무덤 했던 별이 써 아무 있습니다. 자랑처럼 시인의 무덤 별
+  너무나 불러 나는 라이너 계십니다.</p>
+  <p>하나 아침이 딴은 이런 벌써 노새, 마디씩 봅니다. 아스라히 멀듯이, 가을 하나에 아침이 별에도 이름을 잠, 있습니다. 위에 다 당신은 거외다. 못 애기 나는 보고, 봅니다. 토끼, 하나에 지나가는 때 나는 이국
+  무성할 봅니다. 나의 같이 너무나 아름다운 내 계십니다. 가슴속에 멀리 아직 이제 북간도에 풀이 까닭입니다.</p>
+  <p>둘 벌써 나의 부끄러운 무엇인지 하나에 별 흙으로 계십니다. 이런 별이 경, 된 많은 듯합니다. 라이너 동경과 북간도에 가난한 하나 듯합니다. 별에도 했던 헤일 봅니다. 계집애들의 내일 잠, 어머니, 시와 계십니다.
+  멀리 이제 이런 계십니다.</p>
+  <h2>⚒️ Skills</h2>
+  <div class="hyde tags skills">
+    <a class="hyde tag">이곳에</a>
+    <a class="hyde tag">자신이</a>
+    <a class="hyde tag">할</a>
+    <a class="hyde tag">수</a>
+    <a class="hyde tag">있는</a>
+    <a class="hyde tag">것들을</a>
+    <a class="hyde tag">담아</a>
+    <a class="hyde tag">보세요</a>
+    <a class="hyde tag"><i class="fas fa-meteor"></i></a>
+  </div>
+  <h2>📖 Career</h2>
+  <div class="hyde career-wrapper">
+    <div class="hyde career divider">
+      <div class="hyde career-place">Hyde v2</div>
+      <div class="hyde career-desc">
+        <p class="hyde career-role">???</p>
+        <p class="hyde career-duration">2021-07-11 ~ 202X-XX-XX</p>
+      </div>
+    </div>
+    <div class="hyde career">
+      <div class="hyde career-place">Hyde</div>
+      <div class="hyde career-desc">
+        <p class="hyde career-role">built with Jekyll</p>
+        <p class="hyde career-duration">2020-02-17</p>
+      </div>
+    </div>
+  </div>
+</div>
