@@ -9,13 +9,13 @@ author_profile: false
 
 <style>
   pre {
-    background-color: #f0f0f0; /* 연한 회색 배경 */
+    background-color: #d3d3d3; /* 연한 회색 배경 */
     padding: 10px;
     border-radius: 5px;
     overflow: auto;
   }
   code {
-    background-color: red; 
+    background-color: #d3d3d3; 
   }
 </style>
 
