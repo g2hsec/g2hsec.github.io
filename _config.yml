@@ -115,15 +115,9 @@ author:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:g2hsec@gmail.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://hg2lee.tistory.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/g2hsec"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://www.instagram.com/hyeok_01_l/"
 
 # Site Footer
 footer:
