@@ -13,7 +13,8 @@ author_profile: false
 <br>
 안드로이드 플렛폼에서 저장소는 Internal Sotrage와 External Sorage가 존재한다.
 
-1. Internal Sotrage
+**<u style=color:"red">1. Internal Sotrage</u>**
+<br>
 각 어플리케이션은 /data/data/<package-name> 과 같은 경로에 생성되며, 다른 어플리케이션에서는 접근할 수 없다.
 - Shared Prefrences 
     - 안드로이드에서 중요한 앱 설정 및 관련 정보가 포함되며, Key-Value 쌍으로 앱의 환경 설정을 저장하는데 사용되는 XML 파일이다.
@@ -26,5 +27,6 @@ author_profile: false
     - 데이터베이스를 관리하는 데 사용되는 기본 페이지는 android.database.slqite이며, 두 가지 종류인 Unecrypted 및 Encrypted로 나눌 수 있다.
     - 액티비티 호출 시 제공된 데이터로 /data/data/<package-name>/databvases/privateNoSoSecure에 저장된다.
 
-2. External Storage
+**<u style=color:"red">2. External Storage</u>**
+<br>
 이동식 저장매체 또는 내부 저장소로 볼 수 있으며, 모든 어플리케이션이 접근가능하기에 민감 데이터가 저장되서는 안된다. 액티비티 호출 시 파일이 저장되며, 일반텍스트 파일에 저장되며, 어플리케이션 제거시 어플리케이션 폴더 외부에 저장된 파일은 삭제되지 않는다.
