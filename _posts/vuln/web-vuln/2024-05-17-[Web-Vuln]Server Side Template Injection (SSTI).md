@@ -112,7 +112,7 @@ config.__class__
 http://uri~~/?name={{''.__class__.__base__}}
 ```
 {% endraw %}
-위와 같은 구문을 통해 **<u style=color:"red">object 클래스에 접근</u>**할 수 있게 된다.
+위와 같은 구문을 통해 **<u style="color:red">object 클래스에 접근</u>**할 수 있게 된다.
 
 > object 클래스는 클래스의 최상위에 존재하는 클래스이며, 그 하위에 여러 클래스들이 존재하며 str도 하위 클래스에 포함된다. 즉 ''.__class__ 를 통해 str클래스에 접근 후 .__base__를 통해 그 상위 클래스인 object에 접근한 것이다.
 
@@ -129,7 +129,7 @@ http://uri~~/?name={{''.__class__.__base__.__subclasses__()}}
 
 ![그림 1-6](/assets/image/vuln/web-vuln/Server%20Side%20Template%20Injection%20(SSTI)/image-5.png)
 
-여러 시나리오가 존재하겠지만, 보통 RCE 로 연계하기위해 **<u style=color:"red">codecs.IncrementalDecoder</u>**  클래스와 **<u style=color:"red">subprocess.Popen</u>**클래스를 사용한다.
+여러 시나리오가 존재하겠지만, 보통 RCE 로 연계하기위해 **<u style="color:red">codecs.IncrementalDecoder</u>**  클래스와 **<u style="color:red">subprocess.Popen</u>**클래스를 사용한다.
 {% raw %}
 ```
 codecs.IncrementalDecoder
