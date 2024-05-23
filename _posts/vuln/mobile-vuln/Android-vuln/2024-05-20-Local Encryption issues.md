@@ -27,6 +27,6 @@ author_profile: false
     - 데이터베이스를 관리하는 데 사용되는 기본 페이지는 android.database.slqite이며, 두 가지 종류인 Unecrypted 및 Encrypted로 나눌 수 있다.
     - 액티비티 호출 시 제공된 데이터로 /data/data/\<package-name\>/databvases/privateNoSoSecure에 저장된다.
 
-**<u style="color:red"">2. External Storage</u>**
+**<u style="color:red">2. External Storage</u>**
 <br>
 이동식 저장매체 또는 내부 저장소로 볼 수 있으며, 모든 어플리케이션이 접근가능하기에 민감 데이터가 저장되서는 안된다. 액티비티 호출 시 파일이 저장되며, 일반텍스트 파일에 저장되며, 어플리케이션 제거시 어플리케이션 폴더 외부에 저장된 파일은 삭제되지 않는다.
