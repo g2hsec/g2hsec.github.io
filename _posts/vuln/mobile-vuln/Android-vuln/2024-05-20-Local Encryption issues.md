@@ -16,7 +16,7 @@ author_profile: false
 **<u style=color:"red">1. Internal Sotrage</u>**
 
 <br>
-각 어플리케이션은 /data/data/<package-name> 과 같은 경로에 생성되며, 다른 어플리케이션에서는 접근할 수 없다.
+각 어플리케이션은 /data/data/\<package-name\> 과 같은 경로에 생성되며, 다른 어플리케이션에서는 접근할 수 없다.
 - Shared Prefrences 
     - 안드로이드에서 중요한 앱 설정 및 관련 정보가 포함되며, Key-Value 쌍으로 앱의 환경 설정을 저장하는데 사용되는 XML 파일이다.
     - 어플리케이션 내에서 액티비티가 호출되면 key.xml 파일에 제공된 데이터가 저장되며, 사용자 이름, 패스워드와 같은 정보들은 /data/data/<package-name>/shared_prefs/key.xml에 저장된다
@@ -26,7 +26,7 @@ author_profile: false
     - 컨텐츠 및 사용자들에 대한 목록이 저장되는 데이터베이스로 모바일 환경에서 일반적으로 사용되는 경량 파일 기반의 데이터베이스이다.
     - 안드로이드 SDK는 SQLite데이터베이스를 기본적으로 지원한다.
     - 데이터베이스를 관리하는 데 사용되는 기본 페이지는 android.database.slqite이며, 두 가지 종류인 Unecrypted 및 Encrypted로 나눌 수 있다.
-    - 액티비티 호출 시 제공된 데이터로 /data/data/<package-name>/databvases/privateNoSoSecure에 저장된다.
+    - 액티비티 호출 시 제공된 데이터로 /data/data/\<package-name\>/databvases/privateNoSoSecure에 저장된다.
 
 **<u style=color:"red">2. External Storage</u>**
 <br>
