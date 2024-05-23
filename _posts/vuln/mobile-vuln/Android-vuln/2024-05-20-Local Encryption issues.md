@@ -14,6 +14,7 @@ author_profile: false
 안드로이드 플렛폼에서 저장소는 Internal Sotrage와 External Sorage가 존재한다.
 
 **<u style=color:"red">1. Internal Sotrage</u>**
+
 <br>
 각 어플리케이션은 /data/data/<package-name> 과 같은 경로에 생성되며, 다른 어플리케이션에서는 접근할 수 없다.
 - Shared Prefrences 
