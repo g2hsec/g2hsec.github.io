@@ -32,7 +32,8 @@ author_profile: false
 이동식 저장매체 또는 내부 저장소로 볼 수 있으며, 모든 어플리케이션이 접근가능하기에 민감 데이터가 저장되서는 안된다. 액티비티 호출 시 파일이 저장되며, 일반텍스트 파일에 저장되며, 어플리케이션 제거시 어플리케이션 폴더 외부에 저장된 파일은 삭제되지 않는다.
 <hr>
 <div class="notice">
-  <h4>/data/data 겨올는 리눅스계열의 /home 디렉터리와 유사한 성격을 가진다고 생각하면 된다.</h4>
+  <h4 style="color:red">/data/data 겨올는 리눅스계열의 /home 디렉터리와 유사한 성격을 가진다고 생각하면 된다.</h4>
+  <hr>
   Internal Storage의 경우 cache, databases, lib, shared_prefs, db파일등이 존재하며, mySharedPerferences.xml에 계정 정보가 저장되어 있는 경우 adb pull \<xml파일 풀경로\>를 통해 가져와 유저이름 부분을 각 인코딩 및 암호화에 맞게 다른 유저(본인)로 수정하여 다시 push하여 적용이 되는지, 즉 무료 사용자가 유료 컨텐츠 접근이 가능하지에 취약점 점검이 가능하다.
   <hr>
   External Storage의 경우 /sdcard, /mnt/sdcard와 같은 경로에 사진, 파일 다운로드, 동영상, 공인인증서(mpkai) 등이 저장된다.
