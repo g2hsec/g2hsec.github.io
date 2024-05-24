@@ -226,6 +226,7 @@ http://127.0.0.1/%61dmin
 http://127.0.0.1/%2561dmin
 ```
 <br>
+
 # Try also to change attacker.com for 127.0.0.1 to try to access localhost
 # Try replacing https by http
 # Try URL-encoded characters<br>
