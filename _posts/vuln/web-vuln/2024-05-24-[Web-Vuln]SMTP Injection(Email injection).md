@@ -45,3 +45,34 @@ SMTP의 HTTP 요청 헤더를 조작 하여 공격을 수행할 수 있다고 �
 - <u style="color:red;">Bcc(숨은참조)</u><br>
     &nbsp;&nbsp;&nbsp;&nbsp;- 메시지의 추가 수신자
 </div>
+
+💡 **<u style="color:red;">SMTP 의 Header을 조작하기 위해 CR-LF Injection 을 활용하여 공격을 수행할 수 있다.</u>**
+
+<div class="notice">
+POST /emailtest HTTP/1.1<br>
+<br>
+'''<br>
+<br>
+subject=Hello+Test
+</div>
+
+위와 같이 subject 값을 받아서 관리자 혹은 특정 사용자에게 메일을 전송하는 기능이 존재하는
+웹 사이트를 식별했다고 가정하자.<br><br>
+
+해당 로직에서 SMTP의 취약한 부분이 존재하며, CR-LF 주입이 가능하다면
+아래와 같이 값을 조작하여 Header 을 조작할 수 있다. 즉 송/수신자 혹은 내용등을 임의로 조작
+할 수 있다는 것이다. 직 **<u style="color:red;">피싱</u>**메일로도 변질이 가능하다는 것이다.
+
+# 공격 표면
+특정 요청 혹은 로직에 의해 **<u style="color:red;">이메일기능</u>**이 적용되어, 이메일 전송 기능이 존재한다면, SMTP Injection의 잠재적 공격 표면이 될 수 있다.
+
+## Cc 및 Bcc 조작
+참조 및 숨은참조라는 뜻으로, 수신받는 사용자를 추가 시킬 수 있는 헤더이다.
+
+<div class="notice">
+POST /emailtest HTTP/1.1<br><br>
+
+'''<br><br>
+
+subject=Hello+Test%0d%0aCc: Attacker@email.com
+</div>
