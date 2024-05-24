@@ -164,3 +164,9 @@ Local-Part 부분에서 “ 가 사용가능하다면 SMTP Injection 의 파급�
 
 
 💡 **<u style="color:red;">이러한 공격들은 특정 사용자들의 이메일 정보를 관리자에게 보낼 때 시도해볼 수 있다.</u>**
+
+# Referance
+- https://www.ibm.com/docs/en/zos/2.2.0?topic=process-step-4-customize-smtp-mail-headers-optional
+- https://www.acunetix.com/blog/articles/email-header-injection
+- https://www.hahwul.com/cullinan/email-injection
+- https://book.hacktricks.xyz/pentesting-web/email-injections
