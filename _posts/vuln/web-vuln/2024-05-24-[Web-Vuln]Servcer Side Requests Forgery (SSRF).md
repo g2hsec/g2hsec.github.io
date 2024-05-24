@@ -81,3 +81,7 @@ http://instance-data/latest/meta-data<br>
 http://instance-data/latest/meta-data/hostname<br>
 http://instance-data/latest/meta-data/public-keys/
 </div>
+
+대표적으로 AWS의 Metadata API로의 접근 경로이다. 이 외에 다양한 API는 아래 링크에서 
+확인이 가능하다.    
+[참조 링크]: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server Side Request Forgery#ssrf-url-for-cloud-instances
