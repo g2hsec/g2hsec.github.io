@@ -218,7 +218,7 @@ http://trust.com@attack.com
 http://attack.com/@internal-server#example
 </div>
 
-<div class="notice--primary" markdown="1">
+<div class="notice" markdown="1">
 - 또한 http://127.0.0.1/admin 과 같은 Payload에서 문자를 url 인코딩을 통해서도 우회가 가능하다.
 
 ```
@@ -280,17 +280,17 @@ https://metadata/expected/path/..%2f..%2f/vulnerable/path<br>
 ## Bypass via open redirect
 SSRF 에 대한 검증 절차가 잘 이루어져 있어 공격이 힘들 경우 Open redirect를 통한 우회가 가능하다.
 
-<div class="notice--primary" markdown="1">
+<div class="notice" markdown="1">
 GET /product/choiseProduct?choiseProductId=6&path=http://evil-user.net
 </div>
 위와 같은 url 과 reirect 기능이 존재하는 요청문이 있다면,
 http://evil-user.net로 redirect 될것이다. 이부분을 아래와같이 악용할 수 있다.
 
-<div class="notice--primary" markdown="1">
+<div class="notice" markdown="1">
 GET /product/choiseProduct?choiseProductId=6&path=http:192.168.0.10/admin
 </div>
 위 내용을 SSRF 취약점이 예상되는 API 앤드포인트에 적어주면 된다.
-<div class="notice--primary" markdown="1">
+<div class="notice" markdown="1">
 POST /product/choise HTTP/2
 
 '''
