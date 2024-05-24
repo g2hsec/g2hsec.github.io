@@ -31,12 +31,14 @@ SSRF 를 활용한 공격 방식은 크게 3가지로 분류할 수 있다.
 ## Port Scan 및 내부 시스템 파일 탈취
 
 <div class="notice">
-    SSH 서비스 포트를 스캔할 시 file?=http//[IP]:22  구문 사용
+    SSH 서비스 포트를 스캔할 시 file?=http//[IP]:22  구문 사용<br><br>
 
     [리눅스/유닉스]
+<br>
     file?=http://file:///etc/passwd
+<br>
     -- 허용하는 URL 스키마를 사용하여 접근 --
-
+<br>
   <h4 style="color:red;">SSRF 의 경우 프로토콜에 대한 제한을 받지 않기때문에 FTP, SMTP, … 등 과 URI 스킴이 상용 가능하다.</h4>
 </div>
 
