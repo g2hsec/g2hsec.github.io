@@ -136,7 +136,8 @@ tartget(attacker)@email.com === target@email.com 과 동일하다.<br>
 trust@[127.0.0.1]
 </div>
 
-## “ 를 사용하게 된다면??
+## " 를 사용하게 된다면??
+
 Local-Part 부분에서 “ 가 사용가능하다면 SMTP Injection 의 파급력은 엄청나진다.
 공백 및 특수문자등 일반적인 Local-Part 부분에서 사용할 수 없는 문자들이 사용 가능해진다.
 즉, 특수문자를 사용해야하는 Web-attack 공격기법들이 전부 사용 가능할 수 있다.
