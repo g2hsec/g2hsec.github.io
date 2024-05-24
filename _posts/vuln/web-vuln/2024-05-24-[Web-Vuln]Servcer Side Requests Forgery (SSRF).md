@@ -257,6 +257,7 @@ https://www.victim.com(\u2044)some(\u2044)path(\u2044)(\u0294)some=param(\uff03)
 <br>
 
 # On each IP position try to put 1 attackers domain and the others the victim domain<br>
+
 http://1.1.1.1 &@2.2.2.2# @3.3.3.3/<br>
 <br>
 
