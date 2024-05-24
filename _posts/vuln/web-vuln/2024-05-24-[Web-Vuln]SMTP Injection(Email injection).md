@@ -27,21 +27,21 @@ SMTP의 HTTP 요청 헤더를 조작 하여 공격을 수행할 수 있다고 �
 - From<br>
     &nbsp;&nbsp;&nbsp;&nbsp;- 메시지를 보내는 사람의 ID<br>
 - Resent-From<br>
-    - 메시지를 전달한 사람<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 메시지를 전달한 사람<br>
 - Reply-To<br>
-    - 응답을 보낼 사서함을 나타내는 메커니즘<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 응답을 보낼 사서함을 나타내는 메커니즘<br>
 - Resent-Reply-To<br>
-    - 회신을 전달해야 하는 사람<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 회신을 전달해야 하는 사람<br>
 - Return-Path<br>
-    - 메시지 발신자에 대한 주소 및 경로에 대한 결정적 정보<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 메시지 발신자에 대한 주소 및 경로에 대한 결정적 정보<br>
 - Sender<br>
-    - 메시지를 보낸 에이전트의 인증된 ID (사람, 시스템, 프로세스등)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 메시지를 보낸 에이전트의 인증된 ID (사람, 시스템, 프로세스등)<br>
 - Resent-Sender<br>
-    - ㅁ메시지를 재전송한 에이전트의 인증된 ID<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- ㅁ메시지를 재전송한 에이전트의 인증된 ID<br>
 - To<br>
-    - 메신지의 기본 수신자<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 메신지의 기본 수신자<br>
 - <u style="color:red;">Cc(참조)</u><br>
-    - 메시지의 보조 수신자<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 메시지의 보조 수신자<br>
 - <u style="color:red;">Bcc(숨은참조)</u><br>
-    - 메시지의 추가 수신자
+    &nbsp;&nbsp;&nbsp;&nbsp;- 메시지의 추가 수신자
 </div>
