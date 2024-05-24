@@ -25,7 +25,7 @@ SMTP의 HTTP 요청 헤더를 조작 하여 공격을 수행할 수 있다고 �
 
 <div class="notice">
 - From<br>
-    - 메시지를 보내는 사람의 ID<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;- 메시지를 보내는 사람의 ID<br>
 - Resent-From<br>
     - 메시지를 전달한 사람<br>
 - Reply-To<br>
