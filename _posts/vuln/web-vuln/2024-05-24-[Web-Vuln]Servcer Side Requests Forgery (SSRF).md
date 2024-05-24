@@ -93,7 +93,7 @@ http://instance-data/latest/meta-data/public-keys/
 ## URL Parser 의 pasing 방법부터 알아보자.
 
 ![그림 1-1](/assets/image/vuln/web-vuln/SSRF/image.png)
-위와 같은 형식으로 URI를 나누어서 해석할 수 있다.
+위와 같은 형식으로 URI를 나누어서 해석할 수 있다.<br>
 💡 **<u>각 Parser 마다 pasing 방법이 상이할 수 있다.</u>** 
 {: .notice--primary} 
 보통 아래와 같은 형식으로 우회를 주로 시도한다.
@@ -270,7 +270,7 @@ next={domain}&next=attacker.com
 
 ### 입력값(URL)이 특정 경로 또는 확장자로 끝나거나, 화이트리스트에 등록된 패스가 포함되어야 하는 경우라면?
 
-<div class="notice--primary" markdown="1">
+<div class="notice" markdown="1">
 https://metadata/vulerable/path#/expected/path<br>
 https://metadata/vulerable/path#.extension<br>
 https://metadata/expected/path/..%2f..%2f/vulnerable/path<br>
