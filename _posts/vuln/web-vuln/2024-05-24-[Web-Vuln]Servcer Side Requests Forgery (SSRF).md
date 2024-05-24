@@ -42,7 +42,7 @@ SSRF 를 활용한 공격 방식은 크게 3가지로 분류할 수 있다.
   <h4 style="color:red;">SSRF 의 경우 프로토콜에 대한 제한을 받지 않기때문에 FTP, SMTP, … 등 과 URI 스킴이 상용 가능하다.</h4>
 </div>
 
-## 2. Porxy Logon 기반 SSRF
+## Porxy Logon 기반 SSRF
 2021년 CVE에 등록된 공개 취약점인 MS Exchange SSRF 를 활용
 1. X-BEResoucrce 쿠키 변조를 통해 내부 서버 리소스 접근 가능
 
