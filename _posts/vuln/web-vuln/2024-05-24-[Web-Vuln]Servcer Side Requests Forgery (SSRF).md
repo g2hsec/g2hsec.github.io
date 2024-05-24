@@ -84,6 +84,7 @@ http://instance-data/latest/meta-data/public-keys/
 
 대표적으로 AWS의 Metadata API로의 접근 경로이다. 이 외에 다양한 API는 아래 링크에서 
 확인이 가능하다.    
+
 [참조 링크]: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery#ssrf-url-for-cloud-instances
 
 > 이렇게 외부에서 접근할 수 없는 위치에 존재하는 내부단에 접근하기 위해 LocalHost 주소를 통해 우회를  하게될 경우 localhost 를 필터링을 하는경우가 대부분이다. 
