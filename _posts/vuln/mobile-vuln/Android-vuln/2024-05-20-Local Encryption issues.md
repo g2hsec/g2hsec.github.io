@@ -22,7 +22,7 @@ author_profile: false
     - MODE_WORLD_READBLE을 사용하면 모든 어플리케이션이 key.xml에 접근이가능하다.
     > MODE_WORLD_READABLE 및 MODE_WORLD_WRITEABLE은 Android 4.2(API Level 17)부터 더 이상 사용되지 않아, android:targetSdkVersion값이 17보다 작은 어필레키여션은 영향을 받음
 - SQLite Databases
-    - 컨텐츠 및 사용자들에 대한 목록이 저장되는 데이터베이스로 모바일 환경에서 일반적으로 사용되는 경량 파일 기반의 데이터베이스이다.
+    - 컨텐츠 및 사용자들에 대한 목록이 저장되는 데이v터베이스로 모바일 환경에서 일반적으로 사용되는 경량 파일 기반의 데이터베이스이다.
     - 안드로이드 SDK는 SQLite데이터베이스를 기본적으로 지원한다.
     - 데이터베이스를 관리하는 데 사용되는 기본 페이지는 android.database.slqite이며, 두 가지 종류인 Unecrypted 및 Encrypted로 나눌 수 있다.
     - 액티비티 호출 시 제공된 데이터로 /data/data/\<package-name\>/databvases/privateNoSoSecure에 저장된다.
