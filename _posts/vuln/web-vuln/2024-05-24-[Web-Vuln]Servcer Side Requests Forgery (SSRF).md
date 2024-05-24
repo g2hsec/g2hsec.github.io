@@ -200,3 +200,30 @@ http://bugbounty.dod.network = 127.0.0.2 (localhost)<br>
 1ynrnhl.xip.io == 169.254.169.254<br>
 spoofed.burpcollaborator.net = 127.0.0.1
 </div>
+
+## whitelist-based Bypass
+백엔드 시스템에 접근하기 위해서는 서버측에서 신뢰할 수 있는 주소로만 접근 가능하도록
+Whitelist 기반으로 필터링 정책이 이루어져 있을 수 있다.
+이 때 위에서 보았듰이 URL 파서의 파싱원리를 통해 우회 가능한 많은 방법들이 존재한다.
+
+<div class="notice">
+http://attack.com#trust.com<br>
+or<br>
+http://trust.com@attack.com
+</div>
+
+만약 URL 파서가 @가 있는 경우, 호스트 부분을 추출하여 허용된 도메인과 비교하고, #기호가 있는 경우 요청을 거부한다면 SSRF 필터링은 주로 호스트 부분을 검증하고 차단하는 데 초점을 맞추기 때문에 이를 혼용해서 사용할 수 있다.
+
+<div class="notice">
+http://attack.com/@internal-server#example
+</div>
+
+<div class="notice--primary" markdown="1">
+- 또한 http://127.0.0.1/admin 과 같은 Payload에서 문자를 url 인코딩을 통해서도 우회가 가능하다.
+
+```
+http://127.0.0.1/%61dmin
+http://127.0.0.1/%2561dmin
+```
+
+</div>
