@@ -227,9 +227,9 @@ http://127.0.0.1/%2561dmin
 ```
 <br>
 
-# Try also to change attacker.com for 127.0.0.1 to try to access localhost
-# Try replacing https by http
-# Try URL-encoded characters<br>
+Try also to change attacker.com for 127.0.0.1 to try to access localhost
+Try replacing https by http
+Try URL-encoded characters<br>
 
 https://{domain}@attacker.com<br>
 https://{domain}.attacker.com<br>
@@ -256,7 +256,7 @@ https://attacker.com\anything@{domain}/<br>
 https://www.victim.com(\u2044)some(\u2044)path(\u2044)(\u0294)some=param(\uff03)hash@attacker.com<br>
 <br>
 
-# On each IP position try to put 1 attackers domain and the others the victim domain<br>
+On each IP position try to put 1 attackers domain and the others the victim domain<br>
 
 http://1.1.1.1 &@2.2.2.2# @3.3.3.3/<br>
 <br>
