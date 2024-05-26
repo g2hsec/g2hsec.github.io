@@ -47,17 +47,17 @@ ADB를 통해 해당 어플리케이션의 패키지 경로로 이동 후 Shared
 /data/data/com.android.insecurebankv2/shared_prefs
 ```
 
-![그림 1-1](image.png)
+![그림 1-1](/assets/image/vuln/mobile-vuln/adnroid-vuln/Local%20Encryption%20issues/image.png)
 - 해당 경로를 확인하면 3개의 파일이 존재하는 걸 볼 수 있다.
 
 1. "WebViewChromiumPrefs.xml"
-![그림 1-2](image-1.png)
+![그림 1-2](/assets/image/vuln/mobile-vuln/adnroid-vuln/Local%20Encryption%20issues/image-1.png)
 
 2. "com.android.insecurebankv2_preferences.xml"
-![그림 1-3](image-2.png)
+![그림 1-3](/assets/image/vuln/mobile-vuln/adnroid-vuln/Local%20Encryption%20issues/image-2.png)
 
 3. "mySharedPreferences.xml"
-![그림 1-4](image-3.png)
+![그림 1-4](/assets/image/vuln/mobile-vuln/adnroid-vuln/Local%20Encryption%20issues/image-3.png)
 
 <hr>
 com.android.insecurebankv2_preferences.xml 파일에는 해당 서버가 사용중인 서버IP와 포트가 저장되어 있으며,
@@ -99,4 +99,4 @@ public class CryptoClass {
 
 또 다른 소스코드인 CryptoClass.java 소스코드를 보게되면 password를 AES 방식으로 암호화 할 때 사용하는 키 값을 하드코딩 된 채로 노출되고 있다. AES의 경우 대칭키 암호화 알고리즘이므로 Key 값이 노출될 경우 이를 통해 복호화가 가능하다.
 
-![그림 1-5](image-4.png)
+![그림 1-5](/assets/image/vuln/mobile-vuln/adnroid-vuln/Local%20Encryption%20issues/image-4.png)
