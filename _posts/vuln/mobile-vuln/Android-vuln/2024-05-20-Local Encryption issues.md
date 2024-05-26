@@ -38,3 +38,65 @@ author_profile: false
   <hr>
   External Storage의 경우 /sdcard, /mnt/sdcard와 같은 경로에 사진, 파일 다운로드, 동영상, 공인인증서(mpkai) 등이 저장된다.
 </div>
+
+## 취약점 분석
+
+ADB를 통해 해당 어플리케이션의 패키지 경로로 이동 후 Shared Prefrences 위치로 이동한다.
+
+```
+/data/data/com.android.insecurebankv2/shared_prefs
+```
+
+![그림 1-1](image.png)
+- 해당 경로를 확인하면 3개의 파일이 존재하는 걸 볼 수 있다.
+
+1. "WebViewChromiumPrefs.xml"
+![그림 1-2](image-1.png)
+
+2. "com.android.insecurebankv2_preferences.xml"
+![그림 1-3](image-2.png)
+
+3. "mySharedPreferences.xml"
+![그림 1-4](image-3.png)
+
+<hr>
+com.android.insecurebankv2_preferences.xml 파일에는 해당 서버가 사용중인 서버IP와 포트가 저장되어 있으며,
+mySharedPerferences.xml 파일을 보게되면, 특정 계정정보가 암호화 되어 있는 걸 알 수 있다.
+<br><br>
+
+자세히 보게되면 해당 방식은 base64 인코딩 방식으로 매우 취약하게 설정되어 있는 듯 하며, 실제로 이를 디코딩 하게되면, **<u style="color:red;">ID: jack으로 디코딩 되었으며, PW의 경우 디코딩 되지 않는 것으로 보아, 다른 암호화 방식을 사용한 듯 하다.</u>**
+
+<br><br>
+해당 어플리케이션의 소스코드중 Dologin.java 파일을 확인해보면
+
+```java
+private void saveCreds(String username, String password) throws UnsupportedEncodingException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
+			// TODO Auto-generated method stub
+			SharedPreferences mySharedPreferences;
+			mySharedPreferences = getSharedPreferences(MYPREFS, Activity.MODE_PRIVATE);
+			SharedPreferences.Editor editor = mySharedPreferences.edit();
+			rememberme_username = username;
+			rememberme_password = password;
+			String base64Username = new String(Base64.encodeToString(rememberme_username.getBytes(), 4));
+			CryptoClass crypt = new CryptoClass();;
+			superSecurePassword = crypt.aesEncryptedString(rememberme_password);
+			editor.putString("EncryptedUsername", base64Username);
+			editor.putString("superSecurePassword", superSecurePassword);
+			editor.commit();
+		}
+```
+
+위 코드를 볼 수 있다. 해당 코드를 보면 username의 경우 base64인코딩 방식을 통해 인코딩 하고, password의 경우 CryptoClass()를 통해 ase알고리즘을 사용한 암호화를 한다는 것을 알 수 있다. 또한 해당 정보들은 클래스 파일 생성을 통해 mYshaerdPreferences에 저장된다.
+<br><br>
+또한 
+
+```java
+public class CryptoClass {
+
+	//	The super secret key used by the encryption function
+	String key = "This is the super secret key 123";
+```
+
+또 다른 소스코드인 CryptoClass.java 소스코드를 보게되면 password를 AES 방식으로 암호화 할 때 사용하는 키 값을 하드코딩 된 채로 노출되고 있다. AES의 경우 대칭키 암호화 알고리즘이므로 Key 값이 노출될 경우 이를 통해 복호화가 가능하다.
+
+![그림 1-5](image-4.png)
