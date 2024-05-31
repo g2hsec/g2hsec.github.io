@@ -106,7 +106,7 @@ HTML 문서에서 브라우저가 마크업의 일부로 잘못 해석하지 않
 
 > 이러한 HMTL 인코딩은 10진수 혹은 16진수 코드 포인트를 사용하여 참조를 제공한다.
 
-<div class='notice'>
+<div class='notice' markdown="1">
 &#58; === &#x3a; === '<'
 </div>
 
