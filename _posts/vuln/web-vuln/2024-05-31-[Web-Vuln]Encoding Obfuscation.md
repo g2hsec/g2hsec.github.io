@@ -47,3 +47,27 @@ $ -> %24
 (공백) -> %20 OR +
 
 </div>
+이 외에 특수 문자 혹은 일반 문자들도 필요하지는 않지만, 인코딩은 가능하다.
+<hr>
+모든 URL 기반으로 Query 매개변수를 통해 관련 변수에 할당되기 전 서버측에서는 자동으로 URL 디코딩을 수행하게 된다.
+<br>
+간혹 WAF 와 같은 장비가 사용자의 입력값을 URL 디코딩을 수행하지 않는 경우가 존재한다. 이럴 경우 블랙리스트 기반 필터 정책을 URL 인코딩으로 인코딩하여 전송하게되면, 필터링을 우회할 수 있다.
+
+<div class='notice'>
+EX) SELECT -> %53%45%4C%45%43%54
+</div>
+
+# Double URL Encoding 을 통한 난독화
+
+일부 몇몇 서버는 수신받은 URL을 확인 후 두 번의 URL 디코딩을 수행한다. 
+
+<div class='notice'>
+../../etc/passwd -> %252E%252E/%252E%252E/etc/passwd
+</div>
+
+모든 보안 메커니즘이 입력을 확인 할 때 입력값을 Double Decoding 하지는 않는다. 그러므로 
+
+<div class='notice'>
+/?payload=%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E
+(<img src=x onerror=alert(1)>)
+</div>
