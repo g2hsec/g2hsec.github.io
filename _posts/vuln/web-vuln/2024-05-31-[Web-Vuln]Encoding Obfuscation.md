@@ -197,3 +197,19 @@ a → Unicode 인코딩<br>
 <div class='notice' markdown="1">
 \<a href="javascript:alert(1)"\>test\</a\>
 </div>
+
+# Function을 통한 난독화
+
+## SQL CHAR() 함수
+
+<div class='notice' markdown="1">
+CHAR(83)+CHAR(69)+CHAR(76)+CHAR(69)+CHAR(67)+CHAR(84)<br>
+=== SELECT<br>
+concat(CHAR(83)+CHAR(69)+CHAR(76)+CHAR(69)+CHAR(67)+CHAR(84))
+</div>
+
+## JS String.frimCharCode()
+
+<div class='notice' markdown="1">
+\<img src=x: oNerroR=’alert(String.fromCharCode(72, 97, 99, 107))”\>
+</div>
