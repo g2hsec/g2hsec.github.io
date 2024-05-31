@@ -123,12 +123,12 @@ XML 구문에서도 HTML인코딩과 유사하게 숫자 이스케이프 시퀀�
 > 특징은 XML인코딩을 통한 우회는 HTML과 달리 브라우저에 의한 클라이언트측에서 디코딩 되는것이 아니라 서버 자체에 의해 디코딩되어 WAF및 기타 필터를 우회할 수 있다.
 
 <div class='notice'>
-<test><br>
-	<list><br>
+\<test><br>
+	\<list><br>
 		1<br>
-	</list><br>
-	<mode><br>
+	\</list><br>
+	\<mode><br>
 		100 &#53;ELECT * FROM information_schema.tables<br>
-	</mode><br>
-<test>
+	\</mode><br>
+\<test>
 </div>
