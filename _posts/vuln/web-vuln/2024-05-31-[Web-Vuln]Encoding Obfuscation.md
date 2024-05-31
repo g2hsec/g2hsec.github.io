@@ -71,3 +71,47 @@ EX) SELECT -> %53%45%4C%45%43%54
 /?payload=%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E
 (<img src=x onerror=alert(1)>)
 </div>
+
+위와같이 단일 인코딩을 통해 XSS PoC 를 주입할 경우 WAF 단에서
+차단되어 백엔드까지 해당 payload가 전달되지 않는다.
+하지만 Double Encoding를 통해 PoC를 작성하여 보내게 된다면?
+
+<div class='notice'>
+/?payload=%253Cimg%2520src%253Dx%2520onerror%253Dalert(1)%253E
+</div>
+
+단일 디코딩을 수행 하더라도 아직 인코딩된 상태로 남아있기에
+WAF는 해당 payload를  제대로된 필터링을 식별하지 못하고 백엔드 서버측으로 전달되고 이후에 백엔드 측에서는 Double Decoding를 통해 payload가 성공적으로 주입되게 된다.
+
+# HTML 인코딩 을 통한 난독화
+
+HTML 문서에서 브라우저가 마크업의 일부로 잘못 해석하지 않도록 특정 문자를 이스케이프 처리하거나 인코딩 되어 표현되어야 한다.
+요소의 텍스트 내용 혹은 속성 값과 같은 HTML 내의 특정 위치에서
+브라우저는 문서를 구문 분석할 떄 자동으로 디코딩작업을 수행한다.
+이를 활용하면 클라이언트 측 공격에 대한 페이로드를 난독화 하여 서버 측 검증을 우회할 수 있다
+<br><br>
+예를들어 < 표시는 아래와 같이 표현이 가능하다.
+
+<div class='notice'>
+< -> &#X61;
+</div>
+
+이와 같이 서버측에서 alert() 라는 Payload를 명시적으로 필터링 하고 있다면 이를 HTML 인코딩 하여 아래와 같이 Payload를 구성할 수 있다.
+
+<div class='notice'>
+\<img src='' onerror="&#61;lert(1)"\>
+</div>
+
+위와 같이 Payload를 작성해서 요청을 보낼 경우 서버측 필터링 로직을 우회하고 브라우저가 페이지를 렌더링 할 때 사입된 Payload를 디코딩하고 실행하게된다.
+
+> 이러한 HMTL 인코딩은 10진수 혹은 16진수 코드 포인트를 사용하여 참조를 제공한다.
+
+<div class='notice'>
+&#58; === &#x3a; === '<'
+</div>
+
+여기서 신기한 점은 HTML인코딩을 사용할 때 코드 포인트에 숫자 0 을 임의 개수로 포함할 수 있는데 이렇게 0을 포함하여 WAF및 기타 필터링을 우회할 수 있다.  
+
+<div class='notice'>
+\<a href="javascript&#00000000000058;alert(1)">Check here\</a>
+</div>
