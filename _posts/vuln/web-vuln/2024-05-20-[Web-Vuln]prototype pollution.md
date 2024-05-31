@@ -258,3 +258,6 @@ test/?__pro__proto__to__.bar=foo
 2. https://hackyboiz.github.io/2021/10/30/l0ch/2021-10-30/
 3. https://www.hahwul.com/cullinan/prototype-pollution/#attack-vector
 4. https://portswigger.net/web-security/learning-paths/prototype-pollution/
+
+
+https://learn.snyk.io/lesson/prototype-pollution/
