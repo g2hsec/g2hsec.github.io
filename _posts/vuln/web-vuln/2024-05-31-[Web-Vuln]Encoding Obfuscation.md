@@ -128,12 +128,12 @@ XML 구문에서도 HTML인코딩과 유사하게 숫자 이스케이프 시퀀�
 
 
 <div class='notice'>
-\<test\>\<br\>
-&emsp;\<list\>\<br\>
-&emsp;&emsp;1\<br\>
-&emsp;\</list\>\<br\>
-&emsp;\<mode\>\<br\>
-&emsp;&emsp;100 &#53;ELECT * FROM information_schema.tables\<br\>
-&emsp;\</mode\>\<br\>
+\<test\><br>
+&emsp;\<list\><br>
+&emsp;&emsp;1<br>
+&emsp;\</list\><br>
+&emsp;\<mode\><br>
+&emsp;&emsp;100 &#53;ELECT * FROM information_schema.tables<br>
+&emsp;\</mode\><br>
 \</test\>
 </div>
