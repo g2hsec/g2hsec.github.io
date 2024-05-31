@@ -171,3 +171,29 @@ ES6의 경우 HTML인코딩때와 같이 숫자0을 임의로 붙이더라도 �
 </div>
 
 # 16진수 및 8진수 이스케이프를 통한 난독화
+
+16진수 및 8진수로 인코딩하여 전달하게 되면 서버측 필터링을 우회할 수 있으며 문자열로 전송되어, 클라이언트 측에서 디코딩된다
+
+<div class='notice' markdown="1">
+eval("\x61lert") # 16진수<br>
+0x53454c454354 -> SELECT 이와 같이 SQL문도 난독화 할 수 있다.<br><br>
+
+eval("\141lert(1)") # 8진수
+</div>
+
+# 다중 인코딩을 통한 난독화
+
+하나의 인코딩 기법을 사용하여 테스트해볼 수 있지만, 다양한 인코딩 방식을 합쳐서 Payload를 작성할 수 있다.
+<div class='notice' markdown="1">
+\<a href="javascript:&bsol;u0061lert(1)"\>test\</a\>
+</div>
+
+\ → HTML인코딩 <br>
+
+a → Unicode 인코딩<br>
+
+을 통해 아래의 코드를 난독화 시켰다.
+
+<div class='notice' markdown="1">
+\<a href="javascript:alert(1)"\>test\</a\>
+</div>
