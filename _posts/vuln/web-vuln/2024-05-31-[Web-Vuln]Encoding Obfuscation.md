@@ -99,7 +99,9 @@ HTML 문서에서 브라우저가 마크업의 일부로 잘못 해석하지 않
 이와 같이 서버측에서 alert() 라는 Payload를 명시적으로 필터링 하고 있다면 이를 HTML 인코딩 하여 아래와 같이 Payload를 구성할 수 있다.
 
 <div class='notice'>
+{% raw %}
 <img src='' onerror="&#61;lert(1)">
+{% endraw %}
 </div>
 
 위와 같이 Payload를 작성해서 요청을 보낼 경우 서버측 필터링 로직을 우회하고 브라우저가 페이지를 렌더링 할 때 사입된 Payload를 디코딩하고 실행하게된다.
@@ -113,7 +115,9 @@ HTML 문서에서 브라우저가 마크업의 일부로 잘못 해석하지 않
 여기서 신기한 점은 HTML인코딩을 사용할 때 코드 포인트에 숫자 0 을 임의 개수로 포함할 수 있는데 이렇게 0을 포함하여 WAF및 기타 필터링을 우회할 수 있다.  
 
 <div class='notice'>
-\<a href="javascript&#00000000000058;alert(1)"\>Check here\</a\>
+{% raw %}
+<a href="javascript&#00000000000058;alert(1)">Check here</a>
+{% endraw %}
 </div>
 
 # XML 인코딩 을 통한 난독화
@@ -123,12 +127,14 @@ XML 구문에서도 HTML인코딩과 유사하게 숫자 이스케이프 시퀀�
 > 특징은 XML인코딩을 통한 우회는 HTML과 달리 브라우저에 의한 클라이언트측에서 디코딩 되는것이 아니라 서버 자체에 의해 디코딩되어 WAF및 기타 필터를 우회할 수 있다.
 
 <div class='notice'>
-\<test><br>
-	\<list><br>
+{% raw %}
+<test><br>
+	<list><br>
 		1<br>
-	\</list><br>
-	\<mode><br>
+	</list><br>
+	<mode><br>
 		100 &#53;ELECT * FROM information_schema.tables<br>
-	\</mode><br>
-\<test>
+	</mode><br>
+<test>
+{% endraw %}
 </div>
