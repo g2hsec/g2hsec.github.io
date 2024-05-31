@@ -99,7 +99,7 @@ HTML 문서에서 브라우저가 마크업의 일부로 잘못 해석하지 않
 이와 같이 서버측에서 alert() 라는 Payload를 명시적으로 필터링 하고 있다면 이를 HTML 인코딩 하여 아래와 같이 Payload를 구성할 수 있다.
 
 <div class='notice' markdown="1">
-\<img src='' onerror="&#61;lert(1)"\>
+\<img src='' onerror="&#38;#61;lert(1)"\>
 </div>
 
 위와 같이 Payload를 작성해서 요청을 보낼 경우 서버측 필터링 로직을 우회하고 브라우저가 페이지를 렌더링 할 때 사입된 Payload를 디코딩하고 실행하게된다.
