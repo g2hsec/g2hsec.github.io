@@ -115,3 +115,20 @@ HTML 문서에서 브라우저가 마크업의 일부로 잘못 해석하지 않
 <div class='notice'>
 \<a href="javascript&#00000000000058;alert(1)">Check here\</a>
 </div>
+
+# XML 인코딩 을 통한 난독화
+
+XML 구문에서도 HTML인코딩과 유사하게 숫자 이스케이프 시퀀스를 사용하여 인코딩하게된다. 이 때 XML 입력을 통해 데이터를 전달하는 로직이 존재한다면 여러 취약점을 우회할 수 있다.
+
+> 특징은 XML인코딩을 통한 우회는 HTML과 달리 브라우저에 의한 클라이언트측에서 디코딩 되는것이 아니라 서버 자체에 의해 디코딩되어 WAF및 기타 필터를 우회할 수 있다.
+
+<div class='notice'>
+<test><br>
+	<list><br>
+		1<br>
+	</list><br>
+	<mode><br>
+		100 &#53;ELECT * FROM information_schema.tables<br>
+	</mode><br>
+<test>
+</div>
