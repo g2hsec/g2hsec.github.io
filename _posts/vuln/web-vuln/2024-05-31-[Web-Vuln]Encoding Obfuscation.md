@@ -98,10 +98,8 @@ HTML 문서에서 브라우저가 마크업의 일부로 잘못 해석하지 않
 
 이와 같이 서버측에서 alert() 라는 Payload를 명시적으로 필터링 하고 있다면 이를 HTML 인코딩 하여 아래와 같이 Payload를 구성할 수 있다.
 
-<div class='notice'>
-{% raw %}
-<img src='' onerror="&#61;lert(1)">
-{% endraw %}
+<div class='notice' markdown="1">
+\<img src='' onerror="&#61;lert(1)"\>
 </div>
 
 위와 같이 Payload를 작성해서 요청을 보낼 경우 서버측 필터링 로직을 우회하고 브라우저가 페이지를 렌더링 할 때 사입된 Payload를 디코딩하고 실행하게된다.
@@ -114,10 +112,8 @@ HTML 문서에서 브라우저가 마크업의 일부로 잘못 해석하지 않
 
 여기서 신기한 점은 HTML인코딩을 사용할 때 코드 포인트에 숫자 0 을 임의 개수로 포함할 수 있는데 이렇게 0을 포함하여 WAF및 기타 필터링을 우회할 수 있다.  
 
-<div class='notice'>
-{% raw %}
-<a href="javascript&#00000000000058;alert(1)">Check here</a>
-{% endraw %}
+<div class='notice' markdown="1">
+\<a href="javascript&#00000000000058;alert(1)"\>Check here\</a\>
 </div>
 
 # XML 인코딩 을 통한 난독화
