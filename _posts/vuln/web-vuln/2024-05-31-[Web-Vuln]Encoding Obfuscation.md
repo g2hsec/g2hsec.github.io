@@ -211,5 +211,20 @@ concat(CHAR(83)+CHAR(69)+CHAR(76)+CHAR(69)+CHAR(67)+CHAR(84))
 ## JS String.frimCharCode()
 
 <div class='notice' markdown="1">
-\<img src=x: oNerroR=’alert(String.fromCharCode(72, 97, 99, 107))”\>
+\<img src=x: oNerroR='alert(String.fromCharCode(72, 97, 99, 107))'\>
+</div>
+
+# .(dot)우회
+
+<div class='notice' markdown="1">
+%E3%80%82 를 통해 . 필터링을 우회할 수 있음<br><br>
+
+ex get 방식으로 url 전달값 필터링 될 시 사용<br><br>
+
+\<aside\><br>
+💡 \[www.nave.com\]\(http://www.nave.com\) → www%E3%80%82naver%E3%80%82com<br>
+
+\</aside\><br><br>
+
+url 인코딩과 double 인코딩 이 둘 다 필터링 되어 있을경우 해볼만한듯
 </div>
