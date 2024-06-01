@@ -41,6 +41,9 @@ author_profile: false
 
 ## 취약점 분석
 
+💡 **<u><span style="background-color: yellow; ">해당 취약점 실습은 "InsecureBank2"라는 모바일 뱅킹서비스 어플리케이션으로 진행합니다.</span></u>** 
+{: .notice--primary}
+
 ADB를 통해 해당 어플리케이션의 패키지 경로로 이동 후 Shared Prefrences 위치로 이동한다.
 
 ```
