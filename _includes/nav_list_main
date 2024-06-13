@@ -50,8 +50,8 @@
         <span class="nav__sub-title">Vulnerability_Assessment</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Vulnerability_Assessment" %}
-                        <li><a href="/categories/Vulnerability_Assessment" class="">Vulnerability_Assessment ({{category[1].size}})</a></li>
+                    {% if category[0] == "WindowsServer_Assessment" %}
+                        <li><a href="/categories/WindowsServer_Assessment" class="">WindowsServer_Assessment ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
