@@ -32,7 +32,7 @@ x86-32bit 환경에서는 가젯을 구하기 어렵지 않지만 64bit 환경�
 기본적인 원리부터 알아보자.
 
 <img src="/assets/image/vuln/system-vuln/rop-32/image.png" alt="description" width="600"/><br><br>
-위와 같은 상황에서 Buffer Overwrite가 터져서 buf의 64바이트보다 더 많은 값을 입력받을 수 있을때<br><br>
+위와 같은 상황에서 Buffer Overwrite가 발생하여 buf의 64바이트보다 더 많은 값을 입력받을 수 있을때<br><br>
 
 우리는 RET영역까지 접근이 가능하다. 여기서 RTL_Chaining와 같이 가젯을 사용하여, 함수를 호출하고, 인자를 정리하고 또 호출하고를<br> 반복적으로 수행 할 수 있다. <br><br>
 
