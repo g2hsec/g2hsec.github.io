@@ -36,7 +36,7 @@ x86-32bit 환경에서는 가젯을 구하기 어렵지 않지만 64bit 환경�
 
 우리는 RET영역까지 접근이 가능하다. 여기서 RTL_Chaining와 같이 가젯을 사용하여, 함수를 호출하고, 인자를 정리하고 또 호출하고를<br> 반복적으로 수행 할 수 있다. <br><br>
 
-## Stage 1
+# Stage 1
 이경우 보통 Stage1에서 해야할 작업으로, 출력함수를 이용하여 특정 함수의 got주소를 출력시킨 후, <br> 
 출력된 함수의 got에서 그 함수의 offset값을 빼 libc_base주소를 구하게 된다.<br> 
 이렇게 구한 libc_base주소를 가지고 우리가 원하는 보통 system()함수의 offset을 더해 system()함수의<br> 
@@ -45,7 +45,7 @@ x86-32bit 환경에서는 가젯을 구하기 어렵지 않지만 64bit 환경�
 그 후 "/bin/sh" 문자열이 저장되어있는 주소를 찾거나, 쓰기권한이 있는 .bss영역등에 해당 문자열을 저장하여 해당 <br> 
 /bin/sh 문자열을 쓸 수 있다.<br>
 
-## Stage 0
+# Stage 0
 got_overwrite를 통해 특정 함수의 got에 Stage1 단계에서 구한 system()함수의 주소를 덮어씌워<br> 
 특정함수를 실행 시키게 되면 system()함수를 실행시키는 효과를 볼 수 있다.<br> <br> 
 그 후 Stage0에서 Exploit을 진행하게 된다.<br> 
