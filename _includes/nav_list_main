@@ -55,6 +55,13 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "LinuxServer_Assessment" %}
+                        <li><a href="/categories/LinuxServer_Assessment" class="">LinuxServer_Assessment ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
       </li>
   </ul>
 </nav>
