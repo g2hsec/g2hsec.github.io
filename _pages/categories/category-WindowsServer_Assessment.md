@@ -1,7 +1,7 @@
 ---
-title: "Vulnerability_Assessment"
+title: "WindowsServer_Assessment"
 layout: archive
-permalink: /categories/Vulnerability_Assessment
+permalink: /categories/WindowsServer_Assessment
 author_profile: true
 sidebar_main: true
 ---

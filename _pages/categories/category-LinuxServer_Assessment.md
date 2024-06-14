@@ -1,5 +1,5 @@
 ---
-title: "Vulnerability_Assessment"
+title: "LinuxServer_Assessment"
 layout: archive
 permalink: /categories/LinuxServer_Assessment
 author_profile: true
