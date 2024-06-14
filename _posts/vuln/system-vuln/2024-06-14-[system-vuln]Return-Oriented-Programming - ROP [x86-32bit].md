@@ -55,12 +55,12 @@ Stage0의 단계를 보면 아래의 그림과 같이 이루어진다.<br>
 
 <div class="notice">
 
-1. puts() 함수를 이용하여 puts()함수의 got주소를 출력시킨다. 출력시킨 Payload에서 특정 변수에 담아둔다.
-그 후 puts_got - puts_offset를 통해 libc_base주소를 획득하고
-libc_base - system_offset을 통해 system()함수의 실제 주소를 획득할 수 있다. 
-2. read()함수를 통해 .bss영역에 system()함수의 인자로 필요한 /bin/sh문자열을 저장하게 된다.
-3. read()함수를 통해 puts()함수의 got에 앞서 얻은 system()함수의 실제주소를 저장하여 got_overwrite를 한다.
-이로서 puts_plt를 호출하면 got를 참조하여 system()함수가 실행되게 된다.
+1. puts() 함수를 이용하여 puts()함수의 got주소를 출력시킨다. 출력시킨 Payload에서 특정 변수에 담아둔다.<br>
+그 후 puts_got - puts_offset를 통해 libc_base주소를 획득하고<br>
+libc_base - system_offset을 통해 system()함수의 실제 주소를 획득할 수 있다. <br>
+2. read()함수를 통해 .bss영역에 system()함수의 인자로 필요한 /bin/sh문자열을 저장하게 된다.<br>
+3. read()함수를 통해 puts()함수의 got에 앞서 얻은 system()함수의 실제주소를 저장하여 got_overwrite를 한다.<br>
+이로서 puts_plt를 호출하면 got를 참조하여 system()함수가 실행되게 된다.<br>
 </div>
 그 후 모든 요소들을 payload로 작성하여 Stage1의 Exploit를 수행하면 된다.
 
