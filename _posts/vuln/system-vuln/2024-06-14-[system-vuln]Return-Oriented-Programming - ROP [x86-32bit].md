@@ -1,6 +1,6 @@
 ---
 layout: single
-title: Open Return-Oriented-Programming - ROP [x86-32bit] 
+title: Return-Oriented-Programming - ROP [x86-32bit] 
 categories: system-vuln
 tag: [rop, pwn, pwnable, systemhacking, Return Oriented Programming]
 toc: true
