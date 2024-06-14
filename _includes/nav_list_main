@@ -34,6 +34,13 @@
             </ul>
             <ul>
                 {% for category in site.categories %}
+                    {% if category[0] == "system-vuln" %}
+                        <li><a href="/categories/system-vuln" class="">system-vuln ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
                     {% if category[0] == "Android" %}
                         <li><a href="/categories/Android" class="">Android ({{category[1].size}})</a></li>
                     {% endif %}
