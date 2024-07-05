@@ -84,8 +84,6 @@ http://editorial.htb/static/uploads/5b7f6b31-2af4-4755-bd67-b6ab3c479c5f
 ![그림 1-10](/assets/image/write-up/htb/Editorial/image-9.png)
 - dev 유저의 계정 정보가 하드코딩되어 고스란히 노출되고 있어
 - dev 유저로의 ssh 접근이 가능함
-- id : dev
-- pw : dev080217_devAPI!@
 
 ![그림 1-11](/assets/image/write-up/htb/Editorial/image-10.png)
 - dev 계정으로 접근 후 내부 시스템 탐색 결과 app -> .git -> logs -> HEAD 파일 내에 commit 정보가 존재
@@ -95,8 +93,6 @@ http://editorial.htb/static/uploads/5b7f6b31-2af4-4755-bd67-b6ab3c479c5f
 ![그림 1-12](/assets/image/write-up/htb/Editorial/image-11.png)
 - 아래쪽 내용을 보게되면 prod 계정 또한 하드코딩된 채로 노출되고 있어
 - 이를 통해 prod 계정으로의 횡적이동이 가능하다.
-- id : prod
-- pw : 080217_Producti0n_2023!@
 
 ![그름 1-13](/assets/image/write-up/htb/Editorial/image-12.png)
 - prod 계정의 sudo 권한이 존재하며, "/usr/bin/python3 /opt/internal_apps/clone_changes/clone_prod_change.py *" 명령어 사용이 가능하다
