@@ -17,7 +17,7 @@ author_profile: false
 2. 도멩인 획득 후 IP와 매칭
 3. 사이트 내에 사진 Preview 기능에서 SSRF 취약점 식별
 4. SSRF 공격을 통해 내부 5000번 포트에서 API 경로 노출 API 경로 내 파일 안에 계정정보 하드코딩
-5. 
+5. prod 계정의 sudo 권한에서 gitpython 사용부분의 취약점 악용으로 RCE 를 통한 root 경로 내 파일 read
 ## 정보수집
 ### Nmap 스캔 - 사용중인 포트 및 배너, 기본 정보 수집
 
