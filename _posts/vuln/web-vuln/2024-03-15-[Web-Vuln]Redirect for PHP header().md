@@ -15,7 +15,7 @@ author_profile: false
 <aside class="callout" style="background-color: #f5f5f5; border: 1px solid #ddd; padding: 10px; border-radius: 5px; color: #000;">
   해당 취약점은 Open Redirect 취약점에서 PHP기반의 함수를 예를 들어 설명한다.
 </aside>
-***
+
 
 ## 어떻게 발생하는가?
 해당 취약점은 PHP에서 header() 함수를 사용하여 redirection을 수행 하게 되는데, 이 때 header() 함수는
