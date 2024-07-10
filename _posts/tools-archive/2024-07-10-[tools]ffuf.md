@@ -59,7 +59,11 @@ ffuf -u http://example.com/FUZZ -w wordlist.txt
 
 ## Example
 ### vHOST 탐색
-- ffuf -w Wordlist.txt -u http://test.com -H "hots:FUZZ.test.com"
+```shell
+ffuf -w Wordlist.txt -u http://test.com -H "hots:FUZZ.test.com"
+```
 
 ### Dir 탐색
+```shell
 - ffuf -w Wordlist.txt -u http://cozyhosting.htb/FUZZ
+```
