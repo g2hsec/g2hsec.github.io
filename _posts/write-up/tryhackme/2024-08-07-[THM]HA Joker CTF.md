@@ -122,3 +122,6 @@ Nmap done: 2 IP addresses (1 host up) scanned in 127.00 seconds
 
 ![그림 1-23](/assets/image/write-up/thm/thm_HA%20Joker%20CTF/image-22.png)
 - 그 후 루트디렉터리에 마운트하여 root 권한의 shell을 획득할 수 있다.
+
+# Referance
+- https://www.hackingarticles.in/lxd-privilege-escalation/
