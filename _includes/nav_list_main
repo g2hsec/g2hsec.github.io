@@ -48,6 +48,13 @@
             </ul>
             <ul>
                 {% for category in site.categories %}
+                    {% if category[0] == "Other-Vulnerabilities" %}
+                        <li><a href="/categories/Other-Vulnerabilities" class="">Other-Vulnerabilities ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
                     {% if category[0] == "Android" %}
                         <li><a href="/categories/Android" class="">Android ({{category[1].size}})</a></li>
                     {% endif %}
