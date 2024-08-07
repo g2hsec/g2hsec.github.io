@@ -48,8 +48,8 @@
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Other-Vulnerabilities" %}
-                        <li><a href="/categories/Other-Vulnerabilities" class="">Other-Vulnerabilities ({{category[1].size}})</a></li>
+                    {% if category[0] == "Other-Vuln" %}
+                        <li><a href="/categories/Other-Vuln" class="">Other-Vuln ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
