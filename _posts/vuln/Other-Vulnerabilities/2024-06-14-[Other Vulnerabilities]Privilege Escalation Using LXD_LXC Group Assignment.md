@@ -78,3 +78,6 @@ id
         uid=0(root) gid=0(root)
     </span>
 </div>
+
+# Referance
+- https://www.hackingarticles.in/lxd-privilege-escalation/
