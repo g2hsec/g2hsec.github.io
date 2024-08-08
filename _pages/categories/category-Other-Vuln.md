@@ -1,5 +1,5 @@
 ---
-title: "LinuxServer_Assessment"
+title: "Other-Vuln"
 layout: archive
 permalink: /categories/Other-Vuln
 author_profile: true
