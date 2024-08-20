@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (tools) keepass2john
+title: keepass2john
 categories: Tools
 tag: [wordlist, attacks, tool, tools, pentest, pentest tool,password,keepass2john]
 toc: true

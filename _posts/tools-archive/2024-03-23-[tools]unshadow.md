@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (tools) unshadow
+title: unshadow
 categories: Tools
 tag: [unshadow, attacks, tool, tools, pentest, pentest tool,password, shadow]
 toc: true

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (tools) ffuf
+title: ffuf
 categories: Tools
 tag: [ffuf, attacks, tool, tools, pentest, pentest tool,password, shadow]
 toc: true

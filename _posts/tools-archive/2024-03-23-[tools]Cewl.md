@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (tools) Cewl
+title: Cewl
 categories: Tools
 tag: [wordlist, attacks, tool, tools, pentest, pentest tool,password]
 toc: true
