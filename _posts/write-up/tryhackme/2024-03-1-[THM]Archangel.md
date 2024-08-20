@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (THM) Archangel - WriteUP
+title: Archangel - WriteUP
 categories: THM
 tag: [log injection, RCE, LFI, log poisoning,THM,TryHackMe, Pentest, Pentesting, cron, path]
 toc: true

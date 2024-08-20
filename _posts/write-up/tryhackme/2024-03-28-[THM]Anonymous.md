@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (THM) Anonymous - WriteUP
+title: Anonymous - WriteUP
 categories: THM
 tag: [write up, ftp, smb,THM,TryHackMe, Pentest, Pentesting, cron, Privilege elevation]
 toc: true

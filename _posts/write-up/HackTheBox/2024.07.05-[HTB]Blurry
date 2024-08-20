@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (HTB) Blurry - WriteUP
+title: Blurry - WriteUP
 categories: HTB
 tag: [2024-24590, reverse connection, HTB,HackTheBox, Pentest, Pentesting, ClearML , Pickle Load on Artifact Get]
 toc: true

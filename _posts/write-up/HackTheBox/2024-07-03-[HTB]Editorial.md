@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (HTB) Editorial - WriteUP
+title: Editorial - WriteUP
 categories: HTB
 tag: [SSRF, RCE, HTB,HackTheBox, Pentest, Pentesting, git, gitpython]
 toc: true

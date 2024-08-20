@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (THM) Dreaming - WriteUP
+title: Dreaming - WriteUP
 categories: THM
 tag: [THM,TryHackMe, Pentest, Pentesting, Dreaming]
 toc: true

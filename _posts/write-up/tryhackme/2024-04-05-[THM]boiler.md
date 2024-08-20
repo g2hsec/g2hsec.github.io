@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (THM) Boiler CTF - WriteUP
+title: Boiler CTF - WriteUP
 categories: THM
 tag: [THM,TryHackMe, Pentest, Pentesting]
 toc: true

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (THM) HA Joker CTF
+title: HA Joker CTF
 categories: THM
 tag: [THM,TryHackMe, Pentest, Pentesting, HA Joker CTF]
 toc: true

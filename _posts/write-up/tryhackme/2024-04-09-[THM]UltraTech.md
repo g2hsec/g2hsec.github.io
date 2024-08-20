@@ -1,6 +1,6 @@
 ---
 layout: single
-title: (THM) UltraTech - WriteUP
+title: UltraTech - WriteUP
 categories: THM
 tag: [THM,TryHackMe, Pentest, Pentesting]
 toc: true
