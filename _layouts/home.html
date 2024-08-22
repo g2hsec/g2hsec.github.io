@@ -4,23 +4,22 @@ layout: archive
 
 {{ content }}
 
+{% if paginator %}
+  {% assign posts = paginator.posts %}
+{% else %}
+  {% assign posts = site.posts %}
+{% endif %}
 
 <div class="entries-{{ entries_layout }}">
   <div class="entries-{{ entries_layout }}">
     <div><img src="/assets/image/test.png" alt="설명 텍스트" width="150" height="150"></div>
     <div>
       <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
-
-      {% if paginator %}
-        {% assign posts = paginator.posts %}
-      {% else %}
-        {% assign posts = site.posts %}
-      {% endif %}
-
       {% assign entries_layout = page.entries_layout | default: 'list' %}
-
+      {% for post in posts %}
+        {% include archive-single.html type=entries_layout %}
+      {% endfor %}
       {% include paginator.html %}
     </div>
   </div>  
 </div>  
-
