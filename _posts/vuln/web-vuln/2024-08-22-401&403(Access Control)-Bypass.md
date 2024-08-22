@@ -1,8 +1,8 @@
 ---
 layout: single
-title: Open redirect (redirect for PHP header() vulnerability)
+title:  401&403(Access Control) Bypass
 categories: Web-vuln
-tag: [php, function, redirect, open redirect]
+tag: [403, 401, Forbidden, access control, 403 bypass]
 toc: true
 author_profile: false
 ---
