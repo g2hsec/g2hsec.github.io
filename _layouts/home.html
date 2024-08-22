@@ -3,8 +3,59 @@ layout: archive
 ---
 
 {{ content }}
-
-{% if paginator %}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+      body {
+          font-family: 'Arial', sans-serif;
+          background-color: #151515;
+          color: #e0e0e0;
+          margin: 0;
+          padding: 0;
+      }
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px;
+      }
+      .header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 40px;
+      }
+      .header img {
+          width: 150px;
+          height: auto;
+      }
+      .header .about {
+          max-width: 60%;
+      }
+      .about h1 {
+          margin-top: 0;
+      }
+      .contact, .skills {
+          margin-top: 40px;
+      }
+      .contact ul {
+          list-style: none;
+          padding: 0;
+      }
+      .contact ul li {
+          margin-bottom: 10px;
+      }
+      .skills .skill-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+      }
+      .skills .skill-item img {
+          margin-right: 10px;
+      }
+  </style>
+</head>
+<!-- {% if paginator %}
   {% assign posts = paginator.posts %}
 {% else %}
   {% assign posts = site.posts %}
@@ -21,5 +72,60 @@ layout: archive
           {% include archive-single.html type=entries_layout %}
       {% endfor %}
       {% include paginator.html %}
+  </div>
+</div> -->
+
+<div class="container">
+  <!-- 헤더 섹션 -->
+  <div class="header">
+      <div class="about">
+          <h1>안녕하세요? 이규혁 입니다.</h1>
+          <p>저는 이렇게 생각합니다:</p>
+          <ul>
+              <li>지속적인 학습과 자기계발을 하는가? ✅</li>
+              <li>긍정적인 마인드를 가지고 있는가? ✅</li>
+              <li>스트레스를 해소하기 위한 취미활동이 있는가? ✅</li>
+              <li>다양한 사람들과 소통하는가? ✅</li>
+              <li>문제를 분석하고 해결하기 위해 노력하는가? ✅</li>
+              <li>급변하는 시대에 맞게 유연하게 적응할 수 있는가? ✅</li>
+              <li>적극성과 책임감을 가지고 있는가? ✅</li>
+              <li>성실하고 꾸준한 자세를 가지고 있는가? ✅</li>
+          </ul>
+      </div>
+      <img src="image.png" alt="저는 이렇게 생각합니다">
+  </div>
+
+  <!-- 연락처 섹션 -->
+  <div class="contact">
+      <h2>Reach me out!</h2>
+      <ul>
+          <li>📌 Lee Guhyeok</li>
+          <li>📞 +10-4336-8909</li>
+          <li>🏫 영남이공대학교 사이버보안과 3학년 (재학)</li>
+          <li>📧 g2hsec@gmail.com</li>
+          <li>🔗 <a href="https://g2hsec.github.io/" style="color: #76c7c0;">개인 학습 블로그</a></li>
+          <li>🔗 <a href="https://github.com/g2hsec" style="color: #76c7c0;">GitHub</a></li>
+      </ul>
+  </div>
+
+  <!-- 스킬 섹션 -->
+  <div class="skills">
+      <h2>Skils</h2>
+      <div class="skill-item">
+          <img src="python-logo.png" alt="Python" width="40">
+          <span>Python: ✅✅✅</span>
+      </div>
+      <div class="skill-item">
+          <img src="mysql-logo.png" alt="MySQL" width="40">
+          <span>MySQL: ✅✅✅</span>
+      </div>
+      <div class="skill-item">
+          <img src="web-vulnerability-logo.png" alt="Web Vulnerability" width="40">
+          <span>Web Vulnerability: ✅✅✅</span>
+      </div>
+      <div class="skill-item">
+          <img src="ids-ips-logo.png" alt="방화벽/IDS/IPS" width="40">
+          <span>방화벽/IDS/IPS: ✅✅✅</span>
+      </div>
   </div>
 </div>
