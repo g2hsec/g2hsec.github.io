@@ -3,30 +3,29 @@ layout: archive
 ---
 
 {{ content }}
+{% assign posts = paginator.posts %}
+{% else %}
+  {% assign posts = site.posts %}
+{% endif %}
 
 <div class="entries-{{ entries_layout }}" style="display: flex; justify-content: space-between;"></div>
   <div class="container">
     <!-- 헤더 섹션 -->
     <div class="header">
-        <div class="about">
-            <h1>안녕하세요? 이규혁 입니다.</h1>
-            <p>저는 이렇게 생각합니다:</p>
-            <ul>
-                <li>지속적인 학습과 자기계발을 하는가? ✅</li>
-                <li>긍정적인 마인드를 가지고 있는가? ✅</li>
-                <li>스트레스를 해소하기 위한 취미활동이 있는가? ✅</li>
-                <li>다양한 사람들과 소통하는가? ✅</li>
-                <li>문제를 분석하고 해결하기 위해 노력하는가? ✅</li>
-                <li>급변하는 시대에 맞게 유연하게 적응할 수 있는가? ✅</li>
-                <li>적극성과 책임감을 가지고 있는가? ✅</li>
-                <li>성실하고 꾸준한 자세를 가지고 있는가? ✅</li>
-            </ul>
+        <div class="about" style="flex: 1; max-width: 200px; padding: 10px;">
+          <h3 class="archive__subtitle">
+          {{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+          {% assign entries_layout = page.entries_layout | default: 'list' %}
+          {% for post in posts %}
+              {% include archive-single.html type=entries_layout %}
+          {% endfor %}
+          {% include paginator.html %}
         </div>
         <img src="/assets/image/test.png" alt="저는 이렇게 생각합니다">
     </div>
 
     <!-- 연락처 섹션 -->
-    <div class="contact">
+    <div class="contact" style="flex: 2; padding: 10px; margin-left: 20px;">
         <h2>Reach me out!</h2>
         <ul>
             <li>📌 Lee Guhyeok</li>
