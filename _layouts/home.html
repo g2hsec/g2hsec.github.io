@@ -10,15 +10,10 @@ layout: archive
 {% endif %}
 
 <div class="entries-{{ entries_layout }}" style="display: flex; justify-content: space-between;">
-  <div style="flex: 1; max-width: 200px; padding: 10px;">
-      <img src="/assets/image/test.png" alt="설명 텍스트" width="150" height="150">
-  </div>
-  <div style="flex: 2; padding: 10px; margin-left: 20px;">
       <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
       {% assign entries_layout = page.entries_layout | default: 'list' %}
       {% for post in posts %}
           {% include archive-single.html type=entries_layout %}
       {% endfor %}
       {% include paginator.html %}
-  </div>
 </div>
