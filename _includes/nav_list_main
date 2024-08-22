@@ -68,18 +68,11 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">Vulnerability_Assessment</span>
+        <span class="nav__sub-title">Other-Knowledge</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "WindowsServer_Assessment" %}
-                        <li><a href="/categories/WindowsServer_Assessment" class="">WindowsServer_Assessment ({{category[1].size}})</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            <ul>
-                {% for category in site.categories %}
-                    {% if category[0] == "LinuxServer_Assessment" %}
-                        <li><a href="/categories/LinuxServer_Assessment" class="">LinuxServer_Assessment ({{category[1].size}})</a></li>
+                    {% if category[0] == "Other-Knowledge" %}
+                        <li><a href="/categories/Other-Knowledge" class="">Other-Knowledge ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
