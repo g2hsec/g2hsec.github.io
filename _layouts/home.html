@@ -10,28 +10,27 @@ layout: archive
 {% endif %}
 
 <div class="entries-{{ entries_layout }}" style="display: flex; justify-content: space-between;"></div>
-  <div class="container">
+    <div class="container">
     <!-- 헤더 섹션 -->
-      <div class="about" style="flex: 1; max-width: 200px; padding: 10px;">
-        <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
-        {% assign entries_layout = page.entries_layout | default: 'list' %}
-        {% for post in posts %}
-            {% include archive-single.html type=entries_layout %}
-        {% endfor %}
-        {% include paginator.html %}
-      </div>
-      <img src="/assets/image/test.png" alt="저는 이렇게 생각합니다">
-
+        <div class="about" style="flex: 1; max-width: 200px; padding: 10px;">
+          <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+          {% assign entries_layout = page.entries_layout | default: 'list' %}
+          {% for post in posts %}
+              {% include archive-single.html type=entries_layout %}
+          {% endfor %}
+          {% include paginator.html %}
+        </div>
     <!-- 연락처 섹션 -->
-      <div class="contact" style="flex: 2; padding: 10px; margin-left: 20px;">
-        <h2>Reach me out!</h2>
-        <ul>
-            <li>📌 Lee Guhyeok</li>
-            <li>📞 +10-4336-8909</li>
-            <li>🏫 영남이공대학교 사이버보안과 3학년 (재학)</li>
-            <li>📧 g2hsec@gmail.com</li>
-            <li>🔗 <a href="https://g2hsec.github.io/" style="color: #76c7c0;">개인 학습 블로그</a></li>
-            <li>🔗 <a href="https://github.com/g2hsec" style="color: #76c7c0;">GitHub</a></li>
-        </ul>
+        <div class="contact" style="flex: 2; padding: 10px; margin-left: 20px;">
+          <h2>Reach me out!</h2>
+          <ul>
+              <li>📌 Lee Guhyeok</li>
+              <li>📞 +10-4336-8909</li>
+              <li>🏫 영남이공대학교 사이버보안과 3학년 (재학)</li>
+              <li>📧 g2hsec@gmail.com</li>
+              <li>🔗 <a href="https://g2hsec.github.io/" style="color: #76c7c0;">개인 학습 블로그</a></li>
+              <li>🔗 <a href="https://github.com/g2hsec" style="color: #76c7c0;">GitHub</a></li>
+          </ul>
+        </div>
       </div>
 </div>
