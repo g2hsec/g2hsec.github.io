@@ -13,9 +13,12 @@
 <div class="{{ include.type | default: "list" }}__item">
     <article class="archive-item">
         <div>
+            <span>
+              <a href="{{ post.url }}" style="color: black;">{{post.title}}</a>
+            </span>
             <small> 
               <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i><span style="color: saddlebrown;">{{ post.date | date: " %Y.%m.%d" }}</span>
-              {% if site.category_archive.type and post.categories[0] %}
+              {% if site.category_archive.type and post.categories[0] and site.tag_archive.type and post.tags[0] %}
                 {%- include post__taxonomy.html -%}
               {% endif %}
             </small>
