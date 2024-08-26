@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single2
 title:  401&403(Access Control) Bypass
 categories: Web-vuln
 tag: [403, 401, Forbidden, access control, 403 bypass]
@@ -126,7 +126,7 @@ Upper: /ADMIN
 ```
 
 기타 API 사용할 경우 버전변경을 통해서도 가능하다
-
+{% raw %}
 ```
 /v3/users_data/1234 --> 403 Forbidden
 /v1/users_data/1234 --> 200 OK
@@ -137,7 +137,7 @@ Upper: /ADMIN
 {"user_id":"<legit_id>","user_id":"<victims_id>"} (JSON Parameter Pollution)
 user_id=ATTACKER_ID&user_id=VICTIM_ID (Parameter Pollution)
 ```
-
+{% endraw %}
 ## #프로토콜 변경을 통해서도 가능하다.
 
 ```
