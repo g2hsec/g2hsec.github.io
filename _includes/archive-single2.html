@@ -15,7 +15,7 @@
         <div>
             <small> 
               <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i><span style="color: saddlebrown;">{{ post.date | date: " %Y.%m.%d" }}</span>
-              {% if site.category_archive.type and post.categories[0] and site.tag_archive.type %}
+              {% if site.category_archive.type and post.categories[0] %}
                 {%- include post__taxonomy.html -%}
               {% endif %}
             </small>
