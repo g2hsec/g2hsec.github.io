@@ -2,7 +2,7 @@
 layout: single2
 title:  401&403(Access Control) Bypass
 categories: Web-vuln
-tag: [403, 401, Forbidden, access control, 403 bypass]
+tag: [Forbidden, access control, 403 bypass]
 toc: true
 author_profile: false
 ---
