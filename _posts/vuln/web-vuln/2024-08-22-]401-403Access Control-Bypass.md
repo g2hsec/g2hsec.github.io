@@ -1,6 +1,6 @@
 ---
-layout: single2
-title:  401&403(Access Control) Bypass
+layout: single
+title: 401&403(Access Control) Bypass
 categories: Web-vuln
 tag: [Forbidden, access control, 403 bypass]
 toc: true
