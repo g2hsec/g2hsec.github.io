@@ -219,6 +219,7 @@ timezone: Asia/Seoul
 
 # Plugins (previously gems:)
 plugins:
+  - jekyll-redirect-from
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
