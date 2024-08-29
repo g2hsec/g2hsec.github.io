@@ -80,17 +80,17 @@ b'gASVIQAAAAAAAAB9lCiMBGRhdGGUjAR0ZXN0lIwEZGF0ZZSMBDIwMjOUdS4='
 <div class="notice">
   <h4><aside>
 💡 **Warning** 
-The `pickle` module **is not secure**. Only unpickle data you trust.
+The `pickle` module **is not secure**. Only unpickle data you trust.<br>
 
-**Warning**
+**Warning**<br>
 
-The `pickle` module **is not secure**. Only unpickle data you trust.
+The `pickle` module **is not secure**. Only unpickle data you trust.<br>
 
 It is possible to construct malicious pickle data which will **execute arbitrary code during unpickling**. Never unpickle data that could have come from an untrusted source, or that could have been tampered with.
 
-Consider signing data with [`hmac`](https://docs.python.org/3/library/hmac.html#module-hmac) if you need to ensure that it has not been tampered with.
+Consider signing data with [`hmac`](https://docs.python.org/3/library/hmac.html#module-hmac) if you need to ensure that it has not been tampered with.<br>
 
-Safer serialization formats such as [`json`](https://docs.python.org/3/library/json.html#module-json) may be more appropriate if you are processing untrusted data. See [Comparison with json](https://docs.python.org/3/library/pickle.html#comparison-with-json).
+Safer serialization formats such as [`json`](https://docs.python.org/3/library/json.html#module-json) may be more appropriate if you are processing <br>untrusted data. See [Comparison with json](https://docs.python.org/3/library/pickle.html#comparison-with-json).
 
 </aside></h4>
 </div>
