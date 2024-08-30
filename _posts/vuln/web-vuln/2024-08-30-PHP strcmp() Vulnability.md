@@ -2,7 +2,7 @@
 layout: single
 title: PHP strcmp() Vulnability
 categories: Web-vuln
-tag: [python, Pickle, Deserialize, Deserialize Vulnability]
+tag: [php, strcmp, function, web Vulnability]
 toc: true
 author_profile: false
 ---
