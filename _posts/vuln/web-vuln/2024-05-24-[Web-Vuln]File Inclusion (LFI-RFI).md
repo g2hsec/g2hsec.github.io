@@ -155,7 +155,7 @@ GET /index.php?file=expect://ls
 # 대응 방안
 사용자이 입력값 검증을 통해 파일 이름의 크기범위에 대해 제한하며, 특수문자등 필터링이 적절히 이루어져야한다. 또한 URI 에 대한 화이트리스트 기반의 정책을 설정해야한다.
 
-# Referance
+# Reference
 - https://www.hahwul.com/cullinan/file-inclusion/
 - https://en.wikipedia.org/wiki/File_inclusion_vulnerability#Local_file_inclusion
 - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/11.1-Testing_for_Local_File_Inclusion

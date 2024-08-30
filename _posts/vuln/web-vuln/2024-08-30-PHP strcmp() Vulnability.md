@@ -44,6 +44,6 @@ PHP의 ==을 통한 비교 결과를 확인해보면 null == 0 은 true가 된�
 
 ![그림 1-2](/assets/image/vuln/web-vuln/PHP%20strcmp()%20Vulnability/image-1.png)
 
-# Referance
+# Reference
 - https://www.php.net/manual/en/types.comparisons.php
 - https://cybernetgen.com/auth-bypass-with-php-type-juggling/

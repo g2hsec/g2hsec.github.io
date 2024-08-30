@@ -303,7 +303,7 @@ api-endpoing=/product/choiseProduct?choiseProductId=6&path=http:192.168.0.10/adm
 💡 **<u style="color:red;">특정 기능에서 http://uri~ 로의 요청 로직이 있을 경우 이 때 file 과 같은 다른 URI 스킴을 사용할 수 있으며, file 스킴의 경우 file:/, file://, file:/// 모두 사용할 수 있다.</u>** 
 {: .notice--primary} 
 
-# Referance
+# Reference
 - https://www.hahwul.com/cullinan/ssrf/
 - https://www.igloo.co.kr/security-information/category/issue/page/1/
 - https://portswigger.net/web-security/ssrf

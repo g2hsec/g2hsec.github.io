@@ -198,7 +198,7 @@ GET / HTTP/1.1 -> 200 ok
 X-Rewrite-URL: /admin/
 ```
 
-# Referance
+# Reference
 - https://www.hahwul.com/2021/10/08/bypass-403/
 - https://www.codelivly.com/401-403-bypass-cheatsheet/
 - https://www.vidocsecurity.com/blog/401-and-403-bypass-how-to-do-it-right/

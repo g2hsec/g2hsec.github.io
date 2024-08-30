@@ -143,5 +143,5 @@ GET /image?filename=../../../etc/passwd%00.jpg HTTP/2 200(ok)
 1. 입력값에 대한 유효성 검사.
 
 
-# Referance
+# Reference
 - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Directory%20Traversal

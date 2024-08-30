@@ -229,6 +229,6 @@ ex get 방식으로 url 전달값 필터링 될 시 사용<br><br>
 url 인코딩과 double 인코딩 이 둘 다 필터링 되어 있을경우 해볼만한듯
 </div>
 
-# Referance
+# Reference
 - https://portswigger.net/web-security/essential-skills/obfuscating-attacks-using-encodings
 - https://snyk.io/blog/url-confusion-vulnerabilities/#url-encoded

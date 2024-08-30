@@ -48,5 +48,5 @@ PHP 에서는 두 값을 비교하기 위해 문자열을 정수 0 으로 변환
 
 PHP에서는 Array(배열)은 null 값으로 반환되는데 == 연산자를 통해 null == 0 은 True를 반환한다.
 
-# Referance
+# Reference
 - https://owasp.org/www-pdf-archive/PHPMagicTricks-TypeJuggling.pdf
