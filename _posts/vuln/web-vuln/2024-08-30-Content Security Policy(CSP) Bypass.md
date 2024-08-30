@@ -92,6 +92,7 @@ Content-Security-Policy-Report-Only: policy 의 경우 CSP정책이 적용되지
 | `nonce-<nonce-value>` | `nonce` 값(한 번 사용되는 고유한 값)을 사용하는 인라인 스크립트를 허용합니다. `nonce` 값은 매 요청마다 다르게 설정해야 합니다.  |
 | `hash-<sha256-hash-value>` | 특정 SHA-256 해시값을 사용하여 해당 스크립트를 화이트리스트에 추가합니다.                |
 | `strict-dynamic`      | 동적으로 로드된 스크립트에 대해 부모 스크립트의 출처와 동일한 출처를 요구하지 않으며, 신뢰할 수 있는 스크립트에 의해서만 로드되도록 허용합니다. |
+
 <br>
 외부 도메인의 스크립트를 허용할 때는 항상 주의해야 하며, 이럴 때 사용할 수 있는 보안 메커니즘이 CSP 이다. 
 <br>
@@ -114,7 +115,7 @@ Content-Security-Policy: script-src https://safesite.com 'unsfae-eval' data: htt
 <script src="data:;base64,YWxlcnQoZG9jdW1lbnQuZG9tYWluKQ=="></script>
 ```
 
-## 2. Wildcard(*) 오사용2. Wildcard(*) 오사용
+## 2. Wildcard(*) 오사용
 
 ```javascript
 Content-Security-Policy: script-src self' http://safesite data: http://*
