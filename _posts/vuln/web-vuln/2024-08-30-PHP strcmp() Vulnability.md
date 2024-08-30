@@ -37,12 +37,12 @@ POST 방식으로 입력 받은 패스워드를 기존에 저장되어 있던 �
 
 PHP의 ==을 통한 비교 결과를 확인해보면 null == 0 은 true가 된다.<br>
 
-![그림 1-1](image.png)
+![그림 1-1](/assets/image/vuln/web-vuln/PHP%20strcmp()%20Vulnability/image.png)
 이를 통해 if문을 통과하게되며, 검증을 우회할 수 있다.
 <br>
 이를 보안하기 위해서는 정확한 비교를 위해 ===을 사용해야 한다.
 
-![그림 1-2](image-1.png)
+![그림 1-2](/assets/image/vuln/web-vuln/PHP%20strcmp()%20Vulnability/image-1.png)
 
 # Referance
 - https://www.php.net/manual/en/types.comparisons.php

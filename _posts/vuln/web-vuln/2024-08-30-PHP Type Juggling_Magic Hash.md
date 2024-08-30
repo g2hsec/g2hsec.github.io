@@ -12,13 +12,13 @@ author_profile: false
 
 - PHP 에서는 두 값을 비교하는 방식으로 == 와 === 이 존재한다.
 
-![그림 1-1](image.png)
+![그림 1-1](/assets/image/vuln/web-vuln/PHP%20Type%20Juggling%20Magic%20Hash/image.png)
 
 위 그림을 보게되면, == 방식을 사용하여 비교하는 경우  
 <br>
 매우 느슨하게 두 값을 비교하며, 다양한 경우에 True를 반환하게 된다.
 
-![alt text](image-1.png)
+![alt text](/assets/image/vuln/web-vuln/PHP%20Type%20Juggling%20Magic%20Hash/image-1.png)
 
 위 그림의 ===을 사용한 경우를 보면 매우 엄격하게 유형과 데이터를 검사하는 걸 볼 수 있다.
 
