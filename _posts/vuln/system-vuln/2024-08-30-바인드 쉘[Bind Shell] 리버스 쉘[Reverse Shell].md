@@ -15,7 +15,7 @@ author_profile: false
 
 > 바인드 쉘의 경우, 서버에서 포트가 열려있고 클라이언트에서 접속하여 쉘을 얻는 방식이다.일반적으로 가장 많이 사용되는 방식이며, 아래와 같이 사용된다.
 
-![그림 1-1](image.png)<br>
+![그림 1-1](/assets/image/vuln/system-vuln/bind_reverse_shell/image.png)<br>
 
 nc(netcat)을 통해 서버를 열어준다<br>
 -l : listen모드로 port를 열어준다.<br>
@@ -24,7 +24,7 @@ nc(netcat)을 통해 서버를 열어준다<br>
 -e :  명령어가 실행된 후 추가적으로 실행시킬 명령어<br>
  즉 4444번 포트를 사용하여 서버를 열며, 서버에 접속하면 /bin/bash명령어를 실행시켜준다.<br>
 
- ![그림 1-1](image-1.png)
+ ![그림 1-1](/assets/image/vuln/system-vuln/bind_reverse_shell/image-1.png)
  
  위 사진과 같이 접속하여 쉘을 획득 할 수 있다. 이것이 바인드 쉘이다.<br>
 
