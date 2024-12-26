@@ -18,6 +18,8 @@ author_profile: false
 3. robots.txt 경로 유출확인
 4. dev.linkvortex.htb 하위경로 발견
 5. git 덤프 후 계정정보담긴 파일 유출
+6. /var/lib/ghost/config.production.json 파일 노출 및 계정정보 하드코딩
+7. sudo와 함께 심볼릭 링크 취약점을 통해 root 플래그 획득
 ## 정보수집
 ### Nmap 스캔 - 사용중인 포트 및 배너, 기본 정보 수집
 
@@ -54,7 +56,7 @@ http://linkvortex.htb/ [200 OK] Apache, Country[RESERVED][ZZ], HTML5, HTTPServer
 
 - whatweb 결과 Ghost CMS 를 사용하고 있으며 5.58 버전으로 동작중인 걸 발견할 수 있다.
 
-![그림 1-1](image.png)
+![그림 1-1](/assets/image/write-up/htb/linkvortex/image.png)
 
 - 웹 접속시 특별한 기능은 없는 거 같다.
 
@@ -69,7 +71,7 @@ Disallow: /r/
 
 - robots.txt 경로가 존재했으며, 접속시 위와 같이 다양한 경로가 존재
 
-![그림 1-2](image-1.png)
+![그림 1-2](/assets/image/write-up/htb/linkvortex/image-1.png)
 
 - ghost 경로로 접속해보면 로그인 페이지가 출력됨
 - 특정 계정을 우선적으로 획득해야함
@@ -106,7 +108,7 @@ dev                     [Status: 200, Size: 2538, Words: 670, Lines: 116, Durati
 
 - ffuf 결과 dev 하위도메인이 존재하는 걸 확인
 
-![그림 1-3](image-2.png)
+![그림 1-3](/assets/image/write-up/htb/linkvortex/image-2.png)
 
 - 특별한 기능은 더 존재하지 않음
 
@@ -138,7 +140,7 @@ Starting gobuster in directory enumeration mode
 
 - .git 경로가 유출되고 있음을 확인할 수 있음.
 
-![그림 1-4](image-3.png)
+![그림 1-4](/assets/image/write-up/htb/linkvortex/image-3.png)
 
 - .git 경로에 다양한 파일 및 경로가 추가 노출되고 있음.
 
@@ -236,9 +238,9 @@ cat ./ghost/core/test/regression/api/admin/authentication.test.js | grep "pass"
 - OctopiFociPilfer45 패스워드를 하드코딩된채로 노출되고 있음
 - admin 패스워드로 추정되어 접근 시도
 
-![그림 1-5](image-4.png)
+![그림 1-5](/assets/image/write-up/htb/linkvortex/image-4.png)
 
-![그림 1-6](image-5.png)
+![그림 1-6](/assets/image/write-up/htb/linkvortex/image-5.png)
 
 - 성공적으로 접근할 수 있었음
 - 추가적인 웹 사이트에 대한 유의미한 정보는 나오지 않음
@@ -268,7 +270,7 @@ CMD ["node", "current/index.js"]
 - config.production.json 경로가 노출되고 있음
 - config.production.json 는 데이터베이스 연결 정보, 이메일 설정, URL 등이 포함되어 있음
 
-![그림 1-7](image-6.png)
+![그림 1-7](/assets/image/write-up/htb/linkvortex/image-6.png)
 
 - cve-2023-40028 Exploit PoC 스크립트를 가져와 url 부분을 수정 후 사용할 수 있음.
 
