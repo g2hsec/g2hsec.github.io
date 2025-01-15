@@ -1,100 +1,27 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>글 목록 네모형 레이아웃</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f4f4f4;
-    }
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
 
-    .grid__item {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: space-between;
-    }
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
 
-    .archive-item {
-      display: flex;
-      flex-direction: column;
-      width: calc(33.333% - 20px); /* 한 줄에 3개씩 배치 */
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .archive-item:hover {
-      transform: translateY(-5px);
-    }
-
-    .archive-thumbnail img {
-      width: 100%;
-      height: auto;
-    }
-
-    .archive-content {
-      padding: 15px;
-    }
-
-    .archive-content h2 {
-      font-size: 18px;
-      margin: 0 0 10px;
-    }
-
-    .archive-content small {
-      font-size: 14px;
-      color: #777;
-    }
-
-    .archive-content a {
-      color: black;
-      text-decoration: none;
-    }
-
-    .archive-content a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="grid__item">
-    {% for post in site.posts %}
+<div class="{{ include.type | default: "list" }}__item">
     <article class="archive-item">
-      <div class="archive-thumbnail">
-        {% if post.header.teaser %}
-        {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
-        <img src="{{ teaser }}" alt="{{ post.title }}">
-        {% else %}
-        <img src="default-thumbnail.jpg" alt="Default Thumbnail">
-        {% endif %}
-      </div>
-      <div class="archive-content">
-        {% if post.id %}
-        {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
-        {% else %}
-        {% assign title = post.title %}
-        {% endif %}
-        <h2>
-          <a href="{{ post.url }}">{{ title }}</a>
-        </h2>
-        <small> 
-          <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i>
-          <span style="color: saddlebrown;">{{ post.date | date: " %Y.%m.%d" }}</span>
-          {% if site.category_archive.type and post.categories[0] and site.tag_archive.type and post.tags[0] %}
-            {%- include post__taxonomy.html -%}
-          {% endif %}
-        </small>
-      </div>
-    </article>
-    {% endfor %}
-  </div>
-</body>
-</html>
+        <div>
+            <span>
+              <a href="{{ post.url }}" style="color: black;">{{post.title}}</a>
+            </span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i><span style="color: saddlebrown;">{{ post.date | date: " %Y.%m.%d" }}</span>
+              {% if site.category_archive.type and post.categories[0] and site.tag_archive.type and post.tags[0] %}
+                {%- include post__taxonomy.html -%}
+              {% endif %}
+            </small>
+        </div>
+      </article>
+</div>
