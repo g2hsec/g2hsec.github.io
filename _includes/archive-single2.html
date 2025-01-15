@@ -1,49 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Category Grid</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    /* CSS 코드 삽입 */
-  </style>
-</head>
-<body>
-  {% for post in site.posts %}
-    {% if post.header.teaser %}
-      {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
-    {% else %}
-      {% assign teaser = site.teaser %}
-    {% endif %}
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
 
-    {% if post.id %}
-      {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
-    {% else %}
-      {% assign title = post.title %}
-    {% endif %}
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
 
-    <div class="grid-container">
-      <div class="grid-item">
-        <article class="archive-item">
-          <div>
-            {% if teaser %}
-              <img src="{{ teaser }}" alt="Post teaser" class="teaser-image">
-            {% endif %}
+<div class="{{ include.type | default: "list" }}__item">
+    <article class="archive-item">
+        <div>
             <span>
-              <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
+              <a href="{{ post.url }}">{{post.title}}</a>
             </span>
-            <small>
-              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i>
-              <span class="post-date">{{ post.date | date: " %Y.%m.%d" }}</span>
+            <small> 
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i>{{ post.date | date: " %Y.%m.%d" }}
               {% if site.category_archive.type and post.categories[0] and site.tag_archive.type and post.tags[0] %}
                 {%- include post__taxonomy.html -%}
               {% endif %}
             </small>
-          </div>
-        </article>
-      </div>
-    </div>
-  {% endfor %}
-</body>
-</html>
+        </div>
+      </article>
+</div>
