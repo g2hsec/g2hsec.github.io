@@ -1,66 +1,61 @@
 ---
-layout: git-dumper
+layout: single
 title: LinkFinder
 categories: Tools
-tag: [LinkFinder, tool, tools, pentest, pentest tool,recon]
+tag: [LinkFinder, attacks, tool, tools, pentest, pentest tool,recon]
 toc: true
 author_profile: false
 ---
 
-# git-dumper
+# LinkFinder 란 무엇인가? 
 
-> 웹 어플리케이션 개발시 개발자의 부주의로 인해 웹 서버에 노출된 .git 디렉토리는 민감한 소스 코드와 히스토리 정보가 외부에 유출될 수 있다. 이러한 노출된 .git 저장소를 자동으로 덤프(추출)하여, 실제로 어떤 정보가 공개되어 있는지 확인할 수 있도록 하는 도구이다.
+> 많은 웹 어플레키엿능ㄴ JavaScript로 제작되었으며, 이러한 JavaScript 파일 내부에 숨겨진 Link, API EndPoint, URL등을 자동으로 추출해주는 도구이다. 이를 통해 코드 내에서 민감 정보가 노출되었는지와 같은 공격 표면을 빠르게 탐색할 수 있다.
 
 
 ## 설치 방법
 
 ```
-pip install git-dumper
+git clone https://github.com/GerbenJavado/LinkFinder.git
+cd LinkFinder
 pip install -r requirements.txt
+
+python3 linkfinder.py -h
 ```
 
 ## 기본적인 사용 방법
 
 ```
-git-dumper [options] URL DIR
-git-dumper http://website.com/.git ~/website
+python3 linkfinder.py -i example.js -o cli
+
+-i를 통해 파일을 지정하고 -o cli를 통해 콘솔에 출력한다.
 ```
 
 <br>
 이 외에도 다양한 옵션과 함께 사용이 가능하다.
 <br>
 
-```
-usage: git-dumper [options] URL DIR
+1. 결과를 파일로 저장
 
-Dump a git repository from a website.
+    ```
+    python3 linkfinder.py -i example.js -o html > results.html
+    python3 linkfinder.py -i example.js -o json > results.json
+    ```
 
-positional arguments:
-  URL                   url
-  DIR                   output directory
+2. URL 입력 사용
 
-optional arguments:
-  -h, --help            show this help message and exit
-  --proxy PROXY         use the specified proxy
-  -j JOBS, --jobs JOBS  number of simultaneous requests
-  -r RETRY, --retry RETRY
-                        number of request attempts before giving up
-  -t TIMEOUT, --timeout TIMEOUT
-                        maximum time in seconds before giving up
-  -u USER_AGENT, --user-agent USER_AGENT
-                        user-agent to use for requests
-  -H HEADER, --header HEADER
-                        additional http headers, e.g `NAME=VALUE`
-  --client-cert-p12 CLIENT_CERT_P12
-                        client certificate in PKCS#12 format
-  --client-cert-p12-password CLIENT_CERT_P12_PASSWORD
-                        password for the client certificate
-```
+    ```
+    python3 linkfinder.py -i https://example.com/app.js -o cli
+    ```
 
+3. 폴더 전체 분석
+
+    ```
+    python3 linkfinder.py -i "./static/js/*.js" -o cli
+    ```
 
 <br>
 
 # 특징
-1. 노출된 .git 디렉토리 확인 및 덤프
-2. 저장소의 전체 커밋 히스토리와 객체(Object) 다운로드
-3. Git 객체와 메타데이터를 재구성하여 원본 소스 코드 복원
+1. 정규표현식 기반 Link, API EndPoint, URL 추출
+2. 다양한 출력 포맷: 콘솔(cli), HTML, JSON 등
+3. 여러 입력 방식 지원: 단일 파일, URL, 폴더
