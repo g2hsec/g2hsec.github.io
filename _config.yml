@@ -106,7 +106,7 @@ analytics:
 # Site Author
 author:
   name             : "Lee-GyuHyeok"
-  avatar           : "/assets/images/idpicture/idpicture.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/image/idpicture/idpicture.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "I study security and share my knowledge."
   location         : "South Korea"
   email            :
