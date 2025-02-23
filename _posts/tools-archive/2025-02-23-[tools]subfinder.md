@@ -19,7 +19,9 @@ author_profile: false
 ```
 sudo apt update
 sudo apt install subfinder -y
+
 혹은
+
 go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 
 subfinder -h
