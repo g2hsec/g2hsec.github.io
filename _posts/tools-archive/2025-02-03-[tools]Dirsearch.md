@@ -86,10 +86,6 @@ python3 dirsearch.py -u http://example.com
     python3 dirsearch.py -u http://example.com --proxy http://127.0.0.1:8080
     ```
 
-
-이 외에도 -h 옵션을 통해 다양한 옵션 확인이 가능하며, -ls 옵션을 통해 출력되는 다양한 공개 API를 출력 하여 --sources 옵션을 통해 특정 소스만 사용하거나, <br>
-무료 버전이 아닌 유료 버전을 사용하기 위해 API Key 를 등록하여 다양한 데이터를 확보할 수도 있다.
-
 <br>
 
 # 특징
