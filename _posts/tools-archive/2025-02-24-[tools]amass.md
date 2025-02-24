@@ -33,7 +33,7 @@ apt-get update
 apt-get install amass
 ```
 
-## 기본적인 사용 방법 (서브 도메인 스캔캔)
+## 기본적인 사용 방법 (서브 도메인 스캔)
 
 ```
 amass enum -d example.com
