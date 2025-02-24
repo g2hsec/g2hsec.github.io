@@ -1,13 +1,13 @@
 ---
 layout: single
-title: LinkFinder
+title: JSleak는
 categories: Tools
 tag: [LinkFinder, attacks, tool, tools, pentest, pentest tool,recon]
 toc: true
 author_profile: false
 ---
 
-# LinkFinder 란 무엇인가? 
+# JSleak는 란 무엇인가? 
 
 > JSleak는 LinkFinder과 유사하며, JavaScript에서 의도치 핞게 노출되는 민감 정보와 같은 부분을 탐색하며, API Key, Token, password, URL파라미터등을 포함한 민감 정보를 탐지하는 도구이다.
 
