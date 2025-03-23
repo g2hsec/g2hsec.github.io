@@ -1,7 +1,7 @@
 ---
 title: "1-Day Analysis"
 layout: archive
-permalink: /categories/1-Day Analysis
+permalink: /categories/1-Day-Analysis
 author_profile: true
 sidebar_main: true
 ---
