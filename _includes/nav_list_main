@@ -76,6 +76,14 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+        <span class="nav__sub-title">1-Day Analysis</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "1-Day Analysis" %}
+                        <li><a href="/categories/1-Day Analysis" class="">Other-Knowledge ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
       </li>
   </ul>
 </nav>
